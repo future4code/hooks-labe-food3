@@ -4,7 +4,7 @@ import { exemplo } from "./styledError";
 export default function ErrorPage() {
   return (
     <div>
-      Feed Page
+      Error
       <button>Início</button>
     </div>
   );

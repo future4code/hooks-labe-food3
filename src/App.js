@@ -1,11 +1,13 @@
 import React from "react";
-import { Router } from "react-router-dom";
+import TelaInicialPage from "./pages/TelaInicialPage/TelaInicialPage";
+import Router from "./routes/Router";
+
 
 
 export default function App () {
   return (
     <div>
-      <Router />
+      <Router/>
     </div>
   );
 }
