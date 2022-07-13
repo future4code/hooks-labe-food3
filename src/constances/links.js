@@ -1,4 +1,3 @@
- export const URL_BASE = "https://us-central1-missao-newton.cloudfunctions.net/fourFoodA"
 
  export const headers = {
     headers : {
@@ -6,3 +5,5 @@
         
     }
  }
+
+ export const URL_BASE = "https://us-central1-missao-newton.cloudfunctions.net/fourFoodA"

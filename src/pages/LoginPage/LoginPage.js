@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { exemplo } from "./styledLoginPage";
 import { Email } from "@mui/icons-material";
 import styled from "styled-components";
@@ -6,52 +6,67 @@ import { navigate, useNavigate } from "react-router-dom";
 import logo from "../../imagens/logo.png";
 import { Main, Form, Input, Img, Button } from "./styledLoginPage";
 import axios from "axios";
-import  URL_BASE  from "../../constances/links";
+import { URL_BASE } from "../../constances/links";
+
 
 
 
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-  const [email , setEmail] = useState("")
-  const [senha , setSenha] = useState("")
+  const navigate = useNavigate()
+  const [inputEmail , setInputEmail] = useState("")
+  const [inputSenha , setInputSenha] = useState("")
+  const [user , setUser] = useState([])
 
-  const onChangeEmail = (event) =>{
-    setEmail(event.target.value)
+  const onChangeEmail = (event)=>{
+    setInputEmail(event.target.value)
   }
-  
-  const onChangeSenha = (event) =>{
-    setSenha(event.target.value)
+  const onChangeSenha = (event)=>{
+    setInputSenha(event.target.value)
   }
 
-  const addUser = () => {
-  
-    const body = {
-    email: email,
-    password: senha,
-    }
-  
+  const hundleUser = () =>{
    
-      axios.get(`${URL_BASE}/login`).then((res)=>console.log(res))
-      .catch((err)=>console.log(err.response))
-    
-  
+    const body = {
+      email : inputEmail,
+      password : inputSenha,
+      
   }
 
-
+  axios.post(`${URL_BASE}/login`, body).then((res)=>{
+    setUser(res.data)
+    // console.log(res.data.user.hasAddress)
+    if(res.data.user.hasAddress === true){
+      navigate("/restaurante")
+    }
+}).catch((err)=>{
+ alert("Usuario nao cadastrado.Cadastre-se")
+ navigate("/cadastro")
+})
+  }
   return (
     <Main>
       <Img src={logo} />
       <h3>Entrar</h3>
       <div>
-        <Input placeholder="Email" type="email" value={email} onChange={onChangeEmail} required />
-        <Input placeholder="Senha"  value={senha} onChange={onChangeSenha}required />
-        <Button onClick={()=>addUser()}>Entrar</Button>
-       
+        <Input
+          placeholder="Email"
+          type="email"
+          value={inputEmail}
+          onChange={onChangeEmail}
+          required
+        />
+        <Input
+          placeholder="Senha"
+          value={inputSenha}
+          onChange={onChangeSenha}
+          required
+        />
+        <Button onClick={() => hundleUser()}>Entrar</Button>
       </div>
       <p>
         Não possui cadastro?
-        <span onClick={() => navigate("/cadastro")}> Clique aqui.</span>
+        <span> Clique aqui.</span>
       </p>
     </Main>
   );
