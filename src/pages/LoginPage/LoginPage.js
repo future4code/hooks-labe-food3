@@ -4,7 +4,7 @@ import { Email } from "@mui/icons-material";
 import styled from "styled-components";
 import { navigate, useNavigate } from "react-router-dom";
 import logo from "../../imagens/logo.png";
-import { Main, Form, Input, Img, Button } from "./styledLoginPage";
+import { Main, Pa, Input, Img, Button , Gap,  } from "./styledLoginPage";
 import axios from "axios";
 import { URL_BASE } from "../../constances/links";
 
@@ -45,10 +45,10 @@ const LoginPage = () => {
 })
   }
   return (
-    <Main>
+    <Main>  
       <Img src={logo} />
-      <h3>Entrar</h3>
-      <div>
+      <Pa>Entrar</Pa>
+      <Gap>
         <Input
           placeholder="Email"
           type="email"
@@ -63,11 +63,11 @@ const LoginPage = () => {
           required
         />
         <Button onClick={() => hundleUser()}>Entrar</Button>
-      </div>
-      <p>
+      </Gap>
+      <Pa>
         Não possui cadastro?
         <span> Clique aqui.</span>
-      </p>
+      </Pa>
     </Main>
   );
 }
