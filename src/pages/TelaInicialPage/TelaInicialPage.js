@@ -6,6 +6,6 @@ export default function TelaInicialPage() {
   const navigate = useNavigate();
 
   return (
-    <Main>{/* <button onClick={()=>navigate('login')}>BOtão</button> */}</Main>
+    <Main> <button onClick={()=>navigate('login')}>Login Page</button> </Main>
   );
 }

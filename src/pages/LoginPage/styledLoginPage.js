@@ -49,6 +49,7 @@ export const Input = styled.input`
   border: none;
   padding: 5px;
   margin: 0;
+  
 `;
 
 export const Img = styled.img`
