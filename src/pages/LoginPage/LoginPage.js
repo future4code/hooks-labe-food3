@@ -4,11 +4,18 @@ import { Email } from "@mui/icons-material";
 import styled from "styled-components";
 import { navigate, useNavigate } from "react-router-dom";
 import logo from "../../imagens/logo.png";
-import { Main, Pa, Input, Img, Button, Gap } from "./styledLoginPage";
+import {
+  Main,
+  Pa,
+  Img,
+  Button,
+  Form,
+  Input,
+  TextField,
+} from "./styledLoginPage";
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
 import useForm from "../../hooks/useForm";
-import { TextField } from "@mui/material";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -21,7 +28,10 @@ const LoginPage = () => {
   //   setInputSenha(event.target.value)
   // }
 
-  const [form, onChange, clear] = useForm({ email: "", password: "" });
+  const [form, onChange, clear] = useForm({
+    email: "",
+    password: "",
+  });
 
   const onSubmitForm = (ev) => {
     ev.preventDefault();
@@ -42,31 +52,44 @@ const LoginPage = () => {
         navigate("/cadastro");
       });
   };
+
+  const [viewPass, setViewPass] = useState(false);
+
+  const showPass = () => {
+    setViewPass(!viewPass);
+  };
+
   return (
     <Main>
       <Img src={logo} />
       <Pa>Entrar</Pa>
-      <form onSubmit={onSubmitForm}>
-        <TextField
-          name="email"
-          value={form.email}
-          onChange={onChange}
-          label={"E-mail"}
-          placeholder="E-mail"
-          type="email"
-          required
-        />
-        <TextField
-          name="password"
-          value={form.password}
-          onChange={onChange}
-          label={"Senha"}
-          placeholder="Senha"
-          type="password"
-          required
-        />
+      <Form onSubmit={onSubmitForm}>
+        <TextField>
+          <legend>E-mail*</legend>
+          <Input
+            name="email"
+            value={form.email}
+            onChange={onChange}
+            label={"E-mail"}
+            placeholder="E-mail"
+            type="email"
+            required
+          />
+        </TextField>
+        <TextField>
+          <legend>Senha*</legend>
+          <Input
+            name={"password"}
+            value={form.password}
+            onChange={onChange}
+            placeholder="Senha"
+            type={viewPass ? "text" : "password"}
+            required
+          />
+          <button onClick={showPass}>BT</button>
+        </TextField>
         <Button onClick={() => hundleUser()}>Entrar</Button>
-      </form>
+      </Form>
       <Pa>
         Não possui cadastro?
         <span> Clique aqui.</span>
