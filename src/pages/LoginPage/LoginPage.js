@@ -48,7 +48,7 @@ const LoginPage = () => {
         }
       })
       .catch((err) => {
-        alert("Usuario nao cadastrado.Cadastre-se");
+        alert("Usuário não cadastrado. Cadastre-se!");
         navigate("/cadastro");
       });
   };
@@ -67,10 +67,9 @@ const LoginPage = () => {
         <TextField>
           <legend>E-mail*</legend>
           <Input
-            name="email"
+            name={"email"}
             value={form.email}
             onChange={onChange}
-            label={"E-mail"}
             placeholder="E-mail"
             type="email"
             required

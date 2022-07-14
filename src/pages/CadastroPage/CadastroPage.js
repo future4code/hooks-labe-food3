@@ -62,8 +62,10 @@ if(form.password === userConfirmSenha){
     axios
       .post(`${URL_BASE}/signup`, form)
       .then((res) => {
-        console.log(res.data.token);
+        // console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
+        // quando preencher o formulário vai pra cadastro endereço
+        navigate("cadastro-endereco")
       })
       .catch((err) => {
         console.log(err.response);
@@ -78,11 +80,11 @@ if(form.password === userConfirmSenha){
   const onSubmitForm = (ev) => {
     ev.preventDefault();
   };
-  console.log(form)
+  // console.log(form)
   return (
     <div>
       <Top>
-        <BtBack>{"<"}</BtBack>
+        <BtBack onClick={()=>navigate(-1)}>{"<"}</BtBack>
       </Top>
       <hr />
       <Main>
