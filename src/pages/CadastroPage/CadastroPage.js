@@ -14,40 +14,53 @@ import {
   BtBack,
 } from "./styledCadastroPage";
 import logo from "../../imagens/logo.png";
+import useForm from "../../hooks/useForm"
 
 const CadastroPage = () => {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
-  const [userSenha, setUserSenha] = useState("");
+  // const [userName, setUserName] = useState("");
+  // const [userSenha, setUserSenha] = useState("");
   const [userConfirmSenha, setUserConfirmSenha] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userCpf, setUserCpf] = useState("");
+  // const [userEmail, setUserEmail] = useState("");
+  // const [userCpf, setUserCpf] = useState("");
 
-  const takeName = (event) => {
-    setUserName(event.target.value);
-  };
-  const takeSenha = (event) => {
-    setUserSenha(event.target.value);
-  };
+  // const takeName = (event) => {
+  //   setUserName(event.target.value);
+  // };
+  // const takeSenha = (event) => {
+  //   setUserSenha(event.target.value);
+  // };
   const takeConfirmSenha = (event) => {
     setUserConfirmSenha(event.target.value);
   };
-  const takeEmail = (event) => {
-    setUserEmail(event.target.value);
-  };
-  const takeCpf = (event) => {
-    setUserCpf(event.target.value);
-  };
+  // const takeEmail = (event) => {
+  //   setUserEmail(event.target.value);
+  // };
+  // const takeCpf = (event) => {
+  //   setUserCpf(event.target.value);
+  // };
+
+  const [form, handleChange, clear] = useForm(
+    {
+      name: '',
+      email: '',
+      cpf: '',
+      password: ''
+    }
+  )
+
+
   const registrationUser = () => {
-    const body = {
-      name: userName,
-      email: userEmail,
-      cpf: userCpf,
-      password: userSenha,
-    };
+  //   const body = {
+  //     name: userName,
+  //     email: userEmail,
+  //     cpf: userCpf,
+  //     password: userSenha,
+  //   };
+if(form.password === userConfirmSenha){
 
     axios
-      .post(`${URL_BASE}/signup`, body)
+      .post(`${URL_BASE}/signup`, form)
       .then((res) => {
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
@@ -55,8 +68,17 @@ const CadastroPage = () => {
       .catch((err) => {
         console.log(err.response);
       });
-  };
+  }
+  else{
+    alert('deu certo NÃO')
+  }
+}
 
+
+  const onSubmitForm = (ev) => {
+    ev.preventDefault();
+  };
+  console.log(form)
   return (
     <div>
       <Top>
@@ -65,18 +87,20 @@ const CadastroPage = () => {
       <hr />
       <Main>
         <Img src={logo} />
-        <Gap>
+        <form onSubmit={onSubmitForm}>
           <Pa>Cadastrar</Pa>
           <Input
-            onChange={takeName}
-            value={userName}
+            onChange={handleChange}
+            value={form.name}
+            name={"name"}
             type="text"
             placeholder="Nome"
             required
           />
           <Input
-            onChange={takeCpf}
-            value={userCpf}
+            onChange={handleChange}
+            value={form.cpf}
+            name={"cpf"}
             type="number"
             pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
             title="111.111.111-11"
@@ -85,15 +109,17 @@ const CadastroPage = () => {
           />
           <Input
             type="email"
-            onChange={takeEmail}
-            value={userEmail}
+            onChange={handleChange}
+            value={form.email}
+            name={"email"}
             placeholder="Email"
             required
           />
           <Input
             type="password"
-            onChange={takeSenha}
-            value={userSenha}
+            onChange={handleChange}
+            value={form.password}
+            name={"password"}
             placeholder="Senha"
             required
           />
@@ -101,11 +127,12 @@ const CadastroPage = () => {
             type="password"
             onChange={takeConfirmSenha}
             value={userConfirmSenha}
+            name={"password"}
             placeholder="Confirmar"
             required
           />
           <Button onClick={() => registrationUser()}>Criar</Button>
-        </Gap>
+        </form>
       </Main>
     </div>
   );

@@ -44,7 +44,7 @@ const CadastroEnderecoPage = () => {
 
   const takeAdress = () => {
 
-    useProtected()
+    // useProtected()
     
     const body = {
       street: userStreet,
