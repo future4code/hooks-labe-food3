@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { navigate, useNavigate } from "react-router-dom";
-import { URL_BASE } from "../../constances/links";
+import { URL_BASE } from "../../constants/links";
 import { exemplo } from "./styledCadastroPage";
 import axios from "axios";
 import {

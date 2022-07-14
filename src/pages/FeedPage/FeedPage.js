@@ -1,10 +1,9 @@
 import React from "react";
-import {exemplo} from "./styledFeedPage"
+import { useProtected } from "../../hooks/useProtected";
+import { exemplo } from "./styledFeedPage";
 
-export default function FeedPage () {
-  return (
-    <div>
-        Feed Page
-    </div>
-  );
+export default function FeedPage() {
+  useProtected();
+
+  return <div>Feed Page</div>;
 }

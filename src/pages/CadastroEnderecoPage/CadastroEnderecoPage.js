@@ -2,7 +2,8 @@ import { LineAxisOutlined } from "@mui/icons-material";
 import React, { useState } from "react";
 import { exemplo } from "./styledCadastroEnderecoPage";
 import axios from "axios";
-import { URL_BASE } from "../../constances/links";
+import { URL_BASE } from "../../constants/links";
+import { useProtected } from "../../hooks/useProtected";
 import {
   Main,
   Input,
@@ -42,6 +43,9 @@ const CadastroEnderecoPage = () => {
   };
 
   const takeAdress = () => {
+
+    useProtected()
+    
     const body = {
       street: userStreet,
       number: userNumber,
