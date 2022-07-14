@@ -3,12 +3,13 @@ import {exemplo} from "./styledRestaurantePage"
 import { useProtected } from "../../hooks/useProtected";
 
 
-export default function RestaurantePage () {
+const  RestaurantePage = () => {
 
-  useProtected()
   return (
     <div>
         Restaurante Page
     </div>
   );
 }
+
+export default RestaurantePage

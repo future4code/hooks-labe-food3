@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { navigate, useNavigate } from "react-router-dom";
+import { navigate, useNavigate, useParams } from "react-router-dom";
 import { URL_BASE } from "../../constants/links";
 import { exemplo } from "./styledCadastroPage";
 import axios from "axios";
@@ -22,6 +22,7 @@ const CadastroPage = () => {
   const [userConfirmSenha, setUserConfirmSenha] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userCpf, setUserCpf] = useState("");
+  const params = useParams()
 
   const takeName = (event) => {
     setUserName(event.target.value);
@@ -50,7 +51,10 @@ const CadastroPage = () => {
       .post(`${URL_BASE}/signup`, body)
       .then((res) => {
         console.log(res.data.token);
-        localStorage.setItem("token", res.data.token);
+        navigate("cadastro-endereco")
+        localStorage.setItem("token",  res.data.token);
+       
+      
       })
       .catch((err) => {
         console.log(err.response);

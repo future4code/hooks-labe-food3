@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { exemplo } from "./styledCadastroEnderecoPage";
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
-import { useProtected } from "../../hooks/useProtected";
+import useProtected  from "../../hooks/useProtected";
 import {
   Main,
   Input,
@@ -14,6 +14,7 @@ import {
   Top,
   BtBack,
 } from "./styledCadastroEnderecoPage";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const CadastroEnderecoPage = () => {
   const [userStreet, setUserStreet] = useState("");
@@ -22,6 +23,8 @@ const CadastroEnderecoPage = () => {
   const [userState, setUserState] = useState("");
   const [userCity, setUserCity] = useState("");
   const [userComplement, setUserComplement] = useState("");
+  const navigate = useNavigate()
+  
 
   const takeStreet = (event) => {
     setUserStreet(event.target.value);
@@ -44,7 +47,7 @@ const CadastroEnderecoPage = () => {
 
   const takeAdress = () => {
 
-    useProtected()
+    // useProtected()
     
     const body = {
       street: userStreet,
@@ -63,6 +66,8 @@ const CadastroEnderecoPage = () => {
       .put(`${URL_BASE}/address`, body, headers)
       .then((res) => {
         console.log(res);
+        localStorage.setItem("Endereço")
+        navigate("/login")
       })
       .catch((err) => {
         console.log(err.response);
@@ -78,12 +83,17 @@ const CadastroEnderecoPage = () => {
         <Gap>
           <Pa>Meu endereço</Pa>
 
-          <Input placeholder={"   Rua / Av."} value={userStreet} />
-          <Input placeholder={"   Número"} value={userNumber} />
-          <Input placeholder={"    Apto. / Bloco"} value={userComplement} />
-          <Input placeholder={"    Bairro"} value={userBairro} />
-          <Input placeholder={"    Cidade"} value={userCity} />
-          <Input placeholder={"    Estado"} value={userState} />
+          <Input placeholder={"Rua / Av."} value={userStreet} onChange={takeStreet} />
+          <Input placeholder={"Número"} value={userNumber} onChange={takeNumber}  />
+
+          <Input placeholder={" Apto. / Bloco"} value={userComplement} onChange={takeComplement}  />
+
+          <Input placeholder={"Bairro"} value={userBairro} onChange={takeBairro}  />
+
+          <Input placeholder={"Cidade"} value={userCity} onChange={takeCity}  />
+
+          <Input placeholder={"Estado"} value={userState} onChange={takeState}  />
+
           <Button onClick={() => takeAdress()}>Enviar </Button>
         </Gap>
       </Main>

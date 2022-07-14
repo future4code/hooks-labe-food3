@@ -12,6 +12,8 @@ import { TextField } from "@mui/material";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token")
+  const tokenEndereço = localStorage.getItem("Endereço")
   // const [inputEmail , setInputEmail] = useState("")
   // const [inputSenha , setInputSenha] = useState("")
   // const onChangeEmail = (event)=>{
@@ -42,6 +44,7 @@ const LoginPage = () => {
         navigate("/cadastro");
       });
   };
+  console.log(tokenEndereço )
   return (
     <Main>
       <Img src={logo} />
