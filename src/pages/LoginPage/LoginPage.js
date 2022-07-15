@@ -19,6 +19,8 @@ import useForm from "../../hooks/useForm";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const tokenEndereco = localStorage.getItem("tokenEndereco")
+  const token = localStorage.getItem("token")
   // const [inputEmail , setInputEmail] = useState("")
   // const [inputSenha , setInputSenha] = useState("")
   // const onChangeEmail = (event)=>{
@@ -41,10 +43,11 @@ const LoginPage = () => {
     axios
       .post(`${URL_BASE}/login`, form)
       .then((res) => {
+       
         localStorage.setItem("token", res.data.token);
         // console.log(res.data.user.hasAddress)
         if (res.data.user.hasAddress === true) {
-          navigate("/restaurante");
+          navigate("feed");
         }
       })
       .catch((err) => {
@@ -59,6 +62,8 @@ const LoginPage = () => {
     setViewPass(!viewPass);
   };
 
+  console.log(tokenEndereco)
+  console.log(token)
   return (
     <Main>
       <Img src={logo} />

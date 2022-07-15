@@ -18,10 +18,10 @@ const Router = () => {
         <Route path="login" element={<LoginPage />} />
         <Route path="cadastro" element={<CadastroPage />} />
         <Route path="profile" element={<ProfilePage />} />
-        <Route path="restaurante" element={<RestaurantePage />} />
+        <Route path="feed" element={<FeedPage/>} />
         <Route path="carrinho" element={<CarrinhoPage />} />
         <Route path="cadastro/cadastro-endereco" element={<CadastroEndereçoPage />} />
-        <Route path="feed" element={<FeedPage />} />
+        <Route path="feed/:id" element={<RestaurantePage/>} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
