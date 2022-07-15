@@ -9,48 +9,48 @@ export const Main = styled.div`
   padding-top: 15px;
 `;
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  padding-bottom: 10px;
+// export const Form = styled.form`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 15px;
+//   padding-bottom: 10px;
   
-`;
+// `;
 
-export const TextField = styled.fieldset`
-box-sizing: border-box;
-display: flex;
-justify-content: center;
-align-items: center;
-width: 100%;
-padding: 0;
-text-align: left;
-padding-left: 10px;
-legend{
+// export const TextField = styled.fieldset`
+// box-sizing: border-box;
+// display: flex;
+// justify-content: center;
+// align-items: center;
+// width: 100%;
+// padding: 0;
+// text-align: left;
+// padding-left: 10px;
+// legend{
   /* background-color: blue; */
-  padding-left: 5px;
+  /* padding-left: 5px;
   padding-right: 30px;
-  margin: 0;
+  margin: 0; */
   /* padding: 0; */
-}
+// }
 /* background-color: red; */
 /* height: 4.5rem; */
 /* padding: 5px; */
 /* padding-bottom: 0; */
   /* margin: 0; */
-`
+// `
 
-export const Input = styled.input`
-  box-sizing: border-box;
-  width: 100%;
-  height: 3.2rem;
-  border: none;
-  padding: 5px;
-  margin: 0;
+// export const Input = styled.input`
+//   box-sizing: border-box;
+//   width: 100%;
+//   height: 3.2rem;
+//   border: none;
+//   padding: 5px;
+//   margin: 0;
   
-`;
+// `;
 
 export const Img = styled.img`
   width: 104px;

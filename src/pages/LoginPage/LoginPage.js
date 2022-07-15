@@ -8,11 +8,9 @@ import {
   Main,
   Pa,
   Img,
-  Button,
-  Form,
-  Input,
-  TextField,
+  Button  
 } from "./styledLoginPage";
+import { TextField, Input } from '@mui/material';
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
 import useForm from "../../hooks/useForm";
@@ -63,32 +61,29 @@ const LoginPage = () => {
     <Main>
       <Img src={logo} />
       <Pa>Entrar</Pa>
-      <Form onSubmit={onSubmitForm}>
-        <TextField>
-          <legend>E-mail*</legend>
-          <Input
+      <form autoComplete="on" onSubmit={onSubmitForm}>
+        <TextField label="E-mail" placeholder="E-mail" required>          
+          <Input          
             name={"email"}
             value={form.email}
-            onChange={onChange}
-            placeholder="E-mail"
+            onChange={onChange}           
             type="email"
             required
           />
         </TextField>
-        <TextField>
+        <TextField label="Senha" placeholder="Senha" required>
           <legend>Senha*</legend>
           <Input
             name={"password"}
             value={form.password}
-            onChange={onChange}
-            placeholder="Senha"
+            onChange={onChange}            
             type={viewPass ? "text" : "password"}
             required
           />
           <button onClick={showPass}>BT</button>
         </TextField>
         <Button onClick={() => hundleUser()}>Entrar</Button>
-      </Form>
+      </form>
       <Pa>
         Não possui cadastro?
         <span> Clique aqui.</span>
