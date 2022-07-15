@@ -80,6 +80,7 @@ const CadastroEnderecoPage = () => {
     axios
       .put(`${URL_BASE}/address`, form, headers)
       .then((res) => {
+        console.log(res)
         localStorage.setItem("tokenEndereco", res.data.token);
         alert('deu certo')
         navigate('/login')
