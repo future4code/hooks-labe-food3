@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import TextField from "@mui/material"
 
 export const Main = styled.div`
   display: flex;
@@ -9,6 +10,11 @@ export const Main = styled.div`
   padding-top: 15px;
 `;
 
+export const FieldSize = styled.form`
+width: 22rem;
+`
+
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -16,31 +22,9 @@ export const Form = styled.form`
   align-items: center;
   gap: 15px;
   padding-bottom: 10px;
-  
+  /* width: 22rem; */
 `;
 
-export const TextField = styled.fieldset`
-box-sizing: border-box;
-display: flex;
-justify-content: center;
-align-items: center;
-width: 100%;
-padding: 0;
-text-align: left;
-padding-left: 10px;
-legend{
-  /* background-color: blue; */
-  padding-left: 5px;
-  padding-right: 30px;
-  margin: 0;
-  /* padding: 0; */
-}
-/* background-color: red; */
-/* height: 4.5rem; */
-/* padding: 5px; */
-/* padding-bottom: 0; */
-  /* margin: 0; */
-`
 
 export const Input = styled.input`
   box-sizing: border-box;
@@ -53,15 +37,15 @@ export const Input = styled.input`
 `;
 
 export const Img = styled.img`
-  width: 104px;
-  height: 58px;
+  width: 6.5rem;
+  height: 3.625rem;
   margin: 0 auto;
   padding-bottom: 10px;
   padding-top: 80px;
 `;
 
 export const Button = styled.button`
-  width: 100%;
+  width: 22rem;
   height: 48px;
   border-radius: 3px;
   background-color: red;
