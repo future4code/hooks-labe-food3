@@ -3,7 +3,7 @@ import {exemplo} from "./styledFeedPage1"
 import { useProtected } from "../../hooks/useProtected";
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
-import FeedComponents from "../../components/FeedComponents";
+import RestaurantsComponents from "../../components/CardRestauranteFeed";
 import { GlobalContext } from "../../global/GlobalContext";
 
 
@@ -17,10 +17,11 @@ const FeedPage = (props) => {
 
   const mapRestaurants = restaurants && restaurants.map((lojas)=>{
     return(
-      <FeedComponents key={lojas.id} restaurants={lojas} categorias={lojas.category}/>
+      <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category}/>
     )
   })
 
+  
   const categorias = restaurants && restaurants.map(rest =>{
     return <li >{rest.category}</li>
   })
