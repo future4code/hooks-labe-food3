@@ -1,39 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {exemplo} from "./styledFeedPage1"
 import { useProtected } from "../../hooks/useProtected";
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
 import FeedComponents from "../../components/FeedComponents";
+import { GlobalContext } from "../../global/GlobalContext";
 
 
 const FeedPage = (props) => {
  
-  const [restaurants , setRestaurants] = useState([])
   // useProtected()
 
-  useEffect(()=>{
-    const headers = {
-      headers : {
-      auth : localStorage.getItem("tokenEndereco")
-     }
-    }
-
-    axios.get(`${URL_BASE}/restaurants`,headers).then((res)=>{
-     setRestaurants(res.data.restaurants)
-    }).catch((err)=>{
-      console.log(err)
-    })
-  } , [])
+  const restaurants = useContext(GlobalContext)
   
+  console.log(restaurants)
 
   const mapRestaurants = restaurants && restaurants.map((lojas)=>{
     return(
       <FeedComponents key={lojas.id} restaurants={lojas} categorias={lojas.category}/>
     )
   })
+
+  const categorias = restaurants && restaurants.map(rest =>{
+    return <li >{rest.category}</li>
+  })
+
+  console.log(categorias)
+
   return (
     <div>
        Feed Page
+      <ul>{categorias}</ul>
       {mapRestaurants}
     </div>
   );

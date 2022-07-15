@@ -46,8 +46,8 @@ const LoginPage = () => {
        
         localStorage.setItem("token", res.data.token);
         // console.log(res.data.user.hasAddress)
-        if (res.data.user.hasAddress === true) {
-          navigate("feed");
+        if (res.data.user.hasAddress) {
+          navigate("/feed");
         }
       })
       .catch((err) => {

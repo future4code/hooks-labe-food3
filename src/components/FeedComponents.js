@@ -26,10 +26,10 @@ const Img = styled.img`
 const RestaurantsComponents = (props) =>{
 const {name , logoUrl , id ,description , deliveryTime , category , address  } = props.restaurants
 const navigate = useNavigate()
-const params = useParams()
+
     return(
        
-           <Div  onClick={()=> navigate(`${id}`)}>
+           <Div  onClick={()=> navigate(`${name}`)}>
              <Img src={logoUrl}/>
              <br/>
              {name} 
