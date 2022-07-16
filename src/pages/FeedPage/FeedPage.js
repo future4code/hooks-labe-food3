@@ -1,38 +1,87 @@
 import React, { useContext, useEffect, useState } from "react";
-import {exemplo} from "./styledFeedPage1"
+import { exemplo } from "./styledFeedPage1"
 import { useProtected } from "../../hooks/useProtected";
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
 import RestaurantsComponents from "../../components/CardRestauranteFeed";
 import { GlobalContext } from "../../global/GlobalContext";
+import styled from "styled-components";
 
+
+const ContainerCategory = styled.div`
+ display: flex;
+ overflow-x: scroll;
+ 
+ div{
+  padding: 10px;
+  font-size: 2rem;
+ }
+`
+
+// ================================= inicio do componente
 
 const FeedPage = (props) => {
- 
+
   // useProtected()
 
-  const restaurants = useContext(GlobalContext)
-  
-  console.log(restaurants)
+  const [categoria, setCategoria] = useState('')
+  const restaurantsApi = useContext(GlobalContext)
+  const [restaurants, setRestaurants] = useState([])
 
-  const mapRestaurants = restaurants && restaurants.map((lojas)=>{
-    return(
-      <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category}/>
+  
+  useEffect(() => {
+
+    const array = restaurantsApi && restaurantsApi.map((lojas) => {
+      return lojas
+    }).filter((lojas) => {
+      return lojas.category === categoria
+    })
+
+    setRestaurants(array)
+
+  }, [categoria])
+
+    
+
+
+  const mapRestaurants = restaurantsApi && restaurantsApi.map((lojas) => {
+    return (
+      <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category} />
     )
   })
 
-  
-  const categorias = restaurants && restaurants.map(rest =>{
-    return <li >{rest.category}</li>
+  const filterRestaurants = restaurants && restaurants.map((lojas) => {
+    return (
+      <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category} />
+    )
   })
 
-  console.log(categorias)
+
+
+
+  // ======================== filtro categoria
+
+  const categorias = restaurantsApi && restaurantsApi.map(rest => {
+    return <div onClick={() => getCategory(rest.category)} >{rest.category}</div>
+  })
+
+  const getCategory = (paramCategory) => {
+    if (paramCategory === categoria) {
+      setCategoria('')
+    } else {
+      setCategoria(paramCategory)
+    }
+  }
+
+
+
+  console.log(categoria)
 
   return (
     <div>
-       Feed Page
-      <ul>{categorias}</ul>
-      {mapRestaurants}
+      Feed Page
+      <ContainerCategory>{categorias}</ContainerCategory>
+      { categoria ? filterRestaurants : mapRestaurants}
     </div>
   );
 }
