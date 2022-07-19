@@ -35,7 +35,7 @@ const RestaurantsComponents = (props) => {
     shipping,
   } = props.restaurants;
   const navigate = useNavigate();
-  console.log(shipping);
+  // console.log(shipping);
   return (
     <Div onClick={() => navigate(`${name}`)}>
       <Img src={logoUrl} />
