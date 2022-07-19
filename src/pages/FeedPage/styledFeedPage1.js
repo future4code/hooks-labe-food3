@@ -1,3 +1,12 @@
 import styled from "styled-components";
 
-export const Exemplo = styled.div `` 
+export const ContainerCategory = styled.div`
+ display: flex;
+ overflow-x: scroll;
+ 
+ div{
+  padding: 10px;
+  font-size: 2rem;
+ }
+`
+

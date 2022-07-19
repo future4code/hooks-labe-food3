@@ -5,134 +5,152 @@ import { URL_BASE } from "../../constants/links";
 import { GlobalContext } from "../../global/GlobalContext";
 import { useProtected } from "../../hooks/useProtected";
 import { exemplo } from "./styledRestaurantePage";
-import styled from "styled-components";
+import {
+  ContainerCategory,
+  Card,
+  Img,
+  MainCard,
+  Centralize,
+  ContText,
+  Title,
+  Description,
+Price,
+Add,
+OrgPA,
+ContImg,
 
-const ContainerCategory = styled.div`
- display: flex;
- overflow-x: scroll;
- 
- div{
-  padding: 10px;
-  font-size: 2rem;
- }
-`
+} from "./styledRestaurantePage";
 
-const RestaurantePage = () =>{
+const RestaurantePage = () => {
   // passei o nome do restaurante pelo path
-  const params = useParams()
+  const params = useParams();
 
-  const [products , setProducts] = useState()
-  const [filterProducts, setFilterProducts] = useState([])
-  const [selectCategory, setSelectCategory] = useState('')
-
+  const [products, setProducts] = useState();
+  const [filterProducts, setFilterProducts] = useState([]);
+  const [selectCategory, setSelectCategory] = useState("");
 
   // está puxando todos os restaurantes do globalState
-  const restaurants = useContext(GlobalContext)
+  const restaurants = useContext(GlobalContext);
 
-
-// filtrando o restautante do estado global pelo nome
-  const filterRest = restaurants.filter(restaurantes=>{
-    return restaurantes.name === params.name
-  })
+  // filtrando o restautante do estado global pelo nome
+  const filterRest = restaurants.filter((restaurantes) => {
+    return restaurantes.name === params.name;
+  });
 
   // desistruturei para ficar um objeto em vez de array
-  const [objRestaurante] = filterRest 
+  const [objRestaurante] = filterRest;
 
-  useEffect(()=>{
+  useEffect(() => {
     const headers = {
-      headers : {
-      auth : localStorage.getItem("token")
-     }
-    }
-    axios.get(`${URL_BASE}/restaurants/${objRestaurante.id}` , headers).then((res)=>{
-      console.log(res.data.restaurant.products)
-      setProducts(res.data.restaurant.products)
-    }).catch((err)=>{
-      console.log(err)
-    })
-  } , [])
-  
+      headers: {
+        auth: localStorage.getItem("token"),
+      },
+    };
+    axios
+      .get(`${URL_BASE}/restaurants/${objRestaurante.id}`, headers)
+      .then((res) => {
+        console.log(res.data.restaurant.products);
+        setProducts(res.data.restaurant.products);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   // rederizando todos os productos
-  const mapProducts = products && products.map((product)=>{
-    return(
-      <div>
-
-        <img src={product.photoUrl}/>
-          <div key={product.id}> {product.name} -
-          Preço: R${product.price} </div>
-
-      </div>
-      
-    )
-  })
-
-
+  const mapProducts =
+    products &&
+    products.map((product) => {
+      console.log(product);
+      return (
+        <MainCard key={product.id}>
+          <Card>            
+              <Img src={product.photoUrl} />
+           
+            <ContText>
+              <Title>{product.name}</Title>
+              <Description>{product.description}</Description>
+              <OrgPA>
+              <Price>R${product.price}</Price>
+              <Add>adicionar</Add>
+              </OrgPA>
+            </ContText>
+          </Card>
+        </MainCard>
+      );
+    });
 
   // ==================== filtro =============================
 
+  // estado q pega todas as categorias dos produtos
+  const [categoriasProduct, setCategoriasProduct] = useState([]);
 
-  // estado q pega todas as categorias dos produtos 
-  const [categoriasProduct, setCategoriasProduct]  = useState([])
-  
-  // codigo elimina as repeticões das categorias 
-  products && products.map((product)=>{
-    if(categoriasProduct.includes( product.category)){
-      return false
-    }else{
-      return setCategoriasProduct([...categoriasProduct, product.category])
-    }
-  })
+  // codigo elimina as repeticões das categorias
+  products &&
+    products.map((product) => {
+      if (categoriasProduct.includes(product.category)) {
+        return false;
+      } else {
+        return setCategoriasProduct([...categoriasProduct, product.category]);
+      }
+    });
 
   // para renderizar a mudança dos filtros
-  useEffect(()=>{
+  useEffect(() => {
+    const array =
+      products &&
+      products.filter((product) => {
+        return product.category === selectCategory;
+      });
 
-    const array = products && products.filter(product=>{
-      return product.category === selectCategory
-      
-    })
+    setFilterProducts(array);
+  }, [selectCategory]);
 
-    setFilterProducts(array)
-
-  }, [selectCategory])
-
- 
-// onclick q seta a categoria clicada para o estado
-  const getCategory = ( category) =>{
-    if(selectCategory === category){
-    setSelectCategory('')
-    }else{
-      setSelectCategory(category)
+  // onclick q seta a categoria clicada para o estado
+  const getCategory = (category) => {
+    if (selectCategory === category) {
+      setSelectCategory("");
+    } else {
+      setSelectCategory(category);
     }
-  }
+  };
 
   // rederizando os productos filtrados
-  const productsFilter = filterProducts && filterProducts.map((product)=>{
-    return(
+  const productsFilter =
+    filterProducts &&
+    filterProducts.map((product) => {
+      return (
+        <MainCard key={product.id}>
+          <Card>            
+              <Img src={product.photoUrl} />
+           
+            <ContText>
+              <Title>{product.name}</Title>
+              <Description>{product.description}</Description>
+              <OrgPA>
+              <Price>R${product.price}</Price>
+              <Add>adicionar</Add>
+              </OrgPA>
+            </ContText>
+          </Card>
+        </MainCard>
+      );
+    });
 
-      <div>
-        <img src={product.photoUrl}/>
-          <div key={product.id}> {product.name} -
-          Preço: R${product.price} </div>
-
-      </div>
-      
-    )
-  })
-  
   // rederiza as categorias
-  const categoriasRedered = categoriasProduct && categoriasProduct.map(category=>{
-    return (
-      <div onClick={() => getCategory(category)}>{category}</div>
-    )
-  })
-   
- 
-  return(<div>
-   Restaurante Page
-   <ContainerCategory >{categoriasRedered}</ContainerCategory>
-    {selectCategory ? productsFilter : mapProducts}
-  </div>)
-}
+  const categoriasRedered =
+    categoriasProduct &&
+    categoriasProduct.map((category) => {
+      return <div onClick={() => getCategory(category)}>{category}</div>;
+    });
 
-export default RestaurantePage
+  return (
+    <div>
+      Restaurante Page
+      <ContainerCategory>{categoriasRedered}</ContainerCategory>
+      <Centralize>{selectCategory ? productsFilter : mapProducts}</Centralize>
+    </div>
+  );
+};
+
+export default RestaurantePage;

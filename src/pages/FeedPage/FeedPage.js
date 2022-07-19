@@ -5,19 +5,13 @@ import axios from "axios";
 import { URL_BASE } from "../../constants/links";
 import RestaurantsComponents from "../../components/CardRestauranteFeed";
 import { GlobalContext } from "../../global/GlobalContext";
-import styled from "styled-components";
-import ProductsComponents from "../../components/ProductsComponents";
+import {ContainerCategory,
+  
+} from "./styledFeedPage1";
 
 
-const ContainerCategory = styled.div`
- display: flex;
- overflow-x: scroll;
- 
- div{
-  padding: 10px;
-  font-size: 2rem;
- }
-`
+
+
 
 // ================================= inicio do componente
 
