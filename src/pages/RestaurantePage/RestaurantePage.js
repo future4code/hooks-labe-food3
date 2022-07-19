@@ -5,22 +5,39 @@ import { URL_BASE } from "../../constants/links";
 import { GlobalContext } from "../../global/GlobalContext";
 import { useProtected } from "../../hooks/useProtected";
 import { exemplo } from "./styledRestaurantePage";
+import styled from "styled-components";
+
+const ContainerCategory = styled.div`
+ display: flex;
+ overflow-x: scroll;
+ 
+ div{
+  padding: 10px;
+  font-size: 2rem;
+ }
+`
 
 const RestaurantePage = () =>{
+  // passei o nome do restaurante pelo path
   const params = useParams()
-  const [products , setProducts] = useState()
 
+  const [products , setProducts] = useState()
+  const [filterProducts, setFilterProducts] = useState([])
+  const [selectCategory, setSelectCategory] = useState('')
+
+
+  // está puxando todos os restaurantes do globalState
   const restaurants = useContext(GlobalContext)
 
-  const filterRest = restaurants.filter(rest=>{
-    return rest.name === params.id
+
+// filtrando o restautante do estado global pelo nome
+  const filterRest = restaurants.filter(restaurantes=>{
+    return restaurantes.name === params.name
   })
 
+  // desistruturei para ficar um objeto em vez de array
   const [objRestaurante] = filterRest 
 
-
-
-  
   useEffect(()=>{
     const headers = {
       headers : {
@@ -35,8 +52,64 @@ const RestaurantePage = () =>{
     })
   } , [])
   
+
+  // rederizando todos os productos
   const mapProducts = products && products.map((product)=>{
     return(
+      <div>
+
+        <img src={product.photoUrl}/>
+          <div key={product.id}> {product.name} -
+          Preço: R${product.price} </div>
+
+      </div>
+      
+    )
+  })
+
+
+
+  // ==================== filtro =============================
+
+
+  // estado q pega todas as categorias dos produtos 
+  const [categoriasProduct, setCategoriasProduct]  = useState([])
+  
+  // codigo elimina as repeticões das categorias 
+  products && products.map((product)=>{
+    if(categoriasProduct.includes( product.category)){
+      return false
+    }else{
+      return setCategoriasProduct([...categoriasProduct, product.category])
+    }
+  })
+
+  // para renderizar a mudança dos filtros
+  useEffect(()=>{
+
+    const array = products && products.filter(product=>{
+      return product.category === selectCategory
+      
+    })
+
+    setFilterProducts(array)
+
+  }, [selectCategory])
+
+ 
+// onclick q seta a categoria clicada para o estado
+  const getCategory = ( category) =>{
+    if(selectCategory === category){
+    setSelectCategory('')
+    }else{
+      setSelectCategory(category)
+    }
+  }
+
+  // rederizando os productos filtrados
+  const productsFilter = filterProducts && filterProducts.map((product)=>{
+    return(
+
       <div>
         <img src={product.photoUrl}/>
           <div key={product.id}> {product.name} -
@@ -46,9 +119,19 @@ const RestaurantePage = () =>{
       
     )
   })
+  
+  // rederiza as categorias
+  const categoriasRedered = categoriasProduct && categoriasProduct.map(category=>{
+    return (
+      <div onClick={() => getCategory(category)}>{category}</div>
+    )
+  })
+   
+ 
   return(<div>
    Restaurante Page
-    {mapProducts}
+   <ContainerCategory >{categoriasRedered}</ContainerCategory>
+    {selectCategory ? productsFilter : mapProducts}
   </div>)
 }
 

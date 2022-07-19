@@ -43,8 +43,6 @@ const FeedPage = (props) => {
   }, [categoria])
 
     
-
-
   const mapRestaurants = restaurantsApi && restaurantsApi.map((lojas) => {
     return (
       <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category} />
@@ -56,8 +54,6 @@ const FeedPage = (props) => {
        <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category}  />
     )
   })
-
-
 
 
   // ======================== filtro categoria
