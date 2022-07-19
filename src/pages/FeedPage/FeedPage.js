@@ -6,6 +6,7 @@ import { URL_BASE } from "../../constants/links";
 import RestaurantsComponents from "../../components/CardRestauranteFeed";
 import { GlobalContext } from "../../global/GlobalContext";
 import styled from "styled-components";
+import ProductsComponents from "../../components/ProductsComponents";
 
 
 const ContainerCategory = styled.div`
@@ -52,7 +53,7 @@ const FeedPage = (props) => {
 
   const filterRestaurants = restaurants && restaurants.map((lojas) => {
     return (
-      <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category} />
+       <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category}  />
     )
   })
 
@@ -74,8 +75,6 @@ const FeedPage = (props) => {
   }
 
 
-
-  console.log(categoria)
 
   return (
     <div>
