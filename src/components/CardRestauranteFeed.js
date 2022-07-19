@@ -2,27 +2,60 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const Span = styled.div`
+
+const Global = styled.div`
+display: flex;
+justify-content: center;
+width: 100%;
+`
+const MainCard = styled.div`
   display: flex;
-  flex-direction: row;
-  color: green;
-  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 22.5rem;
+  height: 12.25rem;
 `;
-const Div = styled.div`
-  width: 50%;
-  height: auto;
+
+const Card = styled.div`
+  width: 20.5rem;
+  height: 11.75rem;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  margin: 10px;
+  border-radius: 8px;
+  overflow: hidden;
 `;
+
 const Img = styled.img`
-  width: 50%;
-  height: 50%;
+  width: 20.5rem;
+  height: 7.5rem;
+  object-fit: cover;
 `;
+
+const DeliveryTime = styled.div`
+  display: flex;
+  height: 1.125rem;
+  font-size: 1rem;
+  justify-content: space-between;
+  letter-spacing: -0.39px;
+`;
+
+const ContText = styled.div`
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #b8b8b8;
+`;
+const Title = styled.div`
+  color: #e8222e;
+  width: 18.5rem;
+  height: 1.125rem;
+  font-size: 1rem;
+  letter-spacing: -0.39px;
+  margin-bottom: 0.25rem;
+
+`;
+
 const RestaurantsComponents = (props) => {
   const {
     name,
@@ -37,13 +70,23 @@ const RestaurantsComponents = (props) => {
   const navigate = useNavigate();
   // console.log(shipping);
   return (
-    <Div onClick={() => navigate(`${name}`)}>
-      <Img src={logoUrl} />
-      <br />
-      <p>{name}</p>
+    <Global>
+    <MainCard>
+      <Card onClick={() => navigate(`${name}`)}>
+        <div>
+          <Img src={logoUrl} />
+        </div>
 
-      <p>{shipping? shipping : "Frete grátis"}</p>
-    </Div>
+        <ContText>
+          <Title>{name}</Title>
+          <DeliveryTime>
+            <div>{deliveryTime} min</div>
+            <div>{shipping ? `Frete R$${shipping},00` : "Frete grátis"}</div>
+          </DeliveryTime>
+        </ContText>
+      </Card>
+    </MainCard>
+    </Global>
   );
 };
 
