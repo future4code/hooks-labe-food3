@@ -1,27 +1,27 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TelaInicialPage from "../pages/TelaInicialPage/TelaInicialPage";
-import CadastroPage from "../pages/CadastroPage/CadastroPage";
-import ProfilePage from "../pages/ProfilePage/ProfilePage";
-import RestaurantePage from "../pages/RestaurantePage/RestaurantePage";
-import CarrinhoPage from "../pages/CarrinhoPage/CarrinhoPage";
-import CadastroEndereçoPage from "../pages/CadastroEnderecoPage/CadastroEnderecoPage";
-import FeedPage from "../pages/FeedPage/FeedPage";
+import InitialPage from "../pages/Initial/InitialPage";
+import RegistrationPage from "../pages/Registration/RegistrationPage";
+import ProfilePage from "../pages/Profile/ProfilePage";
+import RestaurantPage from "../pages/Restaurant/RestaurantPage";
+import ShoppingCartPage from "../pages/ShoppingCart/ShoppingCartPage";
+import AddressRegistrationPage from "../pages/AddressRegistration/AddressRegistrationPage";
+import FeedPage from "../pages/Feed/FeedPage";
 import Error from "../pages/Error/ErrorPage";
-import LoginPage from "../pages/LoginPage/LoginPage";
+import LoginPage from "../pages/Login/LoginPage";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<TelaInicialPage />} />
+        <Route index element={<InitialPage />} />
         <Route path="login" element={<LoginPage />} />
-        <Route path="cadastro" element={<CadastroPage />} />
+        <Route path="registration" element={<RegistrationPage />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="feed" element={<FeedPage/>} />
-        <Route path="carrinho" element={<CarrinhoPage />} />
-        <Route path="cadastro/cadastro-endereco" element={<CadastroEndereçoPage />} />
-        <Route path="feed/:name" element={<RestaurantePage/>} />
+        <Route path="shoppingcart" element={<ShoppingCartPage />} />
+        <Route path="registration/address-registration" element={<AddressRegistrationPage />} />
+        <Route path="feed/:name" element={<RestaurantPage/>} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

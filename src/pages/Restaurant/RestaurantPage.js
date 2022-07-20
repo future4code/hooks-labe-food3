@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { URL_BASE } from "../../constants/links";
 import { GlobalContext } from "../../global/GlobalContext";
 import { useProtected } from "../../hooks/useProtected";
-import { exemplo } from "./styledRestaurantePage";
+import { exemplo } from "./styledRestaurantPage";
 import {
   ContainerCategory,
   Card,
@@ -18,8 +18,8 @@ Price,
 Add,
 OrgPA,
 ContImg,
-
-} from "./styledRestaurantePage";
+Main
+} from "./styledRestaurantPage";
 
 const RestaurantePage = () => {
   // passei o nome do restaurante pelo path
@@ -147,8 +147,8 @@ const RestaurantePage = () => {
   return (
     <div>
       Restaurante Page
-      <ContainerCategory>{categoriasRedered}</ContainerCategory>
-      <Centralize>{selectCategory ? productsFilter : mapProducts}</Centralize>
+      <ContainerCategory>{categoriasRedered}</ContainerCategory>      
+        {selectCategory ? productsFilter : mapProducts}
     </div>
   );
 };

@@ -1,14 +1,14 @@
 import React from "react";
-import {exemplo} from "./styledProfilePage"
+import {exemplo} from "./styledShoppingCartPage"
 import { useProtected } from "../../hooks/useProtected";
 
 
-export default function ProfilePagePage () {
+export default function CarrinhoPage () {
 
   useProtected()
   return (
     <div>
-        Profile Page
+        Carrinho Page
     </div>
   );
 }

@@ -1,27 +1,34 @@
 import styled from "styled-components";
 
+export const Main = styled.div`
+/* display: flex; */
+`
+
 export const ContainerCategory = styled.div`
  display: flex;
  overflow-x: scroll;
-
- 
+ /* overflow-y: hidden; */
+ align-items: center;
  div{
-     padding: 10px;
-     font-size: 2rem;
-    }
-    `
-
-
+  padding: 10px;
+  font-size: 1rem;
+  letter-spacing: -0.39px;
+  /* width: 22.5rem; */
+ }
+`
 
     export const Centralize = styled.div`
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     `
     export const MainCard = styled.div`
     display: flex;
-        width: 22.5rem;
+    justify-content: center;
+    align-items: center;
+        /* width: 22.5rem; */
+        /* background-color: red; */
     height: 7.5rem;  
     `
 
