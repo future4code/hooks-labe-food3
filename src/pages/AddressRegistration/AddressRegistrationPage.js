@@ -1,6 +1,6 @@
 import { LineAxisOutlined } from "@mui/icons-material";
 import React, { useState } from "react";
-import { exemplo } from "./styledCadastroEnderecoPage";
+import { exemplo } from "./styledAddressRegistration";
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
 import { useProtected } from "../../hooks/useProtected";
@@ -13,7 +13,7 @@ import {
   Cont,
   Top,
   BtBack,
-} from "./styledCadastroEnderecoPage";
+} from "./styledAddressRegistration";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useForm from "../../hooks/useForm"
 

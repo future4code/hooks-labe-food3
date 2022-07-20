@@ -86,7 +86,6 @@ const LoginPage = () => {
       .post(`${URL_BASE}/login`, form)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        // console.log(res.data.user.hasAddress)
         if (res.data.user.hasAddress) {
           navigate("/feed");
         }

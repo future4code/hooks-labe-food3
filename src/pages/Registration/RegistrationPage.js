@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { navigate, useNavigate } from "react-router-dom";
 import { URL_BASE } from "../../constants/links";
-import { exemplo } from "./styledCadastroPage";
+import { exemplo } from "./styledRegistrationPage";
 import axios from "axios";
 import {
   Main,
@@ -12,7 +12,7 @@ import {
   Img,
   Top,
   BtBack,
-} from "./styledCadastroPage";
+} from "./styledRegistrationPage";
 import logo from "../../imagens/logo.png";
 import useForm from "../../hooks/useForm"
 

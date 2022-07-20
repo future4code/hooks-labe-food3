@@ -1,8 +1,8 @@
 import React from "react";
 import { navigate, useNavigate } from "react-router-dom";
-import { Main } from "./styledTelaInicialPage";
+import { Main } from "./styledInitialPage";
 
-export default function TelaInicialPage() {
+export default function InitialPage() {
   const navigate = useNavigate();
 
   return (

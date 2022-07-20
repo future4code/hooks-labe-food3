@@ -81,7 +81,7 @@ const RestaurantsComponents = (props) => {
           <Title>{name}</Title>
           <DeliveryTime>
             <div>{deliveryTime} min</div>
-            <div>{shipping ? `Frete R$${shipping},00` : "Frete grátis"}</div>
+            <div>{shipping ? `Freteee R$${shipping},00` : "Frete grátis"}</div>
           </DeliveryTime>
         </ContText>
       </Card>

@@ -3,10 +3,10 @@ import { exemplo } from "./styledFeedPage1"
 import { useProtected } from "../../hooks/useProtected";
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
-import RestaurantsComponents from "../../components/CardRestauranteFeed";
+import RestaurantsComponents from "../../components/CardRestaurantFeed";
 import { GlobalContext } from "../../global/GlobalContext";
 import {ContainerCategory,
-  
+  Main,
 } from "./styledFeedPage1";
 
 
@@ -69,7 +69,9 @@ const FeedPage = (props) => {
   return (
     <div>
       Feed Page
-      <ContainerCategory>{categorias}</ContainerCategory>
+      <ContainerCategory>  
+        {categorias}      
+        </ContainerCategory>
       { categoria ? filterRestaurants : mapRestaurants}
     </div>
   );
