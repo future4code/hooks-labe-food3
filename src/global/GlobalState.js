@@ -8,7 +8,7 @@ import {URL_BASE} from "../constants/links"
 export const GlobalState = (props) => {
 
     const [restaurants , setRestaurants] = useState([])
-
+    const [cart , setCart] = useState([])
     useEffect(()=>{
       const headers = {
         headers : {
@@ -16,18 +16,25 @@ export const GlobalState = (props) => {
        }
       }
   
-      axios.get(`${URL_BASE}/restaurants`,headers).then((res)=>{
+      axios.get(`${URL_BASE}/restaurants`,headers)
+      .then((res)=>{
        setRestaurants(res.data.restaurants)
+       
       }).catch((err)=>{
         console.log(err)
       })
     } , [])
-    
+
+    // const getCart = () =>{
+    //   const carrinho = 
+    // }
+    const states = { restaurants , cart}
+    const setters ={ setRestaurants , setCart }
     return (
         <GlobalContext.Provider
-        value={restaurants}
+        value={{states,setters}}
         >
-            {props.children}
+            {props.children} 
         </GlobalContext.Provider>
     )
 }

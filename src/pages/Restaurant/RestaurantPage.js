@@ -28,9 +28,12 @@ const RestaurantePage = () => {
   const [products, setProducts] = useState();
   const [filterProducts, setFilterProducts] = useState([]);
   const [selectCategory, setSelectCategory] = useState("");
-
+  // const  [restaurants ,cart , setCart]= useContext(GlobalContext)
+  const states = useContext(GlobalContext)
+  const {restaurants , cart} = states
+  
   // está puxando todos os restaurantes do globalState
-  const restaurants = useContext(GlobalContext);
+  // const restaurants = useContext(GlobalContext);
 
   // filtrando o restautante do estado global pelo nome
   const filterRest = restaurants.filter((restaurantes) => {
@@ -57,6 +60,10 @@ const RestaurantePage = () => {
       });
   }, []);
 
+    const addCart = (id) =>{
+      
+    }
+
   // rederizando todos os productos
   const mapProducts =
     products &&
@@ -72,7 +79,7 @@ const RestaurantePage = () => {
               <Description>{product.description}</Description>
               <OrgPA>
               <Price>R${product.price}</Price>
-              <Add>adicionar</Add>
+              <Add onClick={()=> addCart(product.id)}>adicionar</Add>
               </OrgPA>
             </ContText>
           </Card>

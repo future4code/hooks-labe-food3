@@ -20,24 +20,27 @@ const FeedPage = (props) => {
   // useProtected()
 
   const [categoria, setCategoria] = useState('')
-  const restaurantsApi = useContext(GlobalContext)
-  const [restaurants, setRestaurants] = useState([])
-
+  // const [restaurants, setRestaurants] = useState([])
+  const states = useContext(GlobalContext)
+  const setters = useContext(GlobalContext)
+  const { restaurants }  = states
+  const  {setRestaurants} = setters
   
-  useEffect(() => {
+  
+  // useEffect(() => {
 
-    const array = restaurantsApi && restaurantsApi.map((lojas) => {
-      return lojas
-    }).filter((lojas) => {
-      return lojas.category === categoria
-    })
+  //   const array = restaurants && restaurants.map((lojas) => {
+  //     return lojas
+  //   }).filter((lojas) => {
+  //     return lojas.category === categoria
+  //   })
 
-    setRestaurants(array)
+  //   // setRestaurants(array)
 
-  }, [categoria])
+  // }, [categoria])
 
     
-  const mapRestaurants = restaurantsApi && restaurantsApi.map((lojas) => {
+  const mapRestaurants = restaurants && restaurants.map((lojas) => {
     return (
       <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category} />
     )
@@ -49,10 +52,12 @@ const FeedPage = (props) => {
     )
   })
 
-
+  console.log(states)
+  console.log(restaurants)
+  
   // ======================== filtro categoria
 
-  const categorias = restaurantsApi && restaurantsApi.map(rest => {
+  const categorias = restaurants && restaurants.map(rest => {
     return <div onClick={() => getCategory(rest.category)} >{rest.category}</div>
   })
 
@@ -72,7 +77,7 @@ const FeedPage = (props) => {
       <ContainerCategory>  
         {categorias}      
         </ContainerCategory>
-      { categoria ? filterRestaurants : mapRestaurants}
+      {mapRestaurants}
     </div>
   );
 }
