@@ -21,15 +21,15 @@ export const ContainerCategory = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    `
-    export const MainCard = styled.div`
-    display: flex;
+     display: flex;
     justify-content: center;
     align-items: center;
         /* width: 22.5rem; */
         /* background-color: red; */
-    height: 7.5rem;  
+    height: 7.5rem;  flex-direction: column;
+    `
+    export const MainCard = styled.div`
+        
     `
 
     export const Card = styled.div`
@@ -51,7 +51,7 @@ export const ContainerCategory = styled.div`
 
     export const ContText = styled.div`
     padding-left: 1rem;
-    `
+    `;
 
     export const Title = styled.div `
     margin-top: 1.125rem;
