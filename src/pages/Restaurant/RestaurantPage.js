@@ -5,6 +5,7 @@ import { URL_BASE } from "../../constants/links";
 import { GlobalContext } from "../../global/GlobalContext";
 import { useProtected } from "../../hooks/useProtected";
 import { exemplo } from "./styledRestaurantPage";
+import { navigate, useNavigate } from "react-router-dom";
 import {
   ContainerCategory,
   Card,
@@ -22,6 +23,7 @@ Main
 } from "./styledRestaurantPage";
 
 const RestaurantePage = () => {
+  const navigate = useNavigate()
   // passei o nome do restaurante pelo path
   const params = useParams();
 
@@ -29,8 +31,10 @@ const RestaurantePage = () => {
   const [filterProducts, setFilterProducts] = useState([]);
   const [selectCategory, setSelectCategory] = useState("");
   // const  [restaurants ,cart , setCart]= useContext(GlobalContext)
-  const states = useContext(GlobalContext)
-  const {restaurants , cart} = states
+  const {states,setters,functions} = useContext(GlobalContext)
+  const { restaurants }  =  states
+  const  {setRestaurants} = setters
+  const  {addToCart, removeToCart} = functions
   
   // está puxando todos os restaurantes do globalState
   // const restaurants = useContext(GlobalContext);
@@ -40,8 +44,10 @@ const RestaurantePage = () => {
     return restaurantes.name === params.name;
   });
 
-  // desistruturei para ficar um objeto em vez de array
+  // desistruturei para ficar um objeto em vez de array, obj dos restaurantes
   const [objRestaurante] = filterRest;
+console.log(objRestaurante)
+
 
   useEffect(() => {
     const headers = {
@@ -60,15 +66,13 @@ const RestaurantePage = () => {
       });
   }, []);
 
-    const addCart = (id) =>{
-      
-    }
+
 
   // rederizando todos os productos
   const mapProducts =
     products &&
     products.map((product) => {
-      console.log(product);
+      // console.log(product);
       return (
         <MainCard key={product.id}>
           <Card>            
@@ -79,7 +83,9 @@ const RestaurantePage = () => {
               <Description>{product.description}</Description>
               <OrgPA>
               <Price>R${product.price}</Price>
-              <Add onClick={()=> addCart(product.id)}>adicionar</Add>
+              <Add onClick={()=> addToCart(product, objRestaurante.id)}>adicionar</Add>
+              <br/>
+              <button onClick={()=> removeToCart(product)}>REMOVE</button>
               </OrgPA>
             </ContText>
           </Card>
@@ -154,6 +160,7 @@ const RestaurantePage = () => {
   return (
     <div>
       Restaurante Page
+      <button onClick={()=>navigate('/shoppingcart')}>carrinho</button>
       <ContainerCategory>{categoriasRedered}</ContainerCategory>      
         {selectCategory ? productsFilter : mapProducts}
     </div>

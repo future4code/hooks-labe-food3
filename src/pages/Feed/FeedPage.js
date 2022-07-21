@@ -1,43 +1,36 @@
 import React, { useContext, useEffect, useState } from "react";
-import { exemplo } from "./styledFeedPage1"
 import { useProtected } from "../../hooks/useProtected";
-import axios from "axios";
-import { URL_BASE } from "../../constants/links";
 import RestaurantsComponents from "../../components/CardRestaurantFeed";
 import { GlobalContext } from "../../global/GlobalContext";
 import {ContainerCategory,
   Main,
-} from "./styledFeedPage1";
-
-
+} from "./styledFeedPage";
+import { navigate, useNavigate } from "react-router-dom";
 
 
 
 // ================================= inicio do componente
 
 const FeedPage = (props) => {
+  const navigate = useNavigate()
 
   // useProtected()
-
-  const [categoria, setCategoria] = useState('')
-  // const [restaurants, setRestaurants] = useState([])
-  const states = useContext(GlobalContext)
-  const setters = useContext(GlobalContext)
-  const { restaurants }  = states
+  const [seletectCategory, setSeletectCategory] = useState('')
+  const [filtredRestaurant, setFiltredRestaurant] = useState([])
+  const {states,setters} = useContext(GlobalContext)
+  const { restaurants }  =  states
   const  {setRestaurants} = setters
   
-  
-  // useEffect(() => {
 
-  //   const array = restaurants && restaurants.map((lojas) => {
-  //     return lojas
-  //   }).filter((lojas) => {
-  //     return lojas.category === categoria
-  //   })
 
-  //   // setRestaurants(array)
-
-  // }, [categoria])
+  useEffect(() => {
+    const array = restaurants && restaurants.map((lojas) => {
+      return lojas
+    }).filter((lojas) => {
+      return lojas.category === seletectCategory
+    })
+    setFiltredRestaurant(array)
+  }, [seletectCategory])
 
     
   const mapRestaurants = restaurants && restaurants.map((lojas) => {
@@ -46,26 +39,28 @@ const FeedPage = (props) => {
     )
   })
 
-  const filterRestaurants = restaurants && restaurants.map((lojas) => {
+  const filterRestaurantsMap = filtredRestaurant && filtredRestaurant.map((lojas) => {
     return (
        <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category}  />
     )
   })
 
   console.log(states)
-  console.log(restaurants)
+  // console.log(restaurants)
   
   // ======================== filtro categoria
 
-  const categorias = restaurants && restaurants.map(rest => {
+  const categoryRestaurantMap = restaurants && restaurants.map(rest => {
     return <div onClick={() => getCategory(rest.category)} >{rest.category}</div>
   })
 
+
+  //================= onclick
   const getCategory = (paramCategory) => {
-    if (paramCategory === categoria) {
-      setCategoria('')
+    if (paramCategory === seletectCategory) {
+      setSeletectCategory('')
     } else {
-      setCategoria(paramCategory)
+      setSeletectCategory(paramCategory)
     }
   }
 
@@ -74,10 +69,11 @@ const FeedPage = (props) => {
   return (
     <div>
       Feed Page
+      <button onClick={()=>navigate('/shoppingcart')}>carrinho</button>
       <ContainerCategory>  
-        {categorias}      
+        {categoryRestaurantMap}      
         </ContainerCategory>
-      {mapRestaurants}
+      { seletectCategory ? filterRestaurantsMap :  mapRestaurants }
     </div>
   );
 }

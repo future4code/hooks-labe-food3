@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react"
 import { GlobalContext } from "./GlobalContext"
 import axios from 'axios'
-import {URL_BASE} from "../constants/links"
+import {URL_BASE, headers} from "../constants/links"
 
 
 
 export const GlobalState = (props) => {
-
     const [restaurants , setRestaurants] = useState([])
     const [cart , setCart] = useState([])
-    useEffect(()=>{
-      const headers = {
-        headers : {
-        auth : localStorage.getItem("token")
-       }
-      }
-  
+    useEffect(()=>{    
       axios.get(`${URL_BASE}/restaurants`,headers)
       .then((res)=>{
        setRestaurants(res.data.restaurants)
@@ -25,14 +18,90 @@ export const GlobalState = (props) => {
       })
     } , [])
 
-    // const getCart = () =>{
-    //   const carrinho = 
-    // }
+
+//==================== enviar o produto
+
+let stateId = ('')
+
+const productsArray = cart.map(item=>{
+    stateId = item.idRestaurant
+
+   return{id: item.id,
+  quantity: item.quantity}
+ })
+
+const body = {
+  products: productsArray,
+  paymentMethod: "creditcard"
+}
+
+// const idRestRequest = cart && cart[0]
+
+
+
+const postOrder = () => {
+  axios.post(`${URL_BASE}/restaurants/${stateId}/order`, body, headers)
+  .then((res)=>{
+    console.log(res)
+
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
+}
+
+
+//=================== adicionar item ao carrinho
+    const addToCart = (product, idRestaurant)=>{
+      const index = cart.findIndex((qtd)=>{
+       if(qtd.name === product.name){
+           return true
+       }else{
+           return false
+       }
+      })
+      if(index === -1){
+        const obj = {...product, quantity:1, idRestaurant: idRestaurant}
+        setCart([...cart, obj])
+      }else{    
+       const array = cart && cart.map(item=>{
+          if(item.id === product.id){
+            return {...product, quantity: item.quantity +1 }
+          }
+          return item
+        })
+          setCart(array)
+      }
+      console.log(idRestaurant)
+   }
+
+//=================== remove item ao carrinho
+   const removeToCart = (product)=>{ 
+      const array = cart && cart.map(item=>{
+         if(item.id === product.id){
+          if(item.quantity > 0){
+            return {
+              ...product, quantity: item.quantity -1 }
+          }          
+        }
+         return item
+       })
+       const newArray = array.filter(item=>{
+        return item.quantity > 0
+       })
+       setCart(newArray)
+       console.log(cart)
+      }
+        
+
+//======================== retorno dos estados globais
     const states = { restaurants , cart}
     const setters ={ setRestaurants , setCart }
+    const functions = {addToCart , removeToCart, postOrder}
+
     return (
         <GlobalContext.Provider
-        value={{states,setters}}
+        value={{states,setters,functions}}
         >
             {props.children} 
         </GlobalContext.Provider>
