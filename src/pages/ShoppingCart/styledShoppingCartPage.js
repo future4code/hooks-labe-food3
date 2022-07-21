@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const ContCardProduct = styled.div`
+display: flex;
+width: 22.5rem;
+height: 7.5rem;
+`
+
 export const CardProduct = styled.div`
       display: flex;
     width: 20.5rem;
@@ -30,14 +36,14 @@ justify-content: center;
 align-items: center;
 border-left:  1px solid #e02020;
 font-size: 0.75rem;
-width: 50%;
+width: 3rem;
 `;
 
 export const Menos = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-width: 50%;
+width: 3rem;
 /* border-right: 0.12px solid #e02020; */
 font-size: 0.75rem;
 letter-spacing: -0.29px;
@@ -61,12 +67,12 @@ export const Price = styled.div`
 export const Buttons = styled.div`
     display: flex;
     justify-content: center;
-    width: 5.625rem;
+    /* width: 5.625rem; */
     border: 1px solid #e02020;
     border-radius: 8px 0px 8px 0px;
-    margin-top: 0.910rem;
-    margin-left: -0.59rem;
     height: 1.938rem;
+    margin-top: 5rem;
+    margin-left: -4.02rem;
 `
 
 export const Descri = styled.div`
@@ -78,6 +84,8 @@ export const Descri = styled.div`
 
 export const Cont = styled.div`
     display: flex;
+    justify-items: flex-end;
+    background-color: red;  
 `
 
 export const Dad = styled.div`
@@ -85,5 +93,17 @@ export const Dad = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-`
+    `
 
+    export const Qt = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 3rem;
+    border: 1px solid #e02020;
+    margin-left: 9.46rem;
+    margin-top: -2.6rem;
+    border-radius: 0px 8px 0px 8px;
+    height: 1.938rem;
+    background-color: #F39096;
+    color: black;
+    `
