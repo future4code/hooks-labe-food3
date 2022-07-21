@@ -4,7 +4,7 @@ import { useProtected } from "../../hooks/useProtected";
 import { GlobalContext } from "../../global/GlobalContext";
 import { navigate, useNavigate } from "react-router-dom";
 import { Card } from "@material-ui/core";
-import {CardProduct , InformText , TextSuperior , Menos , Mais , Img , Price , Buttons , Descri, Cont , Dad} from "./styledShoppingCartPage";
+import {CardProduct , InformText , TextSuperior , Menos , Mais , Img , Price , Buttons , Descri, Cont , Dad , Qt , ContCardProduct} from "./styledShoppingCartPage";
 import { Description } from "@mui/icons-material";
 
 export default function CarrinhoPage() {
@@ -34,21 +34,26 @@ console.log(cart)
         cart.map((item) => {
           // setTotal(total+item.total)
           return( 
-            <CardProduct>
-               {/* {item.quantity} */}
+            <ContCardProduct>
+
+            <CardProduct>             
               <Img src={item.photoUrl}/>
               <InformText>
-              <TextSuperior>{item.name}</TextSuperior>
+              <TextSuperior>{item.name}
+             <Qt>{item.quantity}</Qt> 
+              </TextSuperior>
               <Descri>{item.description}</Descri>
-              <Cont>
-              <Price>R${item.price}</Price>            
+              
+              <Price>R${item.price}          
+              </Price> 
+              </InformText>
               <Buttons>
               <Menos onClick={()=>removeToCart(item)}>-</Menos>  
               <Mais onClick={()=>addToCart(item)}>+</Mais>
               </Buttons>
-              </Cont>
-              </InformText>
             </CardProduct>
+            </ContCardProduct>
+
             )
         })}
             Total: {totalPrice}
