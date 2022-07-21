@@ -28,11 +28,15 @@ export const GlobalState = (props) => {
     // const getCart = () =>{
     //   const carrinho = 
     // }
+    const addToCart = () =>{
+      console.log("oiii")
+    }
     const states = { restaurants , cart}
     const setters ={ setRestaurants , setCart }
+    const functions = {addToCart}
     return (
         <GlobalContext.Provider
-        value={{states,setters}}
+        value={{states , setters , functions}}
         >
             {props.children} 
         </GlobalContext.Provider>

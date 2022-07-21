@@ -21,8 +21,8 @@ const FeedPage = (props) => {
 
   const [categoria, setCategoria] = useState('')
   // const [restaurants, setRestaurants] = useState([])
-  const states = useContext(GlobalContext)
-  const setters = useContext(GlobalContext)
+  const{ states , setters }= useContext(GlobalContext)
+ 
   const { restaurants }  = states
   const  {setRestaurants} = setters
   

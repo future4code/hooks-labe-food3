@@ -29,8 +29,10 @@ const RestaurantePage = () => {
   const [filterProducts, setFilterProducts] = useState([]);
   const [selectCategory, setSelectCategory] = useState("");
   // const  [restaurants ,cart , setCart]= useContext(GlobalContext)
-  const states = useContext(GlobalContext)
-  const {restaurants , cart} = states
+  const{ states , setters , functions }= useContext(GlobalContext)
+ 
+  const { restaurants }  = states
+  const {addToCart} = functions
   
   // está puxando todos os restaurantes do globalState
   // const restaurants = useContext(GlobalContext);
@@ -136,7 +138,7 @@ const RestaurantePage = () => {
               <Description>{product.description}</Description>
               <OrgPA>
               <Price>R${product.price}</Price>
-              <Add>adicionar</Add>
+              <Add onClick={() => addToCart(product)}>adicionar</Add>
               </OrgPA>
             </ContText>
           </Card>
