@@ -20,7 +20,7 @@ export default function CarrinhoPage() {
   //============= soma o valor total dos itens no carrinho
   let totalPrice = 0
   for (const i of cart) {
-    totalPrice += (i.price * i.quantity)
+    totalPrice += (Math.round(i.price * i.quantity))
    console.log(totalPrice)
   }
 
