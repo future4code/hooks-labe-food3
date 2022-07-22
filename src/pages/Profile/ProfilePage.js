@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from 'axios'
 import {exemplo} from "./styledProfilePage"
 import { useProtected } from "../../hooks/useProtected";
+import CustomProfile from "../../hooks/useProfile";
+import useCustomProfile from "../../hooks/useProfile";
+import {headers, URL_BASE } from "../../constants/links";
+import useForm from "../../hooks/useForm";
+import { NavigateBefore } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import ProfileComponents from "../../components/ProfileComponents";
 
 
 export default function ProfilePage () {
+  const [data] = useCustomProfile(`${URL_BASE}/profile`)
+  const {name , address , cpf , email , id} = data
+  const navigate = useNavigate()
+ 
+  
+ 
 
-  useProtected()
   return (
     <div>
-        Profile Page
+     <strong>Nome:</strong> {name} <br/>
+     <strong>Endereço:</strong> {address} <br/>
+     <strong>Cpf :</strong> {cpf}<br/>
+     <strong>E-mail :</strong> {email} <br/>
+     <button onClick={()=>navigate("editarCadastro")}>editar</button>
+     
+     
     </div>
   );
 }
