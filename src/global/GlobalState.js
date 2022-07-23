@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { toast } from 'react-toastify';
 import { GlobalContext } from "./GlobalContext"
 import axios from 'axios'
 import {URL_BASE, headers} from "../constants/links"
@@ -70,10 +71,26 @@ const postOrder = () => {
           }
           return item
         })
-          setCart(array)
+        notifySucessProduct()    
+        setCart(array)  
       }
       console.log(idRestaurant)
    }
+
+   //=================== função de alert para item adicionado ao carrinho
+   const notifySucessProduct = () => {    
+     toast.success("Produto adicionado.", { autoClose: 200 }, {     
+       position: toast.POSITION.TOP_RIGHT      
+      });
+    }
+    
+    //=================== função de alert para item removido do carrinho
+  const notifyWarmProduct = () => {    
+    toast.warn("Produto removido.", { autoClose: 200 }, {     
+      position: toast.POSITION.TOP_RIGHT      
+    });
+  }
+
 
 //=================== remove item ao carrinho
    const removeToCart = (product)=>{ 
@@ -89,8 +106,10 @@ const postOrder = () => {
        const newArray = array.filter(item=>{
         return item.quantity > 0
        })
+       notifyWarmProduct()
        setCart(newArray)
        console.log(cart)
+       
       }
         
 

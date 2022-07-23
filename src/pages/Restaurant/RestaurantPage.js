@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from 'react-toastify';
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { URL_BASE } from "../../constants/links";
@@ -6,24 +7,10 @@ import { GlobalContext } from "../../global/GlobalContext";
 import { useProtected } from "../../hooks/useProtected";
 import { exemplo } from "./styledRestaurantPage";
 import { navigate, useNavigate } from "react-router-dom";
-import {
-  ContainerCategory,
-  Card,
-  Img,
-  MainCard,
-  Centralize,
-  ContText,
-  Title,
-  Description,
-Price,
-Add,
-OrgPA,
-ContImg,
-Main
-} from "./styledRestaurantPage";
+import * as S from "./styledRestaurantPage";
 
 const RestaurantePage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // passei o nome do restaurante pelo path
   const params = useParams();
 
@@ -31,11 +18,11 @@ const RestaurantePage = () => {
   const [filterProducts, setFilterProducts] = useState([]);
   const [selectCategory, setSelectCategory] = useState("");
   // const  [restaurants ,cart , setCart]= useContext(GlobalContext)
-  const {states,setters,functions} = useContext(GlobalContext)
-  const { restaurants }  =  states
-  const  {setRestaurants} = setters
-  const  {addToCart, removeToCart} = functions
-  
+  const { states, setters, functions } = useContext(GlobalContext);
+  const { restaurants } = states;
+  const { setRestaurants } = setters;
+  const { addToCart, removeToCart } = functions;
+
   // está puxando todos os restaurantes do globalState
   // const restaurants = useContext(GlobalContext);
 
@@ -46,8 +33,7 @@ const RestaurantePage = () => {
 
   // desistruturei para ficar um objeto em vez de array, obj dos restaurantes
   const [objRestaurante] = filterRest;
-console.log(objRestaurante)
-
+  console.log(objRestaurante);
 
   useEffect(() => {
     const headers = {
@@ -58,7 +44,7 @@ console.log(objRestaurante)
     axios
       .get(`${URL_BASE}/restaurants/${objRestaurante.id}`, headers)
       .then((res) => {
-        console.log(res.data.restaurant.products);
+        console.log(res.data.restaurant.products);       
         setProducts(res.data.restaurant.products);
       })
       .catch((err) => {
@@ -66,30 +52,37 @@ console.log(objRestaurante)
       });
   }, []);
 
+  const notifySucessProduct = () => {    
+    toast.success("Produto adicionado.", { autoClose: 200 }, {     
+      position: toast.POSITION.TOP_RIGHT      
+    });
+  }
+  
+
 
 
   // rederizando todos os productos
   const mapProducts =
     products &&
     products.map((product) => {
-      // console.log(product);
       return (
-        <MainCard key={product.id}>
-          <Card>            
-              <Img src={product.photoUrl} />
-           
-            <ContText>
-              <Title>{product.name}</Title>
-              <Description>{product.description}</Description>
-              <OrgPA>
-              <Price>R${product.price}</Price>
-              <Add onClick={()=> addToCart(product, objRestaurante.id)}>adicionar</Add>
-              <br/>
-              <button onClick={()=> removeToCart(product)}>REMOVE</button>
-              </OrgPA>
-            </ContText>
-          </Card>
-        </MainCard>
+        <S.MainCard key={product.id}>
+          <S.Card>
+            <S.Img src={product.photoUrl} />
+
+            <S.ContText>
+              <S.Title>{product.name}</S.Title>
+              <S.Description>{product.description}</S.Description>
+              <S.OrgPA>
+                <S.Price>R${product.price}</S.Price>
+                <S.Add onClick={() => addToCart(product, objRestaurante.id)} >
+                  adicionar
+                </S.Add>
+                {/* <button onClick={()=> removeToCart(product)}>REMOVE</button> */}
+              </S.OrgPA>
+            </S.ContText>
+          </S.Card>
+        </S.MainCard>
       );
     });
 
@@ -133,20 +126,20 @@ console.log(objRestaurante)
     filterProducts &&
     filterProducts.map((product) => {
       return (
-        <MainCard key={product.id}>
-          <Card>            
-              <Img src={product.photoUrl} />
-           
-            <ContText>
-              <Title>{product.name}</Title>
-              <Description>{product.description}</Description>
-              <OrgPA>
-              <Price>R${product.price}</Price>
-              <Add>adicionar</Add>
-              </OrgPA>
-            </ContText>
-          </Card>
-        </MainCard>
+        <S.MainCard key={product.id}>
+          <S.Card>
+            <S.Img src={product.photoUrl} />
+
+            <S.ContText>
+              <S.Title>{product.name}</S.Title>
+              <S.Description>{product.description}</S.Description>
+              <S.OrgPA>
+                <S.Price>R${product.price}</S.Price>
+                <S.Add onClick={()=>notifySucessProduct()}>adicionar</S.Add>
+              </S.OrgPA>
+            </S.ContText>
+          </S.Card>
+        </S.MainCard>
       );
     });
 
@@ -160,9 +153,9 @@ console.log(objRestaurante)
   return (
     <div>
       Restaurante Page
-      <button onClick={()=>navigate('/shoppingcart')}>carrinho</button>
-      <ContainerCategory>{categoriasRedered}</ContainerCategory>      
-        {selectCategory ? productsFilter : mapProducts}
+      <button onClick={() => navigate("/shoppingcart")}>carrinho</button>
+      <S.Menu>{categoriasRedered}</S.Menu>
+      <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>
     </div>
   );
 };
