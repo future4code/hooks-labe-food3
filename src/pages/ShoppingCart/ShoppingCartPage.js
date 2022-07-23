@@ -4,7 +4,7 @@ import { useProtected } from "../../hooks/useProtected";
 import { GlobalContext } from "../../global/GlobalContext";
 import { navigate, useNavigate } from "react-router-dom";
 import { Card } from "@material-ui/core";
-import {CardProduct , InformText , TextSuperior , Menos , Mais , Img , Price , Buttons , Descri, Cont , Dad , Qt , ContCardProduct} from "./styledShoppingCartPage";
+import * as S from "./styledShoppingCartPage";
 import { Description } from "@mui/icons-material";
 
 export default function CarrinhoPage() {
@@ -27,38 +27,38 @@ export default function CarrinhoPage() {
 console.log(cart)
 
   return (
-    <Dad>
+    <S.Dad>
       <h1>meu carrinho</h1>
       <button onClick={() => navigate("/feed")}>feed</button>
       {cart &&
         cart.map((item) => {
           // setTotal(total+item.total)
           return( 
-            <ContCardProduct>
+            <S.ContCardProduct>
 
-            <CardProduct>             
-              <Img src={item.photoUrl}/>
-              <InformText>
-              <TextSuperior>{item.name}
-             <Qt>{item.quantity}</Qt> 
-              </TextSuperior>
-              <Descri>{item.description}</Descri>
+            <S.CardProduct>             
+              <S.Img src={item.photoUrl}/>
+              <S.InformText>
+              <S.TextSuperior>{item.name}
+             <S.Qt>{item.quantity}</S.Qt> 
+              </S.TextSuperior>
+              <S.Descri>{item.description}</S.Descri>
               
-              <Price>R${item.price}          
-              </Price> 
-              </InformText>
-              <Buttons>
-              <Menos onClick={()=>removeToCart(item)}>-</Menos>  
-              <Mais onClick={()=>addToCart(item)}>+</Mais>
-              </Buttons>
-            </CardProduct>
-            </ContCardProduct>
+              <S.Price>R${item.price}          
+              </S.Price> 
+              </S.InformText>
+              <S.Buttons>
+              <S.Menos onClick={()=>removeToCart(item)}>-</S.Menos>  
+              <S.Mais onClick={()=>addToCart(item)}>+</S.Mais>
+              </S.Buttons>
+            </S.CardProduct>
+            </S.ContCardProduct>
 
             )
         })}
             Total: {totalPrice}
             <button onClick={()=>postOrder()}>postOrder</button>
             
-    </Dad>
+    </S.Dad>
   );
 }

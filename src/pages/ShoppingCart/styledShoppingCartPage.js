@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ContCardProduct = styled.div`
 display: flex;
+justify-content: center;
 width: 22.5rem;
 height: 7.5rem;
 `
@@ -98,6 +99,7 @@ export const Dad = styled.div`
     export const Qt = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 3rem;
     border: 1px solid #e02020;
     margin-left: 9.46rem;

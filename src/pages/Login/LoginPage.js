@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 import { exemplo } from "./styledLoginPage";
 import { Email, Visibility, VisibilityOff } from "@mui/icons-material";
 import styled from "styled-components";
 import { navigate, useNavigate } from "react-router-dom";
 import logo from "../../imagens/logo.png";
-import {
-  Main,
-  Pa,
-  Img,
-  Button,
-  Form,
-  Input,
-  FieldSize,
-} from "./styledLoginPage";
+import * as S from "./styledLoginPage";
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
 import useForm from "../../hooks/useForm";
@@ -81,18 +74,38 @@ const LoginPage = () => {
     //   });
   };
 
+  
+  const notifySucessUser = () => {
+    const customId = "custom-id-yes";
+    toast.success("Login realizado com sucesso!", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,
+      
+    });
+  }
+  
+  const notifyErrorUser = () => {
+    const customId = "custom-id-yes";
+    toast.warn("Não registrado, faça seu cadastro.", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,      
+    });
+  }
+
+
   const hundleUser = () => {
     axios
       .post(`${URL_BASE}/login`, form)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         if (res.data.user.hasAddress) {
+          notifySucessUser() 
           navigate("/feed");
         }
       })
       .catch((err) => {
-        alert("Usuário não cadastrado. Cadastre-se!");
-        navigate("/cadastro");
+        notifyErrorUser()
+        navigate("/registration");
       });
   };
 
@@ -103,11 +116,12 @@ const LoginPage = () => {
   };
 
   return (
-    <Main>
-      <Img src={logo} />
-      <Pa>Entrar</Pa>
-      <Form onSubmit={onSubmitForm}>
-        <FieldSize>
+    <S.Main>
+      <button onClick={() => navigate("/feed")}>feed</button>
+      <S.Img src={logo} />
+      <S.Pa>Entrar</S.Pa>
+      <S.Form onSubmit={onSubmitForm}>
+        <S.FieldSize>
           <TextField
             name="email"
             placeholder="email@email.com"
@@ -117,33 +131,32 @@ const LoginPage = () => {
             value={form.email}
             onChange={onChange}
             required
-          >
-          </TextField>
-        </FieldSize>
+          ></TextField>
+        </S.FieldSize>
         {/* // ======================================  */}
-        <FieldSize>
+        <S.FieldSize>
           <TextField
             placeholder="Mínimo 6 caracteres"
             label="Senha"
             inputProps={{ pattern: "[A-Za-z'.+]{6,}" }}
             title="Mínimo 6 caracteres"
-            fullWidth                     
-              name={"password"}
-              value={form.password}
-              onChange={onChange}              
-              type={viewPass ? "text" : "password"}
-              required            
-          >            
+            fullWidth
+            name={"password"}
+            value={form.password}
+            onChange={onChange}
+            type={viewPass ? "text" : "password"}
+            required
+          >
             <button onClick={showPass}>BT</button>
           </TextField>
-        </FieldSize>
-        <Button onClick={()=>hundleUser()}>Entrar</Button>
-      </Form>
-      <Pa onClick={() => navigate("/cadastro")}>
+        </S.FieldSize>
+        <S.Button onClick={() => hundleUser()}>Entrar</S.Button>
+      </S.Form>
+      <S.Pa onClick={() => navigate("/cadastro")}>
         Não possui cadastro?
         <span> Clique aqui.</span>
-      </Pa>
-    </Main>
+      </S.Pa>
+    </S.Main>
   );
 };
 
