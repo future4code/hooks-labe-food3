@@ -1,20 +1,23 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 
 const Global = styled.div`
 display: flex;
 justify-content: center;
-width: 100%;
+/* padding-top: 0.5rem; */
+/* width: 100%; */
 `
 const MainCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 22.5rem;
+  width: 100%;
   height: 12.25rem;
+  /* background-color: blue; */
+  /* gap: 1rem; */
 `;
 
 const Card = styled.div`

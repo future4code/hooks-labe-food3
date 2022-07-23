@@ -6,6 +6,7 @@ import { navigate, useNavigate } from "react-router-dom";
 import { Card } from "@material-ui/core";
 import * as S from "./styledShoppingCartPage";
 import { Description } from "@mui/icons-material";
+import * as M from "@mui/material";
 
 export default function CarrinhoPage() {
   const navigate = useNavigate();
@@ -13,52 +14,69 @@ export default function CarrinhoPage() {
   const { states, setters, functions } = useContext(GlobalContext);
   const { restaurants, cart } = states;
   const { setRestaurants, setCart } = setters;
-  const  {addToCart, removeToCart, postOrder} = functions 
-  
+  const { addToCart, removeToCart, postOrder } = functions;
+
   useProtected();
-  
+
   //============= soma o valor total dos itens no carrinho
-  let totalPrice = 0
+  let totalPrice = 0;
   for (const i of cart) {
-    totalPrice += (Math.round(i.price * i.quantity))
-   console.log(totalPrice)
+    totalPrice += Math.round(i.price * i.quantity);
+    console.log(totalPrice);
   }
 
-console.log(cart)
+  console.log(cart);
 
   return (
     <S.Dad>
-      <h1>meu carrinho</h1>
+      <S.Title>meu carrinho</S.Title>
+      <S.Endress></S.Endress>
+      <S.RestaurantEndress></S.RestaurantEndress>
       <button onClick={() => navigate("/feed")}>feed</button>
       {cart &&
         cart.map((item) => {
           // setTotal(total+item.total)
-          return( 
+          return (
             <S.ContCardProduct>
-
-            <S.CardProduct>             
-              <S.Img src={item.photoUrl}/>
-              <S.InformText>
-              <S.TextSuperior>{item.name}
-             <S.Qt>{item.quantity}</S.Qt> 
-              </S.TextSuperior>
-              <S.Descri>{item.description}</S.Descri>
-              
-              <S.Price>R${item.price}          
-              </S.Price> 
-              </S.InformText>
-              <S.Buttons>
-              <S.Menos onClick={()=>removeToCart(item)}>-</S.Menos>  
-              <S.Mais onClick={()=>addToCart(item)}>+</S.Mais>
-              </S.Buttons>
-            </S.CardProduct>
+              <S.CardProduct>
+                <S.Img src={item.photoUrl} />
+                <S.InformText>
+                  <S.Qt>{item.quantity}</S.Qt>
+                  <S.SubCont>
+                    <S.TextSuperior>{item.name}</S.TextSuperior>
+                    <S.Descri>{item.description}</S.Descri>
+                    <S.Price>R${item.price}</S.Price>
+                  </S.SubCont>
+                </S.InformText>
+                <S.Buttons>
+                  <S.Menos onClick={() => removeToCart(item)}>-</S.Menos>
+                  <S.Mais onClick={() => addToCart(item)}>+</S.Mais>
+                </S.Buttons>
+              </S.CardProduct>
             </S.ContCardProduct>
-
-            )
+          );
         })}
-            Total: {totalPrice}
-            <button onClick={()=>postOrder()}>postOrder</button>
-            
+
+      <S.Bot>Frete R$</S.Bot>
+      <S.Bot1>
+        SUBTOTAL: <div>{totalPrice}</div>
+      </S.Bot1>
+
+      <S.Bot2>
+        <div>Forma de pagamento</div>
+        <hr />
+        <div>
+          <S.Input type="radio" />
+          <S.Label>Dinheiro</S.Label>
+        </div>
+        <S.DivInput>
+          <S.Input type="radio" />
+          <S.Label>Cartão de crédito</S.Label>
+        </S.DivInput>
+      </S.Bot2>
+
+      <S.Button onClick={() => postOrder()}>Confirmar</S.Button>
+      <footer></footer>
     </S.Dad>
   );
 }
