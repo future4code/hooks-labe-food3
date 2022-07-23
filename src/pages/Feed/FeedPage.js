@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useProtected } from "../../hooks/useProtected";
-import RestaurantsComponents from "../../components/CardRestaurantFeed";
+import CardRestaurantFeed from "../../components/CardRestaurantFeed";
 import { GlobalContext } from "../../global/GlobalContext";
-import {ContainerCategory,
-  Main,
-} from "./styledFeedPage";
+import * as S from "./styledFeedPage";
+import * as M from "@mui/material"
 import { navigate, useNavigate } from "react-router-dom";
+import useForm from "../../hooks/useForm";
 
 
 
@@ -35,13 +35,13 @@ const FeedPage = (props) => {
     
   const mapRestaurants = restaurants && restaurants.map((lojas) => {
     return (
-      <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category} />
+      <CardRestaurantFeed key={lojas.id} restaurants={lojas} categorias={lojas.category} />
     )
   })
 
   const filterRestaurantsMap = filtredRestaurant && filtredRestaurant.map((lojas) => {
     return (
-       <RestaurantsComponents key={lojas.id} restaurants={lojas} categorias={lojas.category}  />
+       <CardRestaurantFeed key={lojas.id} restaurants={lojas} categorias={lojas.category}  />
     )
   })
 
@@ -51,7 +51,7 @@ const FeedPage = (props) => {
   // ======================== filtro categoria
 
   const categoryRestaurantMap = restaurants && restaurants.map(rest => {
-    return <div onClick={() => getCategory(rest.category)} >{rest.category}</div>
+    return <div onClick={() => getCategory(rest.category)} ><S.Pa>{rest.category}</S.Pa></div>
   })
 
 
@@ -64,15 +64,37 @@ const FeedPage = (props) => {
     }
   }
 
+  //==================== input controlado
+  const [form, onChange, clear] = useForm({
+    value:"",
+  });
+
+  //================ necessário no input para evitar atualizar a página
+  const onSubmitForm = (ev) => {
+    ev.preventDefault();
+  };
 
 
   return (
     <div>
       Feed Page
       <button onClick={()=>navigate('/shoppingcart')}>carrinho</button>
-      <ContainerCategory>  
+      <S.Title>Ifuture</S.Title>  
+      {/* <S.Form onSubmit={onSubmitForm}> */}
+      <S.ContTextField>
+      <M.TextField
+      onSubmit={onSubmitForm}
+      fullWidth
+      name="value"
+      placeholder="Restaurante"
+      value={form.value}
+      onChange={onChange}
+      ></M.TextField>
+      </S.ContTextField>
+      {/* </S.Form>  */}
+      <S.ContainerCategory>  
         {categoryRestaurantMap}      
-        </ContainerCategory>
+        </S.ContainerCategory>
       { seletectCategory ? filterRestaurantsMap :  mapRestaurants }
     </div>
   );

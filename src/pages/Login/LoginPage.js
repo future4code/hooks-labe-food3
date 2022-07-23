@@ -9,39 +9,13 @@ import * as S from "./styledLoginPage";
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
 import useForm from "../../hooks/useForm";
-import {
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  TextField,
-} from "@mui/material";
+import * as M from "@mui/material";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const tokenEndereco = localStorage.getItem("tokenEndereco");
   const token = localStorage.getItem("token");
 
-  const [values, setValues] = React.useState({
-    password: "",
-    showPassword: false,
-  });
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
 
   // const [inputEmail , setInputEmail] = useState("")
   // const [inputSenha , setInputSenha] = useState("")
@@ -122,7 +96,7 @@ const LoginPage = () => {
       <S.Pa>Entrar</S.Pa>
       <S.Form onSubmit={onSubmitForm}>
         <S.FieldSize>
-          <TextField
+          <M.TextField
             name="email"
             placeholder="email@email.com"
             label="E-mail"
@@ -131,11 +105,11 @@ const LoginPage = () => {
             value={form.email}
             onChange={onChange}
             required
-          ></TextField>
+          ></M.TextField>
         </S.FieldSize>
         {/* // ======================================  */}
         <S.FieldSize>
-          <TextField
+          <M.TextField        
             placeholder="Mínimo 6 caracteres"
             label="Senha"
             inputProps={{ pattern: "[A-Za-z'.+]{6,}" }}
@@ -147,8 +121,8 @@ const LoginPage = () => {
             type={viewPass ? "text" : "password"}
             required
           >
-            <button onClick={showPass}>BT</button>
-          </TextField>
+          <button onClick={showPass} onMouseDown={onSubmitForm}>BT</button>
+          </M.TextField>
         </S.FieldSize>
         <S.Button onClick={() => hundleUser()}>Entrar</S.Button>
       </S.Form>
