@@ -6,18 +6,20 @@ import { headers, URL_BASE } from "../constants/links"
 
 const useCustomProfile = (url) =>{
     const [data , setData] = useState([])
-    const [handleProfile , setUpdateProfile] = ("")
+    const [address,setAdress] = useState([])
+    
    
     useEffect(()=>{
         axios.get(url,headers ).then((res)=>{
-            setData(res.data.user)
+            setData(res.data)
+            setAdress(res.data.address)
         }).catch((err)=>{
             console.log(err.response)
         })
     } , [url])
    
    
-    return [data ]
+    return [data , address]
     
 }
 

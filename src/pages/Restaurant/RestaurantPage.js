@@ -34,8 +34,9 @@ const RestaurantePage = () => {
 
   // desistruturei para ficar um objeto em vez de array, obj dos restaurantes
   const [objRestaurante] = filterRest;
-  console.log(objRestaurante);
+  // console.log(objRestaurante);
 
+  console.log(restaurant)
   useEffect(() => {
     const headers = {
       headers: {
@@ -92,14 +93,7 @@ const RestaurantePage = () => {
 
   console.log(restaurant);
 
-  // const restaurantsBanner =
-  // restaurant && restaurant.map((item)=>{
-  // return(
-  //   <div>
-  //     {item}
-  //   </div>
-  // )
-  // })
+
 
   // ==================== filtro =============================
 
