@@ -11,12 +11,10 @@ export const Menu = styled.div`
   display: flex;
   overflow-x: scroll;
   align-items: center;
-  /* background-color: blue; */
-  div {
-    padding: 10px;
-    font-size: 1rem;
-    letter-spacing: -0.39px;
-  }
+  gap: 2rem;
+  padding-left: 1.5rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 `;
 
 export const Centralize = styled.div`
@@ -29,6 +27,7 @@ export const Centralize = styled.div`
   height: 7.5rem;
   flex-direction: column;
 `;
+
 export const MainCard = styled.div`
   height: 7.5rem;
 `;
@@ -92,72 +91,71 @@ export const Add = styled.div`
 export const OrgPA = styled.div`
   display: flex;
   margin: 0;
-  `;
-
+`;
 
 // =====================
 
-
-  export const ImgRes = styled.img`
+export const ImgRes = styled.img`
   width: 20.5rem;
-  border-radius: 8px 8px 0 0;
+  /* border-radius: 8px 8px 0 0; */
   /* height: 7.5rem; */
   /* max-width: auto; */
-  object-fit: cover;
-  padding-bottom: 0.75rem;
-  `
-  export const ContBanner = styled.div`
+  /* object-fit: cover; */
+  /* padding-bottom: 0.75rem; */
+`;
+export const ContBanner = styled.div`
   display: flex;
-align-items: center;
+  align-items: center;
   flex-direction: column;
   /* width: 22.5rem;  */
   /* background-color: blue; */
   width: 100%;
   /* border: 1px solid black; */
-  `
+`;
 
 export const GapRest = styled.div`
   /* background-color: blue; */
   display: flex;
   gap: 5rem;
-  `
-  export const GapInfo = styled.div`
+`;
+export const GapInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   color: #b8b8b8;
   /* border: 1px solid black; */
-/* padding: 0.5rem; */
-div {
-   /* margin-left: 1rem; */
+  /* padding: 0.5rem; */
+  div {
+    display: flex;
+    padding-left: 1rem;
     /* flex-wrap: wrap; */
     /* background-color: red; */
-    width: 20.5rem;
+    width: 19.5rem;
   }
-  `
-
+`;
 
 export const NameRes = styled.div`
-display: flex;
-justify-content: center;
-color: #e8222e ;
-font-size: 1.2rem;
-font-weight: 500;
-`
-
+  display: flex;
+  justify-content: center;
+  color: #e8222e;
+  font-size: 1.2rem;
+  font-weight: 500;
+`;
 
 export const BorderDiv = styled.div`
-/* width: 22.5rem; */
-border: 1px solid black;
-padding-bottom: 0.5rem;
-/* padding-left: ; */
-/* padding: 1rem; */
+  /* width: 22.5rem; */
+  border-radius: 8px;
+  overflow: hidden;
+  /* border: none; */
+  border: 1px solid #b8b8b8;
+  padding-bottom: 0.5rem;
+  /* padding-left: ; */
+  /* padding: 1rem; */
 
-/* margin-left: 0.5rem; */
-/* padding: 0.5rem; */
-
-`
+  /* margin-left: 0.5rem; */
+  /* padding: 0.5rem; */
+`;
 export const Edrress = styled.div`
-width: 20.5rem;
-/* height: 2rem; */
-`
+  width: 20.5rem;
+  /* height: 2rem; */
+`;

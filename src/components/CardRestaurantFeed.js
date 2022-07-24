@@ -8,6 +8,7 @@ display: flex;
 justify-content: center;
 /* padding-top: 0.5rem; */
 /* width: 100%; */
+padding-bottom: 0.5rem;
 `
 const MainCard = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ const MainCard = styled.div`
 const Card = styled.div`
   width: 20.5rem;
   height: 11.75rem;
-  border: 1px solid black;
+  border: 1px solid #b8b8b8;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -79,7 +80,6 @@ const RestaurantsComponents = (props) => {
         <div>
           <Img src={logoUrl} />
         </div>
-
         <ContText>
           <Title>{name}</Title>
           <DeliveryTime>
