@@ -170,26 +170,22 @@ const RestaurantePage = () => {
       Restaurante Page
       <button onClick={() => navigate("/shoppingcart")}>carrinho</button>
       {/* {restaurantsBanner} */}
-      <S.ContBanner> 
-         <S.BorderDiv>
-        <S.ImgRes src={restaurant.logoUrl} />
-        <S.NameRes>{restaurant.name}</S.NameRes>
-<S.GapInfo>
-        <div>{restaurant.category}</div>
-        <S.GapRest>
-          
-          {restaurant.deliveryTime}min                   
-          <div>
-            Frete R${restaurant.shipping}
-            </div>
-        </S.GapRest>
-       <S.Edrress>
-         {restaurant.address}
-        </S.Edrress>
-</S.GapInfo>
-          </S.BorderDiv> 
+      <S.ContBanner>
+        <S.BorderDiv>
+          <S.ImgRes src={restaurant.logoUrl} />
+          <S.NameRes>{restaurant.name}</S.NameRes>
+          <S.GapInfo>
+            <div>{restaurant.category}</div>
+            {/* ===================== */}
+            <S.GapRest>
+              {restaurant.deliveryTime}min
+              <div>Frete R${restaurant.shipping}</div>
+            </S.GapRest>
+            {/* ======================= */}
+            <S.Edrress>{restaurant.address}</S.Edrress>
+          </S.GapInfo>
+        </S.BorderDiv>
       </S.ContBanner>
-
       <S.Menu>{categoriasRedered}</S.Menu>
       <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>
     </div>
