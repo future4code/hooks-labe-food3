@@ -1,5 +1,5 @@
 import axios from "axios";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { URL_BASE } from "../../constants/links";
@@ -17,6 +17,7 @@ const RestaurantePage = () => {
   const [products, setProducts] = useState();
   const [filterProducts, setFilterProducts] = useState([]);
   const [selectCategory, setSelectCategory] = useState("");
+  const [restaurant, setRestaurant] = useState([]);
   // const  [restaurants ,cart , setCart]= useContext(GlobalContext)
   const { states, setters, functions } = useContext(GlobalContext);
   const { restaurants } = states;
@@ -44,7 +45,8 @@ const RestaurantePage = () => {
     axios
       .get(`${URL_BASE}/restaurants/${objRestaurante.id}`, headers)
       .then((res) => {
-        console.log(res.data.restaurant.products);       
+        // console.log(res.data.restaurant.products);
+        setRestaurant(res.data.restaurant);
         setProducts(res.data.restaurant.products);
       })
       .catch((err) => {
@@ -52,14 +54,15 @@ const RestaurantePage = () => {
       });
   }, []);
 
-  const notifySucessProduct = () => {    
-    toast.success("Produto adicionado.", { autoClose: 200 }, {     
-      position: toast.POSITION.TOP_RIGHT      
-    });
-  }
-  
-
-
+  const notifySucessProduct = () => {
+    toast.success(
+      "Produto adicionado.",
+      { autoClose: 200 },
+      {
+        position: toast.POSITION.TOP_RIGHT,
+      }
+    );
+  };
 
   // rederizando todos os productos
   const mapProducts =
@@ -69,13 +72,12 @@ const RestaurantePage = () => {
         <S.MainCard key={product.id}>
           <S.Card>
             <S.Img src={product.photoUrl} />
-
             <S.ContText>
               <S.Title>{product.name}</S.Title>
               <S.Description>{product.description}</S.Description>
               <S.OrgPA>
                 <S.Price>R${product.price}</S.Price>
-                <S.Add onClick={() => addToCart(product, objRestaurante.id)} >
+                <S.Add onClick={() => addToCart(product, objRestaurante.id)}>
                   adicionar
                 </S.Add>
                 {/* <button onClick={()=> removeToCart(product)}>REMOVE</button> */}
@@ -85,6 +87,19 @@ const RestaurantePage = () => {
         </S.MainCard>
       );
     });
+
+  //=============================================
+
+  console.log(restaurant);
+
+  // const restaurantsBanner =
+  // restaurant && restaurant.map((item)=>{
+  // return(
+  //   <div>
+  //     {item}
+  //   </div>
+  // )
+  // })
 
   // ==================== filtro =============================
 
@@ -135,7 +150,7 @@ const RestaurantePage = () => {
               <S.Description>{product.description}</S.Description>
               <S.OrgPA>
                 <S.Price>R${product.price}</S.Price>
-                <S.Add onClick={()=>notifySucessProduct()}>adicionar</S.Add>
+                <S.Add onClick={() => notifySucessProduct()}>adicionar</S.Add>
               </S.OrgPA>
             </S.ContText>
           </S.Card>
@@ -154,6 +169,27 @@ const RestaurantePage = () => {
     <div>
       Restaurante Page
       <button onClick={() => navigate("/shoppingcart")}>carrinho</button>
+      {/* {restaurantsBanner} */}
+      <S.ContBanner> 
+         <S.BorderDiv>
+        <S.ImgRes src={restaurant.logoUrl} />
+        <S.NameRes>{restaurant.name}</S.NameRes>
+<S.GapInfo>
+        <div>{restaurant.category}</div>
+        <S.GapRest>
+          
+          {restaurant.deliveryTime}min                   
+          <div>
+            Frete R${restaurant.shipping}
+            </div>
+        </S.GapRest>
+       <S.Edrress>
+         {restaurant.address}
+        </S.Edrress>
+</S.GapInfo>
+          </S.BorderDiv> 
+      </S.ContBanner>
+
       <S.Menu>{categoriasRedered}</S.Menu>
       <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>
     </div>

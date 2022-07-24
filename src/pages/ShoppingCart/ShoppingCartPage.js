@@ -7,6 +7,7 @@ import { Card } from "@material-ui/core";
 import * as S from "./styledShoppingCartPage";
 import { Description } from "@mui/icons-material";
 import * as M from "@mui/material";
+import useForm from "../../hooks/useForm";
 
 export default function CarrinhoPage() {
   const navigate = useNavigate();
@@ -26,6 +27,30 @@ export default function CarrinhoPage() {
   }
 
   console.log(cart);
+
+  // const [form, onChange, clear] = useForm({
+  //   paymentMethod: []  
+  // });
+
+  const [checked, setChecked] = useState('');
+
+  
+const random =()=>{
+  if (checked === 'Dinheiro') {
+    return setChecked('Dinheiro')
+  }else{
+    return setChecked('Cartão de Crédito')
+  }
+  // const handleChange = () => {
+  //   setChecked('Dinheiro');
+  // };
+  
+  // const handleChange2 = () => {
+  //   setChecked('Cartão de Crédito');
+  // };
+}
+  
+  console.log(checked)
 
   return (
     <S.Dad>
@@ -66,11 +91,19 @@ export default function CarrinhoPage() {
         <div>Forma de pagamento</div>
         <hr />
         <div>
-          <S.Input type="radio" />
+          <S.Input type="checkbox" 
+          //  name="paymentMethod"
+           value={checked}
+           onChange={()=>random('Dinheiro')}
+          />
           <S.Label>Dinheiro</S.Label>
         </div>
         <S.DivInput>
-          <S.Input type="radio" />
+          <S.Input type="checkbox" 
+          //  name="paymentMethod"
+           value={checked}
+           onChange={()=>random('Cartão de credito')}
+          />
           <S.Label>Cartão de crédito</S.Label>
         </S.DivInput>
       </S.Bot2>

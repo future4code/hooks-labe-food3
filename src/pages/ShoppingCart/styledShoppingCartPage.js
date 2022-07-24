@@ -157,6 +157,8 @@ export const Button = styled.button`
  background-color: #e8222e;
  border: none;
  font-weight: 600;
+ /* padding-bottom: 1rem; */
+ margin-bottom: 1rem;
  ` 
  export const Bot = styled.div`
  display: flex;

@@ -79,7 +79,7 @@ const LoginPage = () => {
       })
       .catch((err) => {
         notifyErrorUser()
-        navigate("/registration");
+        // navigate("/registration");
       });
   };
 
@@ -126,7 +126,7 @@ const LoginPage = () => {
         </S.FieldSize>
         <S.Button onClick={() => hundleUser()}>Entrar</S.Button>
       </S.Form>
-      <S.Pa onClick={() => navigate("/cadastro")}>
+      <S.Pa onClick={() => navigate("/registration")}>
         Não possui cadastro?
         <span> Clique aqui.</span>
       </S.Pa>
