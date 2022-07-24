@@ -5,9 +5,12 @@ import { GlobalContext } from "../../global/GlobalContext";
 import { navigate, useNavigate } from "react-router-dom";
 import { Card } from "@material-ui/core";
 import * as S from "./styledShoppingCartPage";
-import { Description } from "@mui/icons-material";
+import { ConstructionOutlined, Description } from "@mui/icons-material";
 import * as M from "@mui/material";
 import useForm from "../../hooks/useForm";
+import axios from "axios";
+import { headers, URL_BASE } from "../../constants/links";
+import useCustomProfile from "../../hooks/useProfile";
 
 export default function CarrinhoPage() {
   const navigate = useNavigate();
@@ -16,8 +19,9 @@ export default function CarrinhoPage() {
   const { restaurants, cart } = states;
   const { setRestaurants, setCart } = setters;
   const { addToCart, removeToCart, postOrder } = functions;
+  const [data ,address] = useCustomProfile(`${URL_BASE}/profile/address`)
+   const {city , complement , neighbourhood , number , state , street } = address
 
-  useProtected();
 
   //============= soma o valor total dos itens no carrinho
   let totalPrice = 0;
@@ -25,38 +29,35 @@ export default function CarrinhoPage() {
     totalPrice += Math.round(i.price * i.quantity);
     console.log(totalPrice);
   }
-
-  console.log(cart);
-
   // const [form, onChange, clear] = useForm({
   //   paymentMethod: []  
   // });
 
-  const [checked, setChecked] = useState('');
+  const [checked, setChecked] = useState("");
 
   
 const random =()=>{
-  if (checked === 'Dinheiro') {
-    return setChecked('Dinheiro')
+  if (checked === "Cartao de credito") {
+    setChecked("Cartao de credito")
+   console.log("ceck")
   }else{
-    return setChecked('Cartão de Crédito')
-  }
-  // const handleChange = () => {
-  //   setChecked('Dinheiro');
-  // };
-  
-  // const handleChange2 = () => {
-  //   setChecked('Cartão de Crédito');
-  // };
-}
-  
-  console.log(checked)
+    setChecked("Dinheiro")
+    console.log(checked)
 
+  }
+}
   return (
     <S.Dad>
+
       <S.Title>meu carrinho</S.Title>
-      <S.Endress></S.Endress>
-      <S.RestaurantEndress></S.RestaurantEndress>
+
+      <S.Endress>
+          Endereço de entrega 
+      <S.pCarrinho>
+          {street} , {number}
+        </S.pCarrinho>
+      </S.Endress>
+  
       <button onClick={() => navigate("/feed")}>feed</button>
       {cart &&
         cart.map((item) => {
@@ -110,6 +111,7 @@ const random =()=>{
 
       <S.Button onClick={() => postOrder()}>Confirmar</S.Button>
       <footer></footer>
+   
     </S.Dad>
   );
 }

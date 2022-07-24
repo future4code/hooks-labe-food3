@@ -10,17 +10,12 @@ padding:  0.75rem 0;
 
 export const Endress = styled.div`
 width: 22.5rem;
-height: 4.75rem;
+height: 4rem;
 color: #b8b8b8;
 background-color: #eeeeee;
-padding-bottom: 1rem;
+padding:10px;
 `
 
-export const RestaurantEndress = styled.div`
-width: 22.5rem;
-height: 4.75rem;
-padding-bottom: 1rem;
-`
 
 export const ContCardProduct = styled.div`
 display: flex;
@@ -196,4 +191,8 @@ width: 20.5rem;
  export const DivInput = styled.div`
  margin-bottom: 1rem;
  margin-top: 0.5rem;
+ `
+
+ export const pCarrinho = styled.p`
+    color: black
  `
