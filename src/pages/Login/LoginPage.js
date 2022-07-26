@@ -33,19 +33,7 @@ const LoginPage = () => {
 
   const onSubmitForm = (ev) => {
     ev.preventDefault();
-    // axios
-    //   .post(`${URL_BASE}/login`, form)
-    //   .then((res) => {
-    //     localStorage.setItem("token", res.data.token);
-    //     // console.log(res.data.user.hasAddress)
-    //     if (res.data.user.hasAddress) {
-    //       navigate("/feed");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     alert("Email ou senha incorreto.");
-    //     navigate("/cadastro");
-    //   });
+     handleUser()
   };
 
   
@@ -67,7 +55,7 @@ const LoginPage = () => {
   }
 
 
-  const hundleUser = () => {
+  const handleUser = () => {
     axios
       .post(`${URL_BASE}/login`, form)
       .then((res) => {
@@ -104,6 +92,7 @@ const LoginPage = () => {
             fullWidth
             value={form.email}
             onChange={onChange}
+            autoFocus
             required
           ></M.TextField>
         </S.FieldSize>
@@ -121,10 +110,10 @@ const LoginPage = () => {
             type={viewPass ? "text" : "password"}
             required
           >
-          <button onClick={showPass} onMouseDown={onSubmitForm}>BT</button>
+          {/* <button onClick={showPass} onMouseDown={onSubmitForm}>BT</button> */}
           </M.TextField>
         </S.FieldSize>
-        <S.Button onClick={() => hundleUser()}>Entrar</S.Button>
+        <S.Button type="submit">Entrar</S.Button>
       </S.Form>
       <S.Pa onClick={() => navigate("/registration")}>
         Não possui cadastro?

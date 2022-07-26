@@ -22,11 +22,21 @@ export const ContainerCategory = styled.div`
     margin: 0;
   }
 `;
+export const DivMenuPrincipal = styled.div`
+color: ${props=>(props.restCategory === props.seletectCategory) ? "red" : "black"};
+border-bottom: ${props=>(props.restCategory === props.seletectCategory) ? "2px solid red" : "none"};
+cursor: pointer;
+`
+
 export const Pa = styled.p`
-  height: 1.125rem;
   width: 5.438rem;
+  height: 1.125rem;
   text-align: center;
   letter-spacing: -0.39px;
+  /* color: ${props=>(props.restCategory === props.seletectCategory) ? "red" : "black"}; */
+ 
+  
+  
 `;
 
 export const Title = styled.div`
