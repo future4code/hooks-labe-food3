@@ -135,7 +135,11 @@ const PaymentMetod=(ev)=>{
       </S.Bot2>
 
       <S.Button onClick={() => postOrder()}>Confirmar</S.Button>
-      <footer></footer>
+      <footer>
+        <button><img src="casa.png" alt="casa"/></button>
+        <button><img src="vista-lateral-vazia-do-carrinho-de-compras.png" alt="carrinho"/></button>
+        <button><img src="pessoas.png" alt="pessoa"/></button>
+      </footer>
    
     </S.Dad>
   );

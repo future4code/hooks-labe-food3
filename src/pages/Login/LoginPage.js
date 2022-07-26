@@ -113,7 +113,7 @@ const LoginPage = () => {
           {/* <button onClick={showPass} onMouseDown={onSubmitForm}>BT</button> */}
           </M.TextField>
         </S.FieldSize>
-        <S.Button type="submit">Entrar</S.Button>
+        <S.Button type="submit" onClick={handleUser}>Entrar</S.Button>
       </S.Form>
       <S.Pa onClick={() => navigate("/registration")}>
         Não possui cadastro?
