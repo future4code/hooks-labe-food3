@@ -109,8 +109,12 @@ const postOrder = () => {
        notifyWarmProduct()
        setCart(newArray)
        console.log(cart)
-       
       }
+
+// useEffect(()=>{
+//   axios.then(()=>{},[]);
+//   .catch(()=>{},[])
+// },[])
         
 
 //======================== retorno dos estados globais

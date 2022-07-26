@@ -33,19 +33,36 @@ export default function CarrinhoPage() {
   //   paymentMethod: []  
   // });
 
-  const [checked, setChecked] = useState("");
 
-  
-const random =()=>{
-  if (checked === "Cartao de credito") {
-    setChecked("Cartao de credito")
-   console.log("ceck")
-  }else{
-    setChecked("Dinheiro")
-    console.log(checked)
 
-  }
-}
+const [payment, setPayment] = useState("");
+const [card, setCard] = useState(false);
+const [money, setMoney] = useState(false);
+// const [checkedMoney, setCheckedMoney] = useState(false);
+// const [checkedCard, setCheckedCard] = useState(false);
+
+
+// const PaymentMetodMoney =()=>{  
+//   setMoney(!money);
+//   setMoney(false)
+//   setPayment("Dinheiro") if(payment === "Dinheiro"){}
+// }
+
+console.log(payment)
+
+// const PaymentMetodCard=()=>{  
+//     setCard(!card);
+//     setMoney(false);
+//     setPayment("Cartao")
+// } 
+
+
+const PaymentMetod=(ev)=>{  
+    setPayment(ev.target.value)
+  } 
+
+
+
   return (
     <S.Dad>
 
@@ -92,18 +109,26 @@ const random =()=>{
         <div>Forma de pagamento</div>
         <hr />
         <div>
-          <S.Input type="checkbox" 
+          <S.Input type="radio" 
           //  name="paymentMethod"
-           value={checked}
-           onChange={()=>random('Dinheiro')}
+          //  value={checkedMoney}
+          name="payment"
+          value="Dinheiro"
+          //  checked={money}
+           onChange={PaymentMetod}
+           required
           />
           <S.Label>Dinheiro</S.Label>
         </div>
         <S.DivInput>
-          <S.Input type="checkbox" 
+          <S.Input type="radio" 
           //  name="paymentMethod"
-           value={checked}
-           onChange={()=>random('Cartão de credito')}
+          //  value={checkedCard}
+          name="payment"
+          value="Cartao"
+          //  checked={card}
+           onChange={PaymentMetod}
+           required
           />
           <S.Label>Cartão de crédito</S.Label>
         </S.DivInput>

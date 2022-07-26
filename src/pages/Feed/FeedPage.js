@@ -51,7 +51,9 @@ const FeedPage = (props) => {
   // ======================== filtro categoria
 
   const categoryRestaurantMap = restaurants && restaurants.map(rest => {
-    return <div onClick={() => getCategory(rest.category)} ><S.Pa>{rest.category}</S.Pa></div>
+    return <S.DivMenuPrincipal onClick={() => getCategory(rest.category)} seletectCategory={seletectCategory} restCategory={rest.category} >
+      <S.Pa>{rest.category}</S.Pa>
+      </S.DivMenuPrincipal>
   })
 
 

@@ -21,10 +21,16 @@ export default function ProfilePage () {
 
   return (
     <div>
-     <strong>Nome:</strong> {name} <br/>
+      <form>
+        <input value={name}/>
+        <input value={address}/>
+        <input value={cpf}/>
+        <input value={email}/>       
+      </form>
+     {/* <strong>Nome:</strong> {name} <br/>
      <strong>Endereço:</strong> {address} <br/>
      <strong>Cpf :</strong> {cpf}<br/>
-     <strong>E-mail :</strong> {email} <br/>
+     <strong>E-mail :</strong> {email} <br/> */}
      <button onClick={()=>navigate("editarCadastro")}>editar</button>
      
      
