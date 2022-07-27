@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState,  } from "react"
 import { toast } from 'react-toastify';
 import { GlobalContext } from "./GlobalContext"
 import axios from 'axios'
 import {URL_BASE, headers} from "../constants/links"
+import LoginPage from "../pages/Login/LoginPage";
+
+
 
 
 
@@ -15,7 +18,7 @@ export const GlobalState = (props) => {
        setRestaurants(res.data.restaurants)
        
       }).catch((err)=>{
-        console.log(err)
+        console.log(err);
       })
     } , [])
 
