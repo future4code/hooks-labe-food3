@@ -31,11 +31,7 @@ const LoginPage = () => {
     password: "",
   });
 
-  const onSubmitForm = (ev) => {
-    ev.preventDefault();
-     handleUser()
-  };
-
+console.log(form)
   
   const notifySucessUser = () => {
     const customId = "custom-id-yes";
@@ -53,10 +49,22 @@ const LoginPage = () => {
       position: toast.POSITION.TOP_RIGHT,      
     });
   }
+  
+  const [viewPass, setViewPass] = useState(false);
+
+  const showPass = () => {
+    setViewPass(!viewPass);
+  };
 
 
-  const handleUser = () => {
-    axios
+  const onSubmitForm = (ev) => {
+    ev.preventDefault();  
+    handleUser()
+  };
+
+
+  const handleUser =  () => {
+     axios
       .post(`${URL_BASE}/login`, form)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
@@ -67,53 +75,48 @@ const LoginPage = () => {
       })
       .catch((err) => {
         notifyErrorUser()
-        // navigate("/registration");
+        // navigate("/login");
       });
   };
 
-  const [viewPass, setViewPass] = useState(false);
-
-  const showPass = () => {
-    setViewPass(!viewPass);
-  };
 
   return (
     <S.Main>
       <button onClick={() => navigate("/feed")}>feed</button>
       <S.Img src={logo} />
       <S.Pa>Entrar</S.Pa>
-      <S.Form onSubmit={onSubmitForm}>
-        <S.FieldSize>
+      <S.Form onSubmit={onSubmitForm} >
+        {/* <S.FieldSize> */}
           <M.TextField
+         
             name="email"
             placeholder="email@email.com"
             label="E-mail"
-            inputProps={{ pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$" }}
+            inputProps={{ pattern: "^[A-Za-z0-9.]+@[A-Za-z0-9]+\.([a-z]+)?$" }}
             fullWidth
             value={form.email}
             onChange={onChange}
             autoFocus
             required
           ></M.TextField>
-        </S.FieldSize>
+        {/* </S.FieldSize> */}
         {/* // ======================================  */}
-        <S.FieldSize>
-          <M.TextField        
-            placeholder="Mínimo 6 caracteres"
+        {/* <S.FieldSize> */}
+          <M.TextField
+            placeholder="PasSS01"
             label="Senha"
-            inputProps={{ pattern: "[A-Za-z'.+]{6,}" }}
-            title="Mínimo 6 caracteres"
+            inputProps={{ pattern: "[A-Za-z0-9]{6,}" }}            
             fullWidth
             name={"password"}
             value={form.password}
             onChange={onChange}
-            type={viewPass ? "text" : "password"}
+            type={viewPass ? "text" : "password"}            
             required
-          >
+          >            
           {/* <button onClick={showPass} onMouseDown={onSubmitForm}>BT</button> */}
           </M.TextField>
-        </S.FieldSize>
-        <S.Button type="submit" onClick={handleUser}>Entrar</S.Button>
+        {/* </S.FieldSize> */}
+        <S.Button type="submit" >Entrar</S.Button>
       </S.Form>
       <S.Pa onClick={() => navigate("/registration")}>
         Não possui cadastro?
@@ -122,5 +125,6 @@ const LoginPage = () => {
     </S.Main>
   );
 };
+
 
 export default LoginPage;

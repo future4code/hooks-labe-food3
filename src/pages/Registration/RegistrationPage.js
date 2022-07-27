@@ -3,18 +3,11 @@ import { navigate, useNavigate } from "react-router-dom";
 import { URL_BASE } from "../../constants/links";
 import { exemplo } from "./styledRegistrationPage";
 import axios from "axios";
-import {
-  Main,
-  Input,
-  Button,
-  Gap,
-  Pa,
-  Img,
-  Top,
-  BtBack,
-} from "./styledRegistrationPage";
+import * as S from "./styledRegistrationPage";
 import logo from "../../imagens/logo.png";
 import useForm from "../../hooks/useForm"
+import * as M from "@mui/material";
+import { toast } from "react-toastify";
 
 const CadastroPage = () => {
   const navigate = useNavigate();
@@ -49,30 +42,45 @@ const CadastroPage = () => {
     }
   )
 
+  const notifySucessUser = () => {
+    const customId = "custom-id-yes";
+    toast.success("Conta criada!", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,
+      
+    });
+  }
+ 
+  const notifyErrorUser = () => {
+    const customId = "custom-id-yes";
+    toast.warn("Email ou CPF já cadastrado.", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,      
+    });
+  }
 
   const registrationUser = () => {
-  //   const body = {
-  //     name: userName,
-  //     email: userEmail,
-  //     cpf: userCpf,
-  //     password: userSenha,
-  //   };
-if(form.password === userConfirmSenha){
-
+  if(form.password === userConfirmSenha){
     axios
       .post(`${URL_BASE}/signup`, form)
       .then((res) => {
         // console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
-        // quando preencher o formulário vai pra cadastro endereço
-        navigate("cadastro-endereco")
+        notifySucessUser();
+        // em caso de sucesso quando preencher o formulário vai pra loginpage        
+        navigate("/login")
       })
       .catch((err) => {
+        notifyErrorUser()
         console.log(err.response);
       });
   }
   else{
-    alert('deu certo NÃO')
+    const customId = "custom-id-yes";
+    toast.warn("As senhas não são correspondentes.", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,      
+    });
   }
 }
 
@@ -83,59 +91,71 @@ if(form.password === userConfirmSenha){
   // console.log(form)
   return (
     <div>
-      <Top>
-        <BtBack onClick={()=>navigate(-1)}>{"<"}</BtBack>
-      </Top>
+      <S.Top>
+        <S.BtBack onClick={()=>navigate(-1)}>{"<"}</S.BtBack>
+      </S.Top>
       <hr />
-      <Main>
-        <Img src={logo} />
-        <form onSubmit={onSubmitForm}>
-          <Pa>Cadastrar</Pa>
-          <Input
+      <S.Main>
+        <S.Img src={logo} />
+        <S.Form onSubmit={onSubmitForm}>
+          <S.Pa>Cadastrar</S.Pa>
+          <M.TextField
+            label="Nome"
+            placeholder="Antonio(a) Silva"
             onChange={handleChange}
             value={form.name}
             name={"name"}
-            type="text"
-            placeholder="Nome"
+            // type="text"
+            autoFocus
+            fullWidth
             required
           />
-          <Input
+          <M.TextField
             onChange={handleChange}
             value={form.cpf}
             name={"cpf"}
             type="number"
             pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-            title="111.111.111-11"
-            placeholder="CPF"
+            // title="111.111.111-11"
+            label="CPF"
+            placeholder="88822233311"  
+            fullWidth          
             required
           />
-          <Input
+          <M.TextField
             type="email"
             onChange={handleChange}
             value={form.email}
+            inputProps={{ pattern: "^[A-Za-z0-9.]+@[A-Za-z0-9]+\.([a-z]+)?$" }}
             name={"email"}
-            placeholder="Email"
+            label="E-mail"
+            placeholder="email@email.com"
+            fullWidth
             required
           />
-          <Input
-            type="password"
-            onChange={handleChange}
-            value={form.password}
+           <M.TextField
+            placeholder="PasSS01"
+            label="Senha"
+            inputProps={{ pattern: "[A-Za-z0-9]{6,}" }}            
             name={"password"}
-            placeholder="Senha"
+            value={form.password}
+            onChange={handleChange}
+            type="password"          
+            fullWidth
             required
-          />
-          <Input
+          /> 
+          <M.TextField
             type="password"
             onChange={takeConfirmSenha}
             value={userConfirmSenha}
             name={"password"}
             placeholder="Confirmar"
+            fullWidth
             required
           />
-          <Button onClick={() => registrationUser()}>Criar</Button>
-        </form>
-      </Main>
+          <S.Button onClick={() => registrationUser()}>Criar</S.Button>
+        </S.Form>
+      </S.Main>
     </div>
   );
 };

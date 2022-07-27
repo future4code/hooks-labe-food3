@@ -50,13 +50,28 @@ export const Gap = styled.div`
   gap: 15px;
 `;
 export const Pa = styled.p`
-  display: flex;
+  text-align: center;
   margin: 0;
   font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.39px;
 `;
 export const Img = styled.img`
   width: 104px;
   height: 58px;
   margin: 0 auto;
   padding-bottom: 20px;
+  `;
+
+  export const Form = styled.form`
+  display: flex;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  flex-direction: column;
+ 
+  gap: 1rem;
+  padding-bottom: 1rem;
+  /* width: 22rem; */
 `;
+
+  

@@ -20,11 +20,12 @@ padding-bottom: 0.5rem;
 
 export const Form = styled.form`
   display: flex;
+  margin-left: 1rem;
+  margin-right: 1rem;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  padding-bottom: 10px;
+ 
+  gap: 1rem;
+  padding-bottom: 1rem;
   /* width: 22rem; */
 `;
 
@@ -48,7 +49,7 @@ export const Img = styled.img`
 `;
 
 export const Button = styled.button`
-  width: 22rem;
+  /* width: 22.5rem; */
   height: 48px;
   border-radius: 3px;
   background-color: red;
