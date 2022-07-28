@@ -1,5 +1,5 @@
 import { Menu } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import homeIcon from "../imagens/icons/home-icon.png";
@@ -9,6 +9,7 @@ import cartIcon3 from "../imagens/icons/cart-icon3.png";
 import cartIcon4 from "../imagens/icons/cart-icon4.png";
 import perfilIcon from "../imagens/icons/perfil-icon.png";
 import perfilIcon2 from "../imagens/icons/perfil-icon2.png";
+import { GlobalContext } from "../global/GlobalContext";
 
 const Main = styled.div`
   position: fixed;
@@ -40,17 +41,23 @@ const Icon = styled.img`
 
 const MenuBotton = () => {
     const navigate = useNavigate()
+    const {functions} = useContext(GlobalContext)
+    const {mapRestaurante} = functions
 
+
+    console.log(mapRestaurante)
+
+    
   return (
     <>
       <Main>
         <MenuItem>
-          <a href="#top">            
+                     
           <Icon onClick={()=>navigate('/feed')} src={homeIcon} />
-          </a>
+          
         </MenuItem>
         <MenuItem>
-          <Icon onClick={()=>navigate('/shoppingcart')} src={cartIcon3} />
+          <Icon onClick={()=>navigate(`/shoppingcart/:id`)} src={cartIcon3} />
         </MenuItem>
         <MenuItem>
           <Icon onClick={()=>navigate('/profile')} src={perfilIcon} />

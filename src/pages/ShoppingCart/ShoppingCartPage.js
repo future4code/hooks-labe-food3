@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { exemplo } from "./styledShoppingCartPage";
 import { useProtected } from "../../hooks/useProtected";
 import { GlobalContext } from "../../global/GlobalContext";
-import { navigate, useNavigate } from "react-router-dom";
+import { navigate, useNavigate, useParams } from "react-router-dom";
 import { Card } from "@material-ui/core";
 import * as S from "./styledShoppingCartPage";
 import { ConstructionOutlined, Description } from "@mui/icons-material";
@@ -15,7 +15,7 @@ import MenuBotton from "../../components/MenuBotton";
 
 export default function CarrinhoPage() {
   const navigate = useNavigate();
-
+  const params = useParams()
   const { states, setters, functions } = useContext(GlobalContext);
   const { restaurants, cart } = states;
   const { setRestaurants, setCart } = setters;
@@ -63,7 +63,7 @@ const PaymentMetod=(ev)=>{
   } 
 
 
-
+  console.log(params)
   return (
     <S.Dad>
 
@@ -136,7 +136,7 @@ const PaymentMetod=(ev)=>{
         </S.DivInput>
       </S.Bot2>
 
-      <S.Button onClick={() => postOrder()}>Confirmar</S.Button>
+      <S.Button onClick={() => postOrder(`${params.id}`)}>Confirmar</S.Button>
       <MenuBotton/>
    
     </S.Dad>

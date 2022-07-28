@@ -37,24 +37,27 @@ const RestaurantePage = () => {
   const [objRestaurante] = filterRest;
   // console.log(objRestaurante);
 
-  console.log(restaurant)
+  // console.log(restaurant)
   useEffect(() => {
+    restaurantsPage()
+  }, [filterRest]);
+
+  const restaurantsPage = async () =>{
+    const url = ` ${URL_BASE}/restaurants/${objRestaurante.id}`
     const headers = {
-      headers: {
-        auth: localStorage.getItem("token"),
-      },
-    };
-    axios
-      .get(`${URL_BASE}/restaurants/${objRestaurante.id}`, headers)
-      .then((res) => {
-        // console.log(res.data.restaurant.products);
-        setRestaurant(res.data.restaurant);
-        setProducts(res.data.restaurant.products);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+        headers: {
+          auth: localStorage.getItem("token"),
+        },
+      };
+      try {
+        const response = await axios.get(url, headers)
+        setRestaurant(response.data.restaurant);
+            setProducts(response.data.restaurant.products);
+    } catch (error) {
+        console.log("Algo deu errado")
+    }
+     
+  }
 
   const notifySucessProduct = () => {
     toast.success(
@@ -92,7 +95,7 @@ const RestaurantePage = () => {
 
   //=============================================
 
-  console.log(restaurant);
+  // console.log(restaurant);
 
 
 
@@ -180,7 +183,9 @@ const RestaurantePage = () => {
         </S.BorderDiv>
       </S.ContBanner>
       <S.Menu>{categoriasRedered}</S.Menu>
-      <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>      
+      <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>  
+      <button onClick={()=> navigate(`/shoppingcart/${objRestaurante.id}`)}>Carrinho</button>  
+      {/* <MenuBotton  />   */}
     </div>
   );
 };
