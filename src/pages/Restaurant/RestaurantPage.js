@@ -8,6 +8,7 @@ import { useProtected } from "../../hooks/useProtected";
 import { exemplo } from "./styledRestaurantPage";
 import { navigate, useNavigate } from "react-router-dom";
 import * as S from "./styledRestaurantPage";
+import MenuBotton from "../../components/MenuBotton";
 
 const RestaurantePage = () => {
   const navigate = useNavigate();
@@ -161,8 +162,6 @@ const RestaurantePage = () => {
 
   return (
     <div>
-      Restaurante Page
-      <button onClick={() => navigate("/shoppingcart")}>carrinho</button>
       {/* {restaurantsBanner} */}
       <S.ContBanner>
         <S.BorderDiv>
@@ -181,7 +180,7 @@ const RestaurantePage = () => {
         </S.BorderDiv>
       </S.ContBanner>
       <S.Menu>{categoriasRedered}</S.Menu>
-      <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>
+      <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>      
     </div>
   );
 };

@@ -4,8 +4,10 @@ import CardRestaurantFeed from "../../components/CardRestaurantFeed";
 import { GlobalContext } from "../../global/GlobalContext";
 import * as S from "./styledFeedPage";
 import * as M from "@mui/material"
-import { navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
+import MenuBotton from "../../components/MenuBotton";
+import { StepContext } from "@mui/material";
 
 
 
@@ -17,6 +19,7 @@ const FeedPage = (props) => {
   // useProtected()
   const [seletectCategory, setSeletectCategory] = useState('')
   const [filtredRestaurant, setFiltredRestaurant] = useState([])
+  const [query , setQuery] = useState('')
   const {states,setters} = useContext(GlobalContext)
   const { restaurants }  =  states
   const  {setRestaurants} = setters
@@ -47,6 +50,11 @@ const FeedPage = (props) => {
 
   console.log(states)
   // console.log(restaurants)
+
+
+  // 
+
+
   
   // ======================== filtro categoria
 
@@ -68,7 +76,7 @@ const FeedPage = (props) => {
 
   //==================== input controlado
   const [form, onChange, clear] = useForm({
-    value:"",
+    value:""    
   });
 
   //================ necessário no input para evitar atualizar a página
@@ -77,28 +85,28 @@ const FeedPage = (props) => {
   };
 
 
+
   return (
-    <div>
-      Feed Page
-      <button onClick={()=>navigate('/shoppingcart')}>carrinho</button>
+    <S.Master> 
       <S.Title>Ifuture</S.Title>  
-      {/* <S.Form onSubmit={onSubmitForm}> */}
-      <S.ContTextField>
-      <M.TextField
-      onSubmit={onSubmitForm}
+      <S.Form onSubmit={onSubmitForm}>
+      {/* <S.ContTextField> */}
+      <M.TextField      
       fullWidth
-      name="value"
       placeholder="Restaurante"
-      value={form.value}
-      onChange={onChange}
+      name="value"
+      value={query}
+      onChange={e => setQuery((e).target.value)}
       ></M.TextField>
-      </S.ContTextField>
-      {/* </S.Form>  */}
+      {/* </S.ContTextField> */}
+      </S.Form> 
       <S.ContainerCategory>  
         {categoryRestaurantMap}      
         </S.ContainerCategory>
-      { seletectCategory ? filterRestaurantsMap :  mapRestaurants }
-    </div>
+      { seletectCategory ? filterRestaurantsMap :  mapRestaurants }  
+      {/* {huntItens} */}
+      <MenuBotton  />
+    </S.Master>
   );
 }
 

@@ -1,20 +1,24 @@
 import styled from "styled-components";
 
-export const BtBack = styled.button`
-background: none;
-height: 40px;
+export const BtBack = styled.img`
+/* background: none; */
+height: 1.5rem;
 margin-left: 20px;
-border: none;
-font-weight: 600;
-font-size: 30px;
+/* background-color: red; */
+/* border: none; */
+/* font-weight: 600; */
+/* font-size: 30px; */
 `
 
 
 export const Top = styled.div`
 display: flex;
-align-items: flex-end;
+align-items: center;
+/* justify-content: center; */
+/* align-items: flex-end; */
 height: 60px;
 /* border-bottom: 1px solid black; */
+box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
 `
 
 export const Main = styled.div`

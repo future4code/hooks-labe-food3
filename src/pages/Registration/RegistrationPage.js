@@ -8,6 +8,7 @@ import logo from "../../imagens/logo.png";
 import useForm from "../../hooks/useForm"
 import * as M from "@mui/material";
 import { toast } from "react-toastify";
+import backIcon from "../../imagens/icons/back-icon.png"
 
 const CadastroPage = () => {
   const navigate = useNavigate();
@@ -92,9 +93,8 @@ const CadastroPage = () => {
   return (
     <div>
       <S.Top>
-        <S.BtBack onClick={()=>navigate(-1)}>{"<"}</S.BtBack>
+        <S.BtBack onClick={()=>navigate(-1)} src={backIcon}/>
       </S.Top>
-      <hr />
       <S.Main>
         <S.Img src={logo} />
         <S.Form onSubmit={onSubmitForm}>
