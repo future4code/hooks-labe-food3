@@ -1,19 +1,24 @@
 import styled from "styled-components";
 
 export const Title = styled.div`
-text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
 letter-spacing: -0.39px;
-padding:  0.75rem 0;
+height: 2.75rem;
 `
 
 
 
 export const Endress = styled.div`
-width: 22.5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100vw;
 height: 4rem;
-color: #b8b8b8;
+/* color: #b8b8b8; */
 background-color: #eeeeee;
-padding:10px;
+/* padding:10px; */
 `
 
 
@@ -193,6 +198,11 @@ width: 20.5rem;
  margin-top: 0.5rem;
  `
 
- export const pCarrinho = styled.p`
-    color: black
- `
+export const pCarrinho = styled.p`   
+color: #b8b8b8;
+padding: 0;
+margin: 0;
+`
+export const Size = styled.div`
+width: 20.5rem;
+`

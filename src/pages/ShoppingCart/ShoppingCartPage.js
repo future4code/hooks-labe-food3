@@ -11,6 +11,7 @@ import useForm from "../../hooks/useForm";
 import axios from "axios";
 import { headers, URL_BASE } from "../../constants/links";
 import useCustomProfile from "../../hooks/useProfile";
+import MenuBotton from "../../components/MenuBotton";
 
 export default function CarrinhoPage() {
   const navigate = useNavigate();
@@ -66,16 +67,17 @@ const PaymentMetod=(ev)=>{
   return (
     <S.Dad>
 
-      <S.Title>meu carrinho</S.Title>
+      <S.Title>Meu carrinho</S.Title>
 
       <S.Endress>
+        <S.Size>
+        <S.pCarrinho>
           Endereço de entrega 
-      <S.pCarrinho>
-          {street} , {number}
         </S.pCarrinho>
-      </S.Endress>
-  
-      <button onClick={() => navigate("/feed")}>feed</button>
+          {street} , {number}
+          </S.Size>        
+      </S.Endress>  
+    
       {cart &&
         cart.map((item) => {
           // setTotal(total+item.total)
@@ -135,11 +137,7 @@ const PaymentMetod=(ev)=>{
       </S.Bot2>
 
       <S.Button onClick={() => postOrder()}>Confirmar</S.Button>
-      <footer>
-        <button><img src="casa.png" alt="casa"/></button>
-        <button><img src="vista-lateral-vazia-do-carrinho-de-compras.png" alt="carrinho"/></button>
-        <button><img src="pessoas.png" alt="pessoa"/></button>
-      </footer>
+      <MenuBotton/>
    
     </S.Dad>
   );

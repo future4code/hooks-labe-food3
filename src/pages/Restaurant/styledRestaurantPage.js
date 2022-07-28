@@ -5,6 +5,7 @@ export const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* padding-bottom: 3.25rem; */
 `;
 
 export const Menu = styled.div`

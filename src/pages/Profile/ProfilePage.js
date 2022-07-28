@@ -9,6 +9,7 @@ import useForm from "../../hooks/useForm";
 import { NavigateBefore } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import ProfileComponents from "../../components/ProfileComponents";
+import MenuBotton from "../../components/MenuBotton";
 
 
 export default function ProfilePage () {
@@ -33,7 +34,7 @@ export default function ProfilePage () {
      <strong>E-mail :</strong> {email} <br/> */}
      <button onClick={()=>navigate("editarCadastro")}>editar</button>
      
-     
+     <MenuBotton/>
     </div>
   );
 }
