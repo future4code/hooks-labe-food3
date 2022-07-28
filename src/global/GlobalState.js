@@ -24,7 +24,6 @@ export const GlobalState = (props) => {
 
 
 //==================== enviar o produto
-
 let stateId = ('')
 
 const productsArray = cart.map(item=>{
@@ -40,17 +39,15 @@ const body = {
 }
 
 // const idRestRequest = cart && cart[0]
-
-
-
-const postOrder = () => {
-  axios.post(`${URL_BASE}/restaurants/${stateId}/order`, body, headers)
+const postOrder = (id) => {
+  axios.post(`${URL_BASE}/restaurants/${id}/order`, body, headers)
   .then((res)=>{
-    console.log(res)
+    toast.success("Pedido realizado com sucesso.")
+    
 
   })
   .catch((err)=>{
-    console.log(err)
+   toast.error("Ja tem pedido um em andamento")
   })
 }
 
