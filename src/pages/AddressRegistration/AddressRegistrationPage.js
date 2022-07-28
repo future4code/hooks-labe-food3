@@ -16,6 +16,8 @@ import {
 } from "./styledAddressRegistration";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useForm from "../../hooks/useForm"
+import { toast } from "react-toastify";
+import backIcon from "../../imagens/icons/back-icon.png"
 
 const CadastroEnderecoPage = () => {
   // const [userStreet, setUserStreet] = useState("");
@@ -60,6 +62,25 @@ const CadastroEnderecoPage = () => {
     ev.preventDefault();
   };
 
+  const notifySucessUser = () => {
+    const customId = "custom-id-yes";
+    toast.success("Sucesso!", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,
+      
+    });
+  }
+
+  const notifyWarnUser = () => {
+    const customId = "custom-id-yes";
+    toast.warn("Tente novamente.", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,
+      
+    });
+  }
+
+
   const takeAdress = () => {
 
     // useProtected()
@@ -82,19 +103,19 @@ const CadastroEnderecoPage = () => {
       .then((res) => {
         console.log(res)
         localStorage.setItem("tokenEndereco", res.data.token);
-        alert('deu certo')
-        navigate('/login')
+        notifySucessUser()
+        navigate('/feed')
       })
       .catch((err) => {
         console.log(err.response);
+        notifyWarnUser()
       });
   };
   return (
     <div>
-      <Top>
-        <BtBack>{"<"}</BtBack>
-      </Top>
-      <hr />
+    <Top>
+        {/* <BtBack onClick={()=>navigate(-1)}>{backIcon}</BtBack> */}
+      </Top>      
       <Main>
         <form onSubmit={onSubmitForm}>
           <Pa>Meu endereço</Pa>
@@ -128,7 +149,7 @@ const CadastroEnderecoPage = () => {
           value={form.state} 
           name={"state"}
           />
-          <Button onClick={() => takeAdress()}>Enviar </Button>
+          <Button onClick={()=>takeAdress()} >Enviar </Button>
         </form>
       </Main>
     </div>

@@ -43,14 +43,16 @@ const CadastroPage = () => {
     }
   )
 
-  const notifySucessUser = () => {
+
+  const notifyWarnUser = () => {
     const customId = "custom-id-yes";
-    toast.success("Conta criada!", {
+    toast.warn("Registre seu endereço!", {
       toastId: customId,
       position: toast.POSITION.TOP_RIGHT,
       
     });
   }
+ 
  
   const notifyErrorUser = () => {
     const customId = "custom-id-yes";
@@ -67,9 +69,9 @@ const CadastroPage = () => {
       .then((res) => {
         // console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
-        notifySucessUser();
+        notifyWarnUser();
         // em caso de sucesso quando preencher o formulário vai pra loginpage        
-        navigate("/login")
+        navigate("/registration/address-registration")
       })
       .catch((err) => {
         notifyErrorUser()

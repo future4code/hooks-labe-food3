@@ -49,6 +49,14 @@ console.log(form)
       position: toast.POSITION.TOP_RIGHT,      
     });
   }
+
+  const notifyEndressUser = () => {
+    const customId = "custom-id-yes";
+    toast.warn("Cadastre seu endereço.", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,      
+    });
+  }
   
   const [viewPass, setViewPass] = useState(false);
 
@@ -71,6 +79,9 @@ console.log(form)
         if (res.data.user.hasAddress) {
           notifySucessUser() 
           navigate("/feed");
+        }else{
+          notifyEndressUser()
+          navigate('/registration/address-registration')
         }
       })
       .catch((err) => {
