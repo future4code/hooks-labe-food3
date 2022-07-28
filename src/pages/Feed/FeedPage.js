@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import MenuBotton from "../../components/MenuBotton";
 import { StepContext } from "@mui/material";
+import notSearched from "../../components/notSearched";
+import NotSearched from "../../components/notSearched";
 
 
 
@@ -19,6 +21,7 @@ const FeedPage = (props) => {
   // useProtected()
   const [seletectCategory, setSeletectCategory] = useState('')
   const [filtredRestaurant, setFiltredRestaurant] = useState([])
+  const [searchRestaurant, setSearchRestaurant] = useState([])
   const [query , setQuery] = useState('')
   const {states,setters} = useContext(GlobalContext)
   const { restaurants }  =  states
@@ -41,6 +44,29 @@ const FeedPage = (props) => {
       <CardRestaurantFeed key={lojas.id} restaurants={lojas} categorias={lojas.category} />
     )
   })
+
+
+// ===============================================
+  
+  useEffect(() => {
+    const array = restaurants && restaurants.map((lojas) => {
+      return lojas
+    }).filter((lojas) => {
+      return lojas.name.toLowerCase().includes(query.toLowerCase())
+    })
+    setSearchRestaurant(array)
+  }, [query])
+
+    
+  const mapSearch = searchRestaurant && searchRestaurant.map((lojas) => {
+    return (
+      <CardRestaurantFeed key={lojas.id} restaurants={lojas} categorias={lojas.category} />
+    )
+  })
+
+
+
+// =============================================================
 
   const filterRestaurantsMap = filtredRestaurant && filtredRestaurant.map((lojas) => {
     return (
@@ -88,9 +114,10 @@ const FeedPage = (props) => {
 
   return (
     <S.Master> 
-      <S.Title>Ifuture</S.Title>  
+      <S.Title id="top">Ifuture</S.Title>  
       <S.Form onSubmit={onSubmitForm}>
       {/* <S.ContTextField> */}
+      {/* ================================= */}
       <M.TextField      
       fullWidth
       placeholder="Restaurante"
@@ -100,11 +127,12 @@ const FeedPage = (props) => {
       ></M.TextField>
       {/* </S.ContTextField> */}
       </S.Form> 
+      {/* ================================= */}
+    
       <S.ContainerCategory>  
         {categoryRestaurantMap}      
         </S.ContainerCategory>
-      { seletectCategory ? filterRestaurantsMap :  mapRestaurants }  
-      {/* {huntItens} */}
+     { query ? (mapSearch.length > 0 ?  mapSearch : <NotSearched/> ) :  (  seletectCategory ? filterRestaurantsMap :  mapRestaurants   )  }
       <MenuBotton  />
     </S.Master>
   );

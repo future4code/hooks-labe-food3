@@ -12,30 +12,19 @@ import ProfileComponents from "../../components/ProfileComponents";
 import MenuBotton from "../../components/MenuBotton";
 
 
-export default function ProfilePage () {
-  const [data] = useCustomProfile(`${URL_BASE}/profile`) 
-  const {name , address , cpf , email , id} = data
+const ProfileEditPage= ()=> {
+  const [data] = useCustomProfile(`${URL_BASE}/profile`)
+  const {name , address , cpf , email , id} = data.user
   const navigate = useNavigate()
  
-
-
   
- console.log(data.user)
+ console.log(data)
 
   return (
     <div>
-      <div>{name}</div>
-      <div>{email}</div>
-      <div>{cpf}</div>
-      <button>Editar cadastro</button>
-      <div> endereço cadastrado <br/>
-      {address}
-      </div>
-     <button onClick={()=>navigate("editarCadastro")}>editar endereço</button>
-     <br/>
-    Histórico de pedidos
-     
-     <MenuBotton/>
+<h1>pagina de editar perfil</h1>
     </div>
   );
 }
+
+export default ProfileEditPage;

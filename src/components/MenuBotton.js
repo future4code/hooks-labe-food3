@@ -45,7 +45,9 @@ const MenuBotton = () => {
     <>
       <Main>
         <MenuItem>
+          <a href="#top">            
           <Icon onClick={()=>navigate('/feed')} src={homeIcon} />
+          </a>
         </MenuItem>
         <MenuItem>
           <Icon onClick={()=>navigate('/shoppingcart')} src={cartIcon3} />
