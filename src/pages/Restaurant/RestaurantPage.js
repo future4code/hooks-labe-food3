@@ -69,7 +69,7 @@ const RestaurantePage = () => {
     );
   };
 
-  // rederizando todos os productos
+  // rederizando todos os productos NO RESTAURANTE
   const mapProducts =
     products &&
     products.map((product) => {
@@ -156,7 +156,7 @@ const RestaurantePage = () => {
       );
     });
 
-  // rederiza as categorias
+  // rederiza as categorias MENU
   const categoriasRedered =
     categoriasProduct &&
     categoriasProduct.map((category) => {
@@ -182,10 +182,15 @@ const RestaurantePage = () => {
           </S.GapInfo>
         </S.BorderDiv>
       </S.ContBanner>
-      <S.Menu>{categoriasRedered}</S.Menu>
+      <S.Menu>
+        <S.SubMenu>
+      {categoriasRedered}
+      </S.SubMenu>
+      </S.Menu>
       <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>  
+    <MenuBotton/>
       <button onClick={()=> navigate(`/shoppingcart/${objRestaurante.id}`)}>Carrinho</button>  
-      {/* <MenuBotton  />   */}
+      <MenuBotton  />  
     </div>
   );
 };

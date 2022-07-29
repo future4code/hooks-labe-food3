@@ -13,16 +13,23 @@ import { GlobalContext } from "../global/GlobalContext";
 
 const Main = styled.div`
   position: fixed;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  top: 92.5vh;
-
-  background-color: white;
-  border: 1px solid #b8b8b8;
-  width: 23.3rem;
-  height: 3rem;
+  bottom: 0;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: white;
+border: 1px solid #b8b8b8;
+height: 3rem;
+text-align: center;
 `;
+
+const Cont = styled.div`
+display: flex;
+width: 22.5rem;
+`
+
+
 
 const MenuItem = styled.div`
   display: flex;
@@ -40,28 +47,26 @@ const Icon = styled.img`
 `;
 
 const MenuBotton = () => {
-    const navigate = useNavigate()
-    const {functions} = useContext(GlobalContext)
-    const {mapRestaurante} = functions
+  const navigate = useNavigate();
+  const { functions } = useContext(GlobalContext);
+  const { mapRestaurante } = functions;
 
+  // console.log(mapRestaurante);
 
-    console.log(mapRestaurante)
-
-    
   return (
     <>
       <Main>
+        <Cont>
         <MenuItem>
-                     
-          <Icon onClick={()=>navigate('/feed')} src={homeIcon} />
-          
+          <Icon onClick={() => navigate("/feed")} src={homeIcon} />
         </MenuItem>
         <MenuItem>
-          <Icon onClick={()=>navigate(`/shoppingcart/:id`)} src={cartIcon3} />
+          <Icon onClick={() => navigate(`/shoppingcart/:id`)} src={cartIcon3} />
         </MenuItem>
         <MenuItem>
-          <Icon onClick={()=>navigate('/profile')} src={perfilIcon} />
+          <Icon onClick={() => navigate("/profile")} src={perfilIcon} />
         </MenuItem>
+        </Cont>
       </Main>
     </>
   );

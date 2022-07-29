@@ -13,9 +13,9 @@ import MenuBotton from "../../components/MenuBotton";
 
 
 export default function ProfilePage () {
+  const navigate = useNavigate()
   const [data] = useCustomProfile(`${URL_BASE}/profile`) 
   const {name , address , cpf , email , id} = data
-  const navigate = useNavigate()
  
 
 

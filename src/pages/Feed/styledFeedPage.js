@@ -11,22 +11,18 @@ export const ContTextField = styled.div`
   margin: 0 1.3rem;
 `;
 
-export const ContainerCategory = styled.div`
+export const Menu = styled.div`
   display: flex;
+  justify-content: center;
+  `;
+export const SubMenu = styled.div`
+  display: flex;
+  /* background-color:red; */
   overflow-x: scroll;
-  align-items: center;
-  gap: 0.5rem;
-  padding-bottom: 0.5rem;
-  div {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    letter-spacing: -0.39px;
-    height: 2.625rem;
-    padding: 0;
-    margin: 0;
-  }
-`;
+  width: 20.5rem;
+  gap: 2rem;
+`
+
 export const DivMenuPrincipal = styled.div`
   color: ${(props) =>
     props.restCategory === props.seletectCategory ? "red" : "black"};
@@ -36,7 +32,7 @@ export const DivMenuPrincipal = styled.div`
 `;
 
 export const Pa = styled.p`
-  width: 5.438rem;
+  /* width: 5.438rem; */
   height: 1.125rem;
   text-align: center;
   letter-spacing: -0.39px;
@@ -62,8 +58,18 @@ export const Title = styled.div`
   /* width: 22.5rem; */
   /* background-color: red; */
 `;
+
+
+
+export const Img = styled.img`
+width: 1rem;
+`
+
 export const Form = styled.form`
 margin: 0 auto;
 /* align-items: center; */
 width: 20.5rem;
 `;
+
+
+

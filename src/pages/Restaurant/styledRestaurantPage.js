@@ -5,18 +5,23 @@ export const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding-bottom: 3.25rem; */
+  padding-bottom: 1.70rem;
 `;
 
 export const Menu = styled.div`
   display: flex;
+  justify-content: center;
+  `;
+export const SubMenu = styled.div`
+  display: flex;
   overflow-x: scroll;
-  align-items: center;
+  width: 20.5rem;
   gap: 2rem;
-  padding-left: 1.5rem;
   padding-bottom: 1rem;
   padding-top: 1rem;
-`;
+`
+
+
 
 export const Centralize = styled.div`
   display: flex;
