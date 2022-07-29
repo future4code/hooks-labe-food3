@@ -10,7 +10,7 @@ import FeedPage from "../pages/Feed/FeedPage";
 import Error from "../pages/Error/ErrorPage";
 import LoginPage from "../pages/Login/LoginPage";
 import ProfileComponents from "../components/ProfileComponents";
-
+import HundleRegistration from '../components/MudarEndereço'
 const Router = () => {
   return (
     <BrowserRouter>
@@ -19,12 +19,13 @@ const Router = () => {
         <Route path="login" element={<LoginPage />} />
         <Route path="registration" element={<RegistrationPage />} />
         <Route path="profile" element={<ProfilePage />} />
-        <Route path="profile/:editarCadastro" element={<ProfileComponents/>}/>
+        <Route path="profile/editarCadastro" element={<ProfileComponents/>}/>
         <Route path="feed" element={<FeedPage/>} />
         <Route path="shoppingcart/:id" element={<ShoppingCartPage />} />
         <Route path="registration/address-registration" element={<AddressRegistrationPage />} />
         <Route path="feed/:name" element={<RestaurantPage/>} />
-        <Route path="*" element={<Error />} />
+        <Route path="*" element={<Error />} /> 
+        <Route path="profile/hundleRegistration" element={<HundleRegistration/>}/>
       </Routes>
     </BrowserRouter>
   );
