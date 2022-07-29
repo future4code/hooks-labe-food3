@@ -67,7 +67,7 @@ const PaymentMetod=(ev)=>{
   return (
     <S.Dad>
 
-      <S.Title>Meu carrinho</S.Title>
+      <div>Meu carrinho</div>
 
       <S.Endress>
         <S.Size>
@@ -138,7 +138,7 @@ const PaymentMetod=(ev)=>{
 
       <S.Button onClick={() => postOrder(`${params.id}`)}>Confirmar</S.Button>
      
-   
+   <MenuBotton></MenuBotton>
     </S.Dad>
   );
 }
