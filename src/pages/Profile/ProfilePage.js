@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios'
 
 import useCustomProfile from "../../hooks/useProfile";
@@ -17,16 +17,28 @@ export default function ProfilePage () {
   const navigate = useNavigate()
   const [data] = useCustomProfile(`${URL_BASE}/profile`) 
   const {name , address , cpf , email , id} = data
- 
+  const [historic , setHistoric] = useState([])
 
 console.log(data)
-  const historyOrder = () =>{
-    axios.get(`${URL_BASE}/orders/history` , headers).then((res)=>{
-      console.log(res)
-    }).catch((err)=>{
-      console.log(err.res)
-    })
-  }
+
+useEffect(()=>{
+  axios.get(`${URL_BASE}/orders/history` , headers).then((res)=>{
+    setHistoric(res.data.orders)
+    console.log(res.data.orders)
+  }).catch((err)=>{
+    console.log(err.res)
+  })
+},[historic])
+ 
+
+const takeHistoric =historic && historic.map((historico)=>{
+  return(
+    <div>
+      {historico.restaurantName} <br/>
+      {historico.totalPrice}
+    </div>
+  )
+})
   return (
     <div>
       <S.ContainerProfile>
@@ -51,7 +63,7 @@ console.log(data)
    
       </div>
     Histórico de pedidos
-     <button onClick={()=>historyOrder()}>Testandoo</button>
+    {takeHistoric}
      <MenuBotton/>
     </div>
   );
