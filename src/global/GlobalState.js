@@ -47,7 +47,7 @@ const postOrder = (id) => {
     toast.success("Pedido em andamento"(res.data.order.restaurantName)("Preço Total:")(res.data.order.totalPrice))
   })
   .catch((err)=>{
-   toast.error("Ja tem pedido um em andamento")
+   toast.error("Existe um pedido em andamento.")
   })
 }
 
