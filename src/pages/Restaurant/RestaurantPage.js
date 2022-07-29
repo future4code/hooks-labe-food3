@@ -165,6 +165,7 @@ const RestaurantePage = () => {
 
   return (
     <div>
+       <button onClick={()=> navigate(`/shoppingcart/${objRestaurante.id}`)}>Carrinho</button>  
       {/* {restaurantsBanner} */}
       <S.ContBanner>
         <S.BorderDiv>
@@ -189,8 +190,7 @@ const RestaurantePage = () => {
       </S.Menu>
       <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>  
     <MenuBotton/>
-      <button onClick={()=> navigate(`/shoppingcart/${objRestaurante.id}`)}>Carrinho</button>  
-      <MenuBotton  />  
+     
     </div>
   );
 };

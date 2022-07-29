@@ -43,8 +43,8 @@ const postOrder = (id) => {
   axios.post(`${URL_BASE}/restaurants/${id}/order`, body, headers)
   .then((res)=>{
     toast.success("Pedido realizado com sucesso.")
-    
-
+    console.log(res.data)
+    toast.success("Pedido em andamento"(res.data.order.restaurantName)("Preço Total:")(res.data.order.totalPrice))
   })
   .catch((err)=>{
    toast.error("Ja tem pedido um em andamento")

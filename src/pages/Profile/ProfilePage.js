@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import axios from 'axios'
-import {exemplo} from "./styledProfilePage"
-import { useProtected } from "../../hooks/useProtected";
-import CustomProfile from "../../hooks/useProfile";
+
 import useCustomProfile from "../../hooks/useProfile";
 import {headers, URL_BASE } from "../../constants/links";
-import useForm from "../../hooks/useForm";
 import { NavigateBefore } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import ProfileComponents from "../../components/ProfileComponents";
 import MenuBotton from "../../components/MenuBotton";
+import Caneta from '../../imagens/icons/lapis.png'
+import * as S from "./styledProfilePage"
+import MudarEndereço from "../../components/MudarEndereço";
+
+
 
 
 export default function ProfilePage () {
@@ -18,23 +19,39 @@ export default function ProfilePage () {
   const {name , address , cpf , email , id} = data
  
 
-
-  
- console.log(data.user)
-
+console.log(data)
+  const historyOrder = () =>{
+    axios.get(`${URL_BASE}/orders/history` , headers).then((res)=>{
+      console.log(res)
+    }).catch((err)=>{
+      console.log(err.res)
+    })
+  }
   return (
     <div>
-      <div>{name}</div>
-      <div>{email}</div>
-      <div>{cpf}</div>
-      <button>Editar cadastro</button>
-      <div> endereço cadastrado <br/>
+      <S.ContainerProfile>
+        <S.NameProfile>
+          <div>
+         <p> {name}</p>
+         <S.LapisEdit onClick={()=>navigate("editarCadastro")} src={Caneta}/>
+          </div>
+          <p>
+          {email}
+          </p>
+          <p>
+          {cpf}
+          </p>
+        </S.NameProfile>
+      
+    
+      </S.ContainerProfile>
+      <div> Endereço cadastrado <br/>
       {address}
+     <button onClick={() => navigate("hundleRegistration")}>Editar Cadastro</button>
+   
       </div>
-     <button onClick={()=>navigate("editarCadastro")}>editar endereço</button>
-     <br/>
     Histórico de pedidos
-     
+     <button onClick={()=>historyOrder()}>Testandoo</button>
      <MenuBotton/>
     </div>
   );

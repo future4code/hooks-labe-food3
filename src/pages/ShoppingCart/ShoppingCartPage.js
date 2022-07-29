@@ -137,7 +137,7 @@ const PaymentMetod=(ev)=>{
       </S.Bot2>
 
       <S.Button onClick={() => postOrder(`${params.id}`)}>Confirmar</S.Button>
-      <MenuBotton/>
+     
    
     </S.Dad>
   );

@@ -61,7 +61,7 @@ const MenuBotton = () => {
           <Icon onClick={() => navigate("/feed")} src={homeIcon} />
         </MenuItem>
         <MenuItem>
-          <Icon onClick={() => navigate(`/shoppingcart/:id`)} src={cartIcon3} />
+          <Icon onClick={() => navigate(`carrinho`)} src={cartIcon3} />
         </MenuItem>
         <MenuItem>
           <Icon onClick={() => navigate("/profile")} src={perfilIcon} />

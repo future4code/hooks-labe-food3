@@ -20,12 +20,7 @@ import { toast } from "react-toastify";
 import backIcon from "../../imagens/icons/back-icon.png"
 
 const CadastroEnderecoPage = () => {
-  // const [userStreet, setUserStreet] = useState("");
-  // const [userNumber, setUserNumber] = useState("");
-  // const [userBairro, setUserBairro] = useState("");
-  // const [userState, setUserState] = useState("");
-  // const [userCity, setUserCity] = useState("");
-  // const [userComplement, setUserComplement] = useState("");
+
   const params = useParams()
  const navigate = useNavigate()
   const [form, handleChange, clear] = useForm(
@@ -38,25 +33,6 @@ const CadastroEnderecoPage = () => {
       complement: ''
     }
   )
-
-  // const takeStreet = (event) => {
-  //   setUserStreet(event.target.value);
-  // };
-  // const takeNumber = (event) => {
-  //   setUserNumber(event.target.value);
-  // };
-  // const takeBairro = (event) => {
-  //   setUserBairro(event.target.value);
-  // };
-  // const takeState = (event) => {
-  //   setUserState(event.target.value);
-  // };
-  // const takeCity = (event) => {
-  //   setUserCity(event.target.value);
-  // };
-  // const takeComplement = (event) => {
-  //   setUserComplement(event.target.value);
-  // };
 
   const onSubmitForm = (ev) => {
     ev.preventDefault();
@@ -82,17 +58,6 @@ const CadastroEnderecoPage = () => {
 
 
   const takeAdress = () => {
-
-    // useProtected()
-    
-    // const body = {
-    //   street: userStreet,
-    //   number: userNumber,
-    //   neighbourhood: userBairro,
-    //   city: userCity,
-    //   state: userState,
-    //   complement: userComplement,
-    // };
     const headers = {
       headers: {
         auth: localStorage.getItem("token"),
@@ -114,7 +79,6 @@ const CadastroEnderecoPage = () => {
   return (
     <div>
     <Top>
-        {/* <BtBack onClick={()=>navigate(-1)}>{backIcon}</BtBack> */}
       </Top>      
       <Main>
         <form onSubmit={onSubmitForm}>
