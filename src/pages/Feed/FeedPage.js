@@ -10,7 +10,9 @@ import MenuBotton from "../../components/MenuBotton";
 import { StepContext } from "@mui/material";
 import notSearched from "../../components/notSearched";
 import NotSearched from "../../components/notSearched";
-
+import search from "../../imagens/icons/search.png"
+import { AccountCircle } from "@mui/icons-material";
+import SearchIcon from '@mui/icons-material/Search';
 
 
 // ================================= inicio do componente
@@ -115,23 +117,28 @@ const FeedPage = (props) => {
   return (
     <S.Master> 
       <S.Title id="top">Ifuture</S.Title>  
-      <S.Form onSubmit={onSubmitForm}>
-      {/* <S.ContTextField> */}
-      {/* ================================= */}
+      <S.Form onSubmit={onSubmitForm}>        
       <M.TextField      
-      fullWidth
-      placeholder="Restaurante"
+      fullWidth      
+      placeholder="Restaurante"      
       name="value"
       value={query}
       onChange={e => setQuery((e).target.value)}
-      ></M.TextField>
-      {/* </S.ContTextField> */}
-      </S.Form> 
-      {/* ================================= */}
-    
-      <S.ContainerCategory>  
+      InputProps={{
+        startAdornment: (
+          <M.InputAdornment position="start">
+            <S.Img src={search}/>
+          </M.InputAdornment>
+        ),
+      }}
+      />      
+
+      </S.Form>        
+      <S.Menu>  
+        <S.SubMenu>
         {categoryRestaurantMap}      
-        </S.ContainerCategory>
+        </S.SubMenu>
+        </S.Menu>
      { query ? (mapSearch.length > 0 ?  mapSearch : <NotSearched/> ) :  (  seletectCategory ? filterRestaurantsMap :  mapRestaurants   )  }
       <MenuBotton  />
     </S.Master>
