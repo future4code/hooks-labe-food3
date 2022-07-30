@@ -5,11 +5,23 @@ import { headers, URL_BASE } from "../constants/links";
 import styled from "styled-components";
 import { TextField } from "@mui/material";
 import { Button, Form } from "../pages/Login/styledLoginPage";
+import { BtBack, Pa, Top } from "../pages/Registration/styledRegistrationPage";
+import { navigate, useNavigate } from "react-router-dom";
+import backIcon from "../imagens/icons/back-icon.png"
 
 // ===================== styled =================================
 
 // ========================= control input ============================
 const ProfileComponents = () => {
+
+  const AlingPa = styled.div`
+display: flex;
+justify-content: center;
+padding-top: 1rem;
+`
+
+const navigate = useNavigate();
+
   const [form, handleChange] = useForm({
     name: "",
     email: "",
@@ -35,8 +47,13 @@ const ProfileComponents = () => {
 
   return (
     <div>
+      <Top>
+          <BtBack src={backIcon} onClick={()=>navigate(-1)}/>          
+          </Top> 
       <Form onSubmit={onSubmitForm}>
-        <p>Mudar Dados Cadastrais</p>
+      <AlingPa>        
+        <Pa>Mudar Dados Cadastrais</Pa>
+      </AlingPa>
         <TextField
           onChange={handleChange}
           value={form.name}

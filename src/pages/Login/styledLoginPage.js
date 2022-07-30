@@ -22,8 +22,7 @@ export const Form = styled.form`
   display: flex;
   margin-left: 1rem;
   margin-right: 1rem;
-  flex-direction: column;
- 
+  flex-direction: column; 
   gap: 1rem;
   padding-bottom: 1rem;
   /* width: 22rem; */

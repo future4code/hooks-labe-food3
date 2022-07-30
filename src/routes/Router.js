@@ -11,6 +11,8 @@ import Error from "../pages/Error/ErrorPage";
 import LoginPage from "../pages/Login/LoginPage";
 import ProfileComponents from "../components/ProfileComponents";
 import HundleRegistration from '../components/MudarEndereço'
+
+
 const Router = () => {
   return (
     <BrowserRouter>

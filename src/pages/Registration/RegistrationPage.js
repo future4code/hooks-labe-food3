@@ -44,20 +44,15 @@ const CadastroPage = () => {
   )
 
 
-  const notifyWarnUser = () => {
-    const customId = "custom-id-yes";
-    toast.warn("Registre seu endereço!", {
-      toastId: customId,
-      position: toast.POSITION.TOP_RIGHT,
-      
+  const notifyWarnUser = () => {    
+    toast.warn("Registre seu endereço!", {     
+      position: toast.POSITION.BOTTOM_LEFT,    
     });
   }
  
  
-  const notifyErrorUser = () => {
-    const customId = "custom-id-yes";
-    toast.warn("Email ou CPF já cadastrado.", {
-      toastId: customId,
+  const notifyErrorUser = () => {   
+    toast.warn("Email ou CPF já cadastrado.", {     
       position: toast.POSITION.TOP_RIGHT,      
     });
   }
@@ -69,8 +64,9 @@ const CadastroPage = () => {
       .then((res) => {
         // console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
-        notifyWarnUser();
-        // em caso de sucesso quando preencher o formulário vai pra loginpage        
+        toast.warn("Registre seu endereço!", {     
+          position: toast.POSITION.BOTTOM_LEFT,    
+        });        
         navigate("/registration/address-registration")
       })
       .catch((err) => {
@@ -78,11 +74,9 @@ const CadastroPage = () => {
         console.log(err.response);
       });
   }
-  else{
-    const customId = "custom-id-yes";
-    toast.warn("As senhas não são correspondentes.", {
-      toastId: customId,
-      position: toast.POSITION.TOP_RIGHT,      
+  else{   
+    toast.warn("As senhas não são correspondentes.", {      
+      position: toast.POSITION.BOTTOM_LEFT,      
     });
   }
 }
@@ -117,10 +111,9 @@ const CadastroPage = () => {
             value={form.cpf}
             name={"cpf"}
             type="number"
-            pattern="^(((\d{3}).(\d{3}).(\d{3})-(\d{2}))?((\d{2}).(\d{3}).(\d{3})/(\d{4})-(\d{2}))?)*$"
-            // title="111.111.111-11"
+            inputProps={{ pattern: "[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$" }}
+            placeholder="888.888.888-88"
             label="CPF"
-            placeholder="888.888.888-88"  
             fullWidth          
             required
           />
@@ -131,7 +124,7 @@ const CadastroPage = () => {
             inputProps={{ pattern: "^[A-Za-z0-9.]+@[A-Za-z0-9]+\.([a-z]+)?$" }}
             name={"email"}
             label="E-mail"
-            placeholder="email@email.com"
+            placeholder="exemplo@email.com"
             fullWidth
             required
           />

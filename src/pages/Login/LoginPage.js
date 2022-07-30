@@ -12,64 +12,32 @@ import useForm from "../../hooks/useForm";
 import * as M from "@mui/material";
 
 const LoginPage = () => {
+
   const navigate = useNavigate();
   const tokenEndereco = localStorage.getItem("tokenEndereco");
   const token = localStorage.getItem("token");
 
-
-  // const [inputEmail , setInputEmail] = useState("")
-  // const [inputSenha , setInputSenha] = useState("")
-  // const onChangeEmail = (event)=>{
-  //   setInputEmail(event.target.value)
-  // }
-  // const onChangeSenha = (event)=>{
-  //   setInputSenha(event.target.value)
-  // }
-
+// ====================== userform
   const [form, onChange, clear] = useForm({
     email: "",
     password: "",
   });
 
-console.log(form)
-  
-  const notifySucessUser = () => {
-    const customId = "custom-id-yes";
-    toast.success("Login realizado com sucesso!", {
-      toastId: customId,
-      position: toast.POSITION.TOP_RIGHT,
-      
-    });
-  }
-  
-  const notifyErrorUser = () => {
-    const customId = "custom-id-yes";
-    toast.warn("Não registrado, faça seu cadastro.", {
-      toastId: customId,
-      position: toast.POSITION.TOP_RIGHT,      
-    });
-  }
 
-  const notifyEndressUser = () => {
-    const customId = "custom-id-yes";
-    toast.warn("Cadastre seu endereço.", {
-      toastId: customId,
-      position: toast.POSITION.TOP_RIGHT,      
-    });
-  }
-  
+  // =================== mostrar e esconder senha 
   const [viewPass, setViewPass] = useState(false);
-
   const showPass = () => {
     setViewPass(!viewPass);
   };
 
-
+// ============== preventform
   const onSubmitForm = (ev) => {
     ev.preventDefault();  
     handleUser()
   };
 
+  useEffect(()=>{
+  },[])
 
   const handleUser =  () => {
      axios
@@ -77,31 +45,36 @@ console.log(form)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         if (res.data.user.hasAddress) {
-          notifySucessUser() 
+          toast.success("Login realizado com sucesso!", {
+                 autoClose: 1000,
+                 icon: '😍'
+          });
           navigate("/feed");
         }else{
-          notifyEndressUser()
+          toast.warn("Cadastre seu endereço.", {      
+            autoClose: 1000,
+            icon: '📝'   
+          });
           navigate('/registration/address-registration')
         }
       })
       .catch((err) => {
-        notifyErrorUser()
-        // navigate("/login");
+        toast.warn("Não registrado, faça seu cadastro.", {
+           autoClose: 1000,
+           icon: '📝',
+        });        
       });
   };
 
 
   return (
-    <S.Main>
-      <button onClick={() => navigate("/feed")}>feed</button>
+    <S.Main>    
       <S.Img src={logo} />
       <S.Pa>Entrar</S.Pa>
-      <S.Form onSubmit={onSubmitForm} >
-        {/* <S.FieldSize> */}
-          <M.TextField
-         
+      <S.Form onSubmit={onSubmitForm} >      
+          <M.TextField         
             name="email"
-            placeholder="email@email.com"
+            placeholder="exemplo@email.com"
             label="E-mail"
             inputProps={{ pattern: "^[A-Za-z0-9.]+@[A-Za-z0-9]+\.([a-z]+)?$" }}
             fullWidth
@@ -109,12 +82,9 @@ console.log(form)
             onChange={onChange}
             autoFocus
             required
-          ></M.TextField>
-        {/* </S.FieldSize> */}
-        {/* // ======================================  */}
-        {/* <S.FieldSize> */}
+          />
           <M.TextField
-            placeholder="PasSS01"
+            placeholder="Mínimo 6 dígitos"
             label="Senha"
             inputProps={{ pattern: "[A-Za-z0-9]{6,}" }}            
             fullWidth
@@ -123,10 +93,7 @@ console.log(form)
             onChange={onChange}
             type={viewPass ? "text" : "password"}            
             required
-          >            
-          {/* <button onClick={showPass} onMouseDown={onSubmitForm}>BT</button> */}
-          </M.TextField>
-        {/* </S.FieldSize> */}
+          />       
         <S.Button type="submit" >Entrar</S.Button>
       </S.Form>
       <S.Pa onClick={() => navigate("/registration")}>

@@ -75,17 +75,22 @@ export const Price = styled.div`
   font-size: 1rem;
 `;
 
+export const Add2 = styled.div`
+`
+
 export const Add = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 5.625rem;
   height: 1.938rem;
+  background-color: #F39096;
   border: 1px solid #e02020;
   border-radius: 8px 0px 8px 0px;
   font-size: 0.75rem;
-  margin-top: -2.09rem;
+  margin-top: -2.078rem;
 margin-left: 14.875rem;
+
 `;
 
 export const OrgPA = styled.div`
