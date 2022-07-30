@@ -117,10 +117,10 @@ const CadastroPage = () => {
             value={form.cpf}
             name={"cpf"}
             type="number"
-            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+            pattern="^(((\d{3}).(\d{3}).(\d{3})-(\d{2}))?((\d{2}).(\d{3}).(\d{3})/(\d{4})-(\d{2}))?)*$"
             // title="111.111.111-11"
             label="CPF"
-            placeholder="88822233311"  
+            placeholder="888.888.888-88"  
             fullWidth          
             required
           />
@@ -136,7 +136,7 @@ const CadastroPage = () => {
             required
           />
            <M.TextField
-            placeholder="PasSS01"
+            placeholder="Mínimo 6 dígitos"
             label="Senha"
             inputProps={{ pattern: "[A-Za-z0-9]{6,}" }}            
             name={"password"}

@@ -7,8 +7,9 @@ export const BtBack = styled.img`
 background: none;
 height: 2rem;
 border: none;
-margin-left: 1rem;
-
+padding-left: 1rem;
+padding-top: 0.5rem;
+cursor: pointer;
 `
 
 export const Top = styled.div`

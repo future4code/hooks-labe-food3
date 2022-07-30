@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +15,16 @@ import {
     Top,
     BtBack,
   } from "../pages/AddressRegistration/styledAddressRegistration";
+import { Form } from "../pages/Login/styledLoginPage";
+import styled from "styled-components";
+import MenuBotton from "./MenuBotton";
+import backIcon from "../imagens/icons/back-icon.png"
+
+const AlingPa = styled.div`
+display: flex;
+justify-content: center;
+`
+
 
 const MudarEndereço = ()=>{
     const navigate = useNavigate()
@@ -73,43 +84,61 @@ const MudarEndereço = ()=>{
       return (
         <div>
         <Top>
+          <BtBack src={backIcon} onClick={()=>navigate(-1)}/>          
           </Top>      
           <Main>
-            <form onSubmit={onSubmitForm}>
+            <Form onSubmit={onSubmitForm}>
+              <AlingPa>
               <Pa>Editar Endereço</Pa>
-              <Input placeholder={"   Rua / Av."} 
+              </AlingPa>
+              <TextField 
+              placeholder={"   Rua / Av."} 
+              label="Rua / Av."
               onChange={handleChange}
               value={form.street}
               name={"street"}
+              required
+              autoFocus
                />
-              <Input placeholder={"   Número"} 
+              <TextField placeholder={"   Número"} 
+              label="Número"
               onChange={handleChange}
               value={form.number}
               name={"number"}
+              required
                />
-              <Input placeholder={"    Apto. / Bloco"} 
+              <TextField placeholder={"    Apto. / Bloco"} 
+              label="Apto. / Bloco"
               onChange={handleChange}
               value={form.complement}
               name={"complement"}
+              required
               />
-              <Input placeholder={"    Bairro"} 
+              <TextField placeholder={"    Bairro"} 
+              label="Bairro"
               onChange={handleChange}
               value={form.neighbourhood} 
               name={"neighbourhood"}
+              required
               />
-              <Input placeholder={"    Cidade"} 
+              <TextField placeholder={"    Cidade"} 
+              label="Cidade"
               onChange={handleChange}          
               value={form.city}
               name={"city"}
+              required
               />
-              <Input placeholder={"    Estado"} 
+              <TextField placeholder={"    Estado"} 
+              label="Estado"
               onChange={handleChange}
               value={form.state} 
               name={"state"}
+              required
               />
               <Button onClick={()=>takeAdress()} >Enviar </Button>
-            </form>
+            </Form>
           </Main>
+          <MenuBotton/>
         </div>
       );
     };
