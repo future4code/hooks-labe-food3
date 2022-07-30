@@ -137,8 +137,7 @@ const MudarEndereço = ()=>{
               />
               <Button onClick={()=>takeAdress()} >Enviar </Button>
             </Form>
-          </Main>
-          <MenuBotton/>
+          </Main>         
         </div>
       );
     };
