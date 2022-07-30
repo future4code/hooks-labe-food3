@@ -5,7 +5,7 @@ export const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 1.70rem;
+  padding-bottom: 3.20rem;
 `;
 
 export const Menu = styled.div`
@@ -59,44 +59,38 @@ export const ContText = styled.div`
 
 export const Title = styled.div`
   margin-top: 1.125rem;
-  margin-bottom: 0.25rem;
-  height: 1.125rem;
-  width: 10.438rem;
-  font-size: 1rem;
+  padding-bottom: 0.25rem;
   color: #e8222e;
 `;
 
 export const Description = styled.div`
-  margin-bottom: 0.25rem;
-  height: 1.875rem;
+  width: 12rem;
+  padding-bottom: 0.25rem;
   font-size: 0.75rem;
   color: #b8b8b8;
 `;
 export const Price = styled.div`
   margin-bottom: 0.938rem;
   width: 7.375rem;
-  height: 1.188rem;
   font-size: 1rem;
 `;
 
 export const Add = styled.div`
   display: flex;
   justify-content: center;
-
   align-items: center;
   width: 5.625rem;
   height: 1.938rem;
   border: 1px solid #e02020;
   border-radius: 8px 0px 8px 0px;
   font-size: 0.75rem;
-  letter-spacing: -0.29px;
-  margin-top: 0.344rem;
-  margin-left: 0.44rem;
+  margin-top: -2.09rem;
+margin-left: 14.875rem;
 `;
 
 export const OrgPA = styled.div`
   display: flex;
-  margin: 0;
+
 `;
 
 // =====================
@@ -113,6 +107,7 @@ export const ContBanner = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 0.5rem;
   /* width: 22.5rem;  */
   /* background-color: blue; */
   width: 100%;

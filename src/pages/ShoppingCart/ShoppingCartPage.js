@@ -67,7 +67,7 @@ const PaymentMetod=(ev)=>{
   return (
     <S.Dad>
 
-      <div>Meu carrinho</div>
+      <S.MyCart>Meu carrinho</S.MyCart>
 
       <S.Endress>
         <S.Size>

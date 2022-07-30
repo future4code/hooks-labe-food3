@@ -12,6 +12,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 height: 2.75rem;
+font-weight: 600;
 box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
 
 `
@@ -28,7 +29,7 @@ export const ContainerProfile = styled.div `
     export const DivEndress = styled.div `
     display: flex;
     padding-left: 1rem;
-    /* justify-content: center; */
+justify-content: space-between;
     align-items: center;
     /* padding: 1rem; */
     background-color: #eee;

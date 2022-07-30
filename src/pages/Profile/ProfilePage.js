@@ -9,6 +9,11 @@ import MenuBotton from "../../components/MenuBotton";
 import Caneta from "../../imagens/icons/lapis.png";
 import * as S from "./styledProfilePage";
 import MudarEndereço from "../../components/MudarEndereço";
+import { BtBack, Top } from "../Registration/styledRegistrationPage";
+import backIcon from "../../imagens/icons/back-icon.png"
+
+
+
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -27,8 +32,10 @@ export default function ProfilePage() {
       });
   };
   return (
-    <div>
+    <div>  
+ 
       <S.Title>Meu perfil</S.Title>
+    
       <S.ContainerProfile>
         <S.NameProfile>
           <div>
@@ -43,32 +50,20 @@ export default function ProfilePage() {
         </S.NameProfile>
       </S.ContainerProfile>
       <S.DivEndress>
-        <div>
-          Endereço cadastrado
-          {address}
-        </div>
-
+        <div>{address}</div>
         <S.LapisEdit
           onClick={() => navigate("hundleRegistration")}
           src={Caneta}
         />
       </S.DivEndress>
 
+      <S.History>Histórico de pedidos</S.History>
+      <S.Hr />
 
-      <S.History>
-      Histórico de pedidos
-      </S.History>
-      <S.Hr/>
-
-<S.Nothing>
-      Você não realizou nenhum pedido
-</S.Nothing>
+      <S.Nothing>{/* os pedidos deveriam aparecer aqui */}</S.Nothing>
       <button onClick={() => historyOrder()}>Testandoo</button>
 
       <MenuBotton />
-
-
-
     </div>
   );
 }

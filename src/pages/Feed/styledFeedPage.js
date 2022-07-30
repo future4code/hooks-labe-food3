@@ -43,7 +43,7 @@ export const Pa = styled.p`
 
 export const Title = styled.div`
   display: flex;
-  
+  font-weight: 600;
   justify-content: center;
   align-items: center;
   font-size: 1rem;

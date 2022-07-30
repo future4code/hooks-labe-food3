@@ -69,7 +69,7 @@ const RestaurantePage = () => {
     );
   };
 
-  // rederizando todos os productos NO RESTAURANTE
+  // ============ rederizando todos os productos NO RESTAURANTE 
   const mapProducts =
     products &&
     products.map((product) => {
@@ -77,18 +77,17 @@ const RestaurantePage = () => {
         <S.MainCard key={product.id}>
           <S.Card>
             <S.Img src={product.photoUrl} />
-            <S.ContText>
+            <S.ContText>              
               <S.Title>{product.name}</S.Title>
-              <S.Description>{product.description}</S.Description>
+              <S.Description>{product.description}</S.Description>              
               <S.OrgPA>
                 <S.Price>R${product.price}</S.Price>
-                <S.Add onClick={() => addToCart(product, objRestaurante.id)}>
-                  adicionar
-                </S.Add>
-                {/* <button onClick={()=> removeToCart(product)}>REMOVE</button> */}
+                  
               </S.OrgPA>
             </S.ContText>
           </S.Card>
+                <S.Add onClick={() => addToCart(product, objRestaurante.id)}>adicionar
+                </S.Add>               
         </S.MainCard>
       );
     });
@@ -164,30 +163,28 @@ const RestaurantePage = () => {
     });
 
   return (
-    <div>
-       <button onClick={()=> navigate(`/shoppingcart/${objRestaurante.id}`)}>Carrinho</button>  
-      {/* {restaurantsBanner} */}
+    <div>     
+      {/* {ao clicar em um restaurante essa é a parte de cima com nome e logo do restaurante} */}
       <S.ContBanner>
         <S.BorderDiv>
           <S.ImgRes src={restaurant.logoUrl} />
           <S.NameRes>{restaurant.name}</S.NameRes>
           <S.GapInfo>
-            <div>{restaurant.category}</div>
-            {/* ===================== */}
+            <div>{restaurant.category}</div>          
             <S.GapRest>
               {restaurant.deliveryTime}min
               <div>Frete R${restaurant.shipping}</div>
-            </S.GapRest>
-            {/* ======================= */}
+            </S.GapRest>          
             <S.Edrress>{restaurant.address}</S.Edrress>
           </S.GapInfo>
         </S.BorderDiv>
       </S.ContBanner>
       <S.Menu>
-        <S.SubMenu>
+        <S.SubMenu>          
       {categoriasRedered}
       </S.SubMenu>
       </S.Menu>
+      {/* renderização das comidas escolhidas atraves de filtros */}
       <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>  
     <MenuBotton/>
      

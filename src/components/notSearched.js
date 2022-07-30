@@ -9,16 +9,21 @@ import cartIcon3 from "../imagens/icons/cart-icon3.png";
 import cartIcon4 from "../imagens/icons/cart-icon4.png";
 import perfilIcon from "../imagens/icons/perfil-icon.png";
 import perfilIcon2 from "../imagens/icons/perfil-icon2.png";
+import notfound from "../imagens/notfound.gif"
 
-
+const Img = styled.img`
+width: 22.5rem;
+height: auto;
+margin: 0 auto;
+`
 
 const NotSearched = () => {
     const navigate = useNavigate()
 
   return (
-    <>
-    <h1>Loja não encontrada...</h1>
-    </>
+    <div>
+    <Img src={notfound}/>
+    </div>
   );
 };
 

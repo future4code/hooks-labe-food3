@@ -121,6 +121,10 @@ export const Dad = styled.div`
     align-items: center;
     flex-direction: column;
     `
+    export const MyCart = styled.div`
+    padding: 1rem 0;
+    font-weight: 600;
+    `
 
     export const Qt = styled.div`
     display: flex;
