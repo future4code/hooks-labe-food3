@@ -12,27 +12,13 @@ import backIcon from "../../imagens/icons/back-icon.png"
 
 const CadastroPage = () => {
   const navigate = useNavigate();
-  // const [userName, setUserName] = useState("");
-  // const [userSenha, setUserSenha] = useState("");
   const [userConfirmSenha, setUserConfirmSenha] = useState("");
-  // const [userEmail, setUserEmail] = useState("");
-  // const [userCpf, setUserCpf] = useState("");
 
-  // const takeName = (event) => {
-  //   setUserName(event.target.value);
-  // };
-  // const takeSenha = (event) => {
-  //   setUserSenha(event.target.value);
-  // };
+
   const takeConfirmSenha = (event) => {
     setUserConfirmSenha(event.target.value);
   };
-  // const takeEmail = (event) => {
-  //   setUserEmail(event.target.value);
-  // };
-  // const takeCpf = (event) => {
-  //   setUserCpf(event.target.value);
-  // };
+
 
   const [form, handleChange, clear] = useForm(
     {
@@ -43,49 +29,40 @@ const CadastroPage = () => {
     }
   )
 
-
-  const notifyWarnUser = () => {    
-    toast.warn("Registre seu endereço!", {     
-      position: toast.POSITION.BOTTOM_LEFT,    
-    });
-  }
  
- 
-  const notifyErrorUser = () => {   
-    toast.warn("Email ou CPF já cadastrado.", {     
-      position: toast.POSITION.TOP_RIGHT,      
-    });
-  }
 
   const registrationUser = () => {
   if(form.password === userConfirmSenha){
     axios
       .post(`${URL_BASE}/signup`, form)
       .then((res) => {
-        // console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
         toast.warn("Registre seu endereço!", {     
-          position: toast.POSITION.BOTTOM_LEFT,    
+          autoClose: 1000,
+          icon: '📝'       
         });        
         navigate("/registration/address-registration")
       })
       .catch((err) => {
-        notifyErrorUser()
+        toast.warn("Email ou CPF já cadastrado.", {     
+          autoClose: 1000,            
+        });
         console.log(err.response);
       });
   }
   else{   
-    toast.warn("As senhas não são correspondentes.", {      
-      position: toast.POSITION.BOTTOM_LEFT,      
+    toast.warn("As senhas não são correspondentes.", {
+      autoClose: 1000,
+      icon:'🚫'
     });
   }
 }
 
-
+// ======= preventdefault
   const onSubmitForm = (ev) => {
     ev.preventDefault();
   };
-  // console.log(form)
+
   return (
     <div>
       <S.Top>
@@ -98,10 +75,10 @@ const CadastroPage = () => {
           <M.TextField
             label="Nome"
             placeholder="Antonio(a) Silva"
+            inputProps={{ pattern: "[A-Za-z]{2,} [A-Z,a-z]{2,}" }}
             onChange={handleChange}
             value={form.name}
-            name={"name"}
-            // type="text"
+            name={"name"}        
             autoFocus
             fullWidth
             required

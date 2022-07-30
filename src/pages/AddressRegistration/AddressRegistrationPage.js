@@ -18,6 +18,14 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useForm from "../../hooks/useForm"
 import { toast } from "react-toastify";
 import backIcon from "../../imagens/icons/back-icon.png"
+import { TextField } from "@mui/material";
+import { Form } from "../Login/styledLoginPage";
+import styled from "styled-components";
+
+const AlignPa = styled.div`
+display: flex;
+justify-content: center;
+`
 
 const CadastroEnderecoPage = () => {
 
@@ -34,27 +42,12 @@ const CadastroEnderecoPage = () => {
     }
   )
 
+
+  // ========= prevent default
+
   const onSubmitForm = (ev) => {
     ev.preventDefault();
   };
-
-  const notifySucessUser = () => {
-    const customId = "custom-id-yes";
-    toast.success("Sucesso!", {
-      toastId: customId,
-      position: toast.POSITION.TOP_RIGHT,
-      
-    });
-  }
-
-  const notifyWarnUser = () => {
-    const customId = "custom-id-yes";
-    toast.warn("Tente novamente.", {
-      toastId: customId,
-      position: toast.POSITION.TOP_RIGHT,
-      
-    });
-  }
 
 
   const takeAdress = () => {
@@ -68,53 +61,66 @@ const CadastroEnderecoPage = () => {
       .then((res) => {
         console.log(res)
         localStorage.setItem("tokenEndereco", res.data.token);
-        notifySucessUser()
+        toast.success("Sucesso!", {  
+          position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1000,
+            icon: '✨'
+        });
         navigate('/feed')
       })
-      .catch((err) => {
-        console.log(err.response);
-        notifyWarnUser()
+      .catch((err) => {       
+        toast.warn("Tente novamente.", { 
+          autoClose: 1000,               
+        });
       });
   };
+
+
   return (
     <div>
-    <Top>
-      </Top>      
+     <Top>
+        <BtBack onClick={()=>navigate(-1)} src={backIcon}/>
+      </Top>    
       <Main>
-        <form onSubmit={onSubmitForm}>
+        <Form onSubmit={onSubmitForm}>
+          <AlignPa>
           <Pa>Meu endereço</Pa>
-          <Input placeholder={"   Rua / Av."} 
+          </AlignPa>
+          <TextField placeholder={"   Rua / Av."} 
           onChange={handleChange}
           value={form.street}
           name={"street"}
+          label="Rua / Av."
+          required
+          autoFocus
            />
-          <Input placeholder={"   Número"} 
+          <TextField placeholder={"   Número"} 
           onChange={handleChange}
           value={form.number}
           name={"number"}
            />
-          <Input placeholder={"    Apto. / Bloco"} 
+          <TextField placeholder={"    Apto. / Bloco"} 
           onChange={handleChange}
           value={form.complement}
           name={"complement"}
           />
-          <Input placeholder={"    Bairro"} 
+          <TextField placeholder={"    Bairro"} 
           onChange={handleChange}
           value={form.neighbourhood} 
           name={"neighbourhood"}
           />
-          <Input placeholder={"    Cidade"} 
+          <TextField placeholder={"    Cidade"} 
           onChange={handleChange}          
           value={form.city}
           name={"city"}
           />
-          <Input placeholder={"    Estado"} 
+          <TextField placeholder={"    Estado"} 
           onChange={handleChange}
           value={form.state} 
           name={"state"}
           />
           <Button onClick={()=>takeAdress()} >Enviar </Button>
-        </form>
+        </Form>
       </Main>
     </div>
   );
