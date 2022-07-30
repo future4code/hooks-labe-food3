@@ -52,7 +52,7 @@ const RestaurantePage = () => {
       try {
         const response = await axios.get(url, headers)
         setRestaurant(response.data.restaurant);
-            setProducts(response.data.restaurant.products);
+            setProducts(response.data.restaurant.products);          
     } catch (error) {
         console.log("Algo deu errado")
     }
@@ -60,12 +60,7 @@ const RestaurantePage = () => {
   }
 
   const notifySucessProduct = () => {
-    toast.success(
-      "Produto adicionado.",
-      { autoClose: 200 },
-      {
-        position: toast.POSITION.TOP_RIGHT,
-      }
+    toast.success("Produto adicionado.",{ autoClose: 1000 },     
     );
   };
 
@@ -147,10 +142,11 @@ const RestaurantePage = () => {
               <S.Description>{product.description}</S.Description>
               <S.OrgPA>
                 <S.Price>R${product.price}</S.Price>
-                <S.Add onClick={() => notifySucessProduct()}>adicionar</S.Add>
               </S.OrgPA>
             </S.ContText>
           </S.Card>
+          {/* ============================verificar o adicionamento desses itens no carrinho se está funcional  ==================*/}
+                <S.Add onClick={() => notifySucessProduct()}>adicionar</S.Add>
         </S.MainCard>
       );
     });

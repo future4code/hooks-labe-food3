@@ -23,6 +23,7 @@ background-color: #eeeeee;
 
 
 export const ContCardProduct = styled.div`
+padding: 0.5rem;
 display: flex;
 justify-content: center;
 width: 22.5rem;

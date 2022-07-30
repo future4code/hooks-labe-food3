@@ -3,9 +3,21 @@ import { navigate, useNavigate } from "react-router-dom";
 import * as S from "./styledInitialPage";
 import futureLogo from "../../imagens/logo-future-eats.png"
 import { Button } from "@material-ui/core";
+import { toast } from "react-toastify";
 
 export default function InitialPage() {
   const navigate = useNavigate();
+
+  const ToastLogin = () => {
+    navigate('login')
+    toast.success("Oi seja bem-vindo!", {
+      autoClose: 1000,
+      icon: '😍'
+  });
+  }
+
+
+
   return (
     <S.Main>
       <S.Div>
@@ -15,7 +27,7 @@ export default function InitialPage() {
        color="primary"
        variant="contained"
       //  fullWidth
-       onClick={()=>navigate('login')}>Login</S.Button>
+       onClick={()=>ToastLogin()}>Login</S.Button>
     </S.Main>
   );
 }

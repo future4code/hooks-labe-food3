@@ -6,15 +6,20 @@ import Router from "./routes/Router";
 import GlobalStyled from "./GlobalStyled";
 import { GlobalContext } from "./global/GlobalContext";
 import { GlobalState } from "./global/GlobalState";
+import styled from "styled-components";
+
+const Main = styled.div`
+font-family: 'Roboto', sans-serif;
+` 
 
 export default function App() {
   return (
-    <div>
+    <Main>
       <GlobalStyled />
       <GlobalState>
         <Router />
       </GlobalState>
         <ToastContainer />
-    </div>
+    </Main>
   );
 }

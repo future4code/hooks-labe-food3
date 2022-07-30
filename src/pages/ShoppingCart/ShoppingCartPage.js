@@ -66,9 +66,7 @@ const PaymentMetod=(ev)=>{
   console.log(params)
   return (
     <S.Dad>
-
       <S.MyCart>Meu carrinho</S.MyCart>
-
       <S.Endress>
         <S.Size>
         <S.pCarrinho>
@@ -76,8 +74,7 @@ const PaymentMetod=(ev)=>{
         </S.pCarrinho>
           {street} , {number}
           </S.Size>        
-      </S.Endress>  
-    
+      </S.Endress>      
       {cart &&
         cart.map((item) => {
           // setTotal(total+item.total)
