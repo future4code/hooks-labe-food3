@@ -33,10 +33,9 @@ const FeedPage = (props) => {
 
   
   useEffect(()=>{
-    getRestaurants()
+    localStorage.getItem("token") && getRestaurants()
   },[])
 
-console.log(token)
 
   useEffect(() => {
     const array = restaurants && restaurants.map((lojas) => {
@@ -87,6 +86,16 @@ console.log(token)
 
   
   // ======================== filtro categoria
+  const [categoryRestaurants, setCategoryRestaurants] = useState([])
+
+  restaurants && restaurants.map(rest => {
+    if (categoryRestaurants.includes(rest.category)) {
+      return false;
+    } else {
+      return setCategoryRestaurants([...categoryRestaurants, rest.category]);
+    }
+  })
+
 
   const categoryRestaurantMap = restaurants && restaurants.map(rest => {
     return <S.DivMenuPrincipal onClick={() => getCategory(rest.category)} seletectCategory={seletectCategory} restCategory={rest.category} key={rest.id}>
