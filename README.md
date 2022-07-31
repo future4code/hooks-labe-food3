@@ -5,7 +5,7 @@
 - **Mizael** - Em alta: Apoio
 - **Jonas** - Em alta: Renderização e lógica
 - **Galileo** - Em alta: 
-- **Wictor** - - Em alta: Estilização
+- **Wictor** - Em alta: Estilização
 
 ## 🖇️ Link do Surge: https://glib-unit.surge.sh/
 
