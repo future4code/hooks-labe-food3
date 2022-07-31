@@ -7,7 +7,7 @@
 - **Galileo** - Em alta: 
 - **Wictor** - Em alta: Estilização
 
-## 🖇️ Link do Surge: https://glib-unit.surge.sh/
+## 🖇️ Link do Surge: https://hookslabefood3.surge.sh
 
 ### 📋 O que funciona:
  - [x] Login
@@ -32,16 +32,17 @@
 - [ ] Form e estilização do cadastro de endereço
 
 ## ✨ Fotos
-![Captura de Tela (78)](https://user-images.githubusercontent.com/62776224/182045002-ab094a02-69bf-4e05-8685-1e529ff64285.png)
-![Captura de Tela (77)](https://user-images.githubusercontent.com/62776224/182045004-9dcbfaa4-db26-40f5-ad0a-e1c96a7c3b36.png)
-![Captura de Tela (76)](https://user-images.githubusercontent.com/62776224/182045005-e0b6ce10-40e8-4ef8-b4af-f3825cc1a6e3.png)
-![Captura de Tela (75)](https://user-images.githubusercontent.com/62776224/182045008-67b1f39d-57c1-4806-8069-d3c7a0484c00.png)
-![Captura de Tela (74)](https://user-images.githubusercontent.com/62776224/182045009-bcef4b45-6644-448b-95df-67e6b661c88b.png)
-![Captura de Tela (73)](https://user-images.githubusercontent.com/62776224/182045010-bd9f60b8-a46c-4dad-a70f-4007c0448cff.png)
-![Captura de Tela (72)](https://user-images.githubusercontent.com/62776224/182045011-2b331fca-5ef8-4325-af04-228c8a75f5ce.png)
-![Captura de Tela (71)](https://user-images.githubusercontent.com/62776224/182045012-d7f6b402-7814-428a-9e4a-a1c1cc417439.png)
-![Captura de Tela (70)](https://user-images.githubusercontent.com/62776224/182045014-ecbd856a-be3d-4fe3-b960-8ebf80a1333f.png)
-![Captura de Tela (69)](https://user-images.githubusercontent.com/62776224/182045015-d3736de8-9260-4543-ba29-d84c9386b37b.png)
-![Captura de Tela (68)](https://user-images.githubusercontent.com/62776224/182045016-a531663c-7ddd-4aeb-925c-ec39d879675a.png)
-![Captura de Tela (67)](https://user-images.githubusercontent.com/62776224/182045017-b8e33794-3d5f-47c2-99af-948cfc20e38f.png)
+![Captura de Tela (67)](https://user-images.githubusercontent.com/62776224/182045178-2bc44a32-aa73-448c-810c-f390e243a618.png)
+![Captura de Tela (68)](https://user-images.githubusercontent.com/62776224/182045179-2aa374f9-97f3-4c5d-ad47-16e1d2f65651.png)
+![Captura de Tela (69)](https://user-images.githubusercontent.com/62776224/182045181-03e438c9-eed4-4827-9661-377ff302174e.png)
+![Captura de Tela (70)](https://user-images.githubusercontent.com/62776224/182045183-bf911c5f-b1c3-474e-828e-0a7366873a91.png)
+![Captura de Tela (71)](https://user-images.githubusercontent.com/62776224/182045185-7bd1da62-146e-482c-b747-21a2de3d60c1.png)
+![Captura de Tela (72)](https://user-images.githubusercontent.com/62776224/182045186-197c3c96-f830-4a14-b837-ec77397712fc.png)
+![Captura de Tela (73)](https://user-images.githubusercontent.com/62776224/182045188-95be23f8-5b2b-4f74-b3a1-77c5dcfe03dd.png)
+![Captura de Tela (74)](https://user-images.githubusercontent.com/62776224/182045190-617ccfaa-83b6-46ac-b01e-8f0a3058a793.png)
+![Captura de Tela (75)](https://user-images.githubusercontent.com/62776224/182045193-ad5b9f21-1dee-40bd-88f5-c3999c97b8fd.png)
+![Captura de Tela (76)](https://user-images.githubusercontent.com/62776224/182045194-1b8df940-20f7-46e6-bc1d-c5cf0d6e6c94.png)
+![Captura de Tela (77)](https://user-images.githubusercontent.com/62776224/182045197-90295ead-9b09-4530-bfab-0bbf71775932.png)
+![Captura de Tela (78)](https://user-images.githubusercontent.com/62776224/182045201-5d2d7d7f-b347-477f-ba75-becd678d1012.png)
+
 
