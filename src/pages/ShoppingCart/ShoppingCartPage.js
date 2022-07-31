@@ -23,7 +23,7 @@ export default function CarrinhoPage() {
   const [data ,address] = useCustomProfile(`${URL_BASE}/profile/address`)
    const {city , complement , neighbourhood , number , state , street } = address
    useProtected()
-
+  const idRes = localStorage.getItem('idRes')
 
   //============= soma o valor total dos itens no carrinho
   let totalPrice = 0;
@@ -36,8 +36,6 @@ export default function CarrinhoPage() {
 const [payment, setPayment] = useState("");
 const [card, setCard] = useState(false);
 const [money, setMoney] = useState(false);
-
-console.log(payment)
 
 
 
@@ -76,7 +74,7 @@ const PaymentMetod=(ev)=>{
                 </S.InformText>
                 <S.Buttons>
                   <S.Menos onClick={() => removeToCart(item)}>-</S.Menos>
-                  <S.Mais onClick={() => addToCart(item)}>+</S.Mais>
+                  <S.Mais onClick={() => addToCart(item, idRes)}>+</S.Mais>
                 </S.Buttons>
               </S.CardProduct>
             </S.ContCardProduct>
@@ -111,7 +109,7 @@ const PaymentMetod=(ev)=>{
         </S.DivInput>
       </S.Bot2>
 
-      <S.Button onClick={() => postOrder(`${params.id}`)}>Confirmar</S.Button>
+      <S.Button onClick={() => postOrder(`${idRes}`)}>Confirmar</S.Button>
      
    <MenuBotton></MenuBotton>
     </S.Dad>

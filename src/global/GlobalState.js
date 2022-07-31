@@ -55,7 +55,6 @@ const postOrder = (id) => {
   axios.post(`${URL_BASE}/restaurants/${id}/order`, body, headers)
   .then((res)=>{
     toast.success("Pedido realizado com sucesso.")
-    console.log(res.data)
     toast.success("Pedido em andamento"(res.data.order.restaurantName)("Preço Total:")(res.data.order.totalPrice))
   })
   .catch((err)=>{
@@ -64,24 +63,43 @@ const postOrder = (id) => {
 }
 
 
+//=========== zera o localstorage ao entrar
+  useEffect(()=>{
+    localStorage.setItem('idRes', '')
+  },[])
+
+  useEffect(()=>{
+    cart.length === 0 && localStorage.setItem('idRes', '')
+  },[cart])
+
+  console.log(cart)
+
 //=================== adicionar item ao carrinho
     const addToCart = (product, idRestaurant)=>{
+      if(idRestaurant === localStorage.getItem('idRes') || localStorage.getItem('idRes') === ''){
+
       const index = cart.findIndex((qtd)=>{
-       if(qtd.name === product.name){
+          if(qtd.name === product.name){
            return true
        }else{
            return false
        }
       })
+
       if(index === -1){
         const obj = {...product, quantity:1, idRestaurant: idRestaurant}
         setCart([...cart, obj])
+        localStorage.setItem('idRes', `${idRestaurant}`)
+        toast.success("Produto adicionado.",{
+          autoClose: 1000 , 
+          icon:'😋'          
+         }); 
       }else{    
        const array = cart && cart.map(item=>{
           if(item.id === product.id){
             return {...product, quantity: item.quantity +1 }
-          }
-          return item
+          }        
+          return item      
         })
         toast.success("Produto adicionado.",{
           autoClose: 1000 , 
@@ -89,9 +107,14 @@ const postOrder = (id) => {
          });   
         setCart(array)  
       }
-      console.log(idRestaurant)
-   }
 
+      console.log(idRestaurant)
+    }else{
+      toast.warn('Não permitido adicionar produto de lojas diferentes.',
+     { autoClose: 1000})
+    }
+    
+  }
     
     //=================== função de alert para item removido do carrinho
   const notifyWarmProduct = () => {    

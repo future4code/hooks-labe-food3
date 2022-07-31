@@ -96,10 +96,11 @@ const FeedPage = (props) => {
     }
   })
 
+  console.log(categoryRestaurants)
 
-  const categoryRestaurantMap = restaurants && restaurants.map(rest => {
-    return <S.DivMenuPrincipal onClick={() => getCategory(rest.category)} seletectCategory={seletectCategory} restCategory={rest.category} key={rest.id}>
-      <S.Pa>{rest.category}</S.Pa>
+  const categoryRestaurantMap = categoryRestaurants && categoryRestaurants.map(category => {
+    return <S.DivMenuPrincipal onClick={() => getCategory(category)} seletectCategory={seletectCategory} restCategory={category} key={category.id}>
+      <S.Pa>{category}</S.Pa>
       </S.DivMenuPrincipal>
   })
 

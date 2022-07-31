@@ -24,17 +24,16 @@ const RestaurantePage = () => {
   const { restaurants, cart } = states;
   const { setRestaurants } = setters;
   const { addToCart, removeToCart } = functions;
-
-
+  
   // está puxando todos os restaurantes do globalState
   // const restaurants = useContext(GlobalContext);
-
+  
   // filtrando o restautante do estado global pelo nome
   const filterRest = restaurants.filter((restaurantes) => {
-    return restaurantes.name === params.name;
+    return restaurantes.name === params.name;    
   });
-
-
+  
+  
   // desistruturei para ficar um objeto em vez de array, obj dos restaurantes
   restaurants.length === 0 && navigate("/feed")
   
@@ -43,7 +42,10 @@ const RestaurantePage = () => {
     restaurantsPage()
   }, [params.name]);
   
-  const [objRestaurante] = filterRest && filterRest;
+  const [objRestaurante] = filterRest && filterRest;  
+  
+  // localStorage.setItem('idRes', objRestaurante.id )
+
 
   const restaurantsPage = async () =>{
     const url = ` ${URL_BASE}/restaurants/${objRestaurante.id}`
@@ -70,13 +72,11 @@ const RestaurantePage = () => {
 
   // ============ rederizando todos os productos DO RESTAURANTE 
 
-  cart && cart.map(prod=>{
-    if(products.includes(prod.name)){
-      setProducts({...products, prod})
-    }
-  })
-
-  console.log("loop")
+  // cart && cart.map(prod=>{
+  //   if(products.includes(prod.name)){
+  //     setProducts({...products, prod})
+  //   }
+  // })
 
   const mapProducts =
     products &&
@@ -94,9 +94,9 @@ const RestaurantePage = () => {
             </S.ContText>
           </S.Card>
           <S.Buttons>
-                <S.Menos onClick={() => removeToCart(product, product.id)}>-
+                <S.Menos onClick={() => removeToCart(product, objRestaurante.id)}>-
                 </S.Menos>  
-                <S.Mais onClick={() => addToCart(product, product.id)}>+
+                <S.Mais onClick={() => addToCart(product, objRestaurante.id)}>+
                 </S.Mais>  
           </S.Buttons>
                             
