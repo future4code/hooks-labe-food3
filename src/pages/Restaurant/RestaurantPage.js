@@ -21,9 +21,10 @@ const RestaurantePage = () => {
   const [selectCategory, setSelectCategory] = useState("");
   const [restaurant, setRestaurant] = useState([]);
   const { states, setters, functions } = useContext(GlobalContext);
-  const { restaurants } = states;
+  const { restaurants, cart } = states;
   const { setRestaurants } = setters;
   const { addToCart, removeToCart } = functions;
+
 
   // está puxando todos os restaurantes do globalState
   // const restaurants = useContext(GlobalContext);
@@ -33,11 +34,16 @@ const RestaurantePage = () => {
     return restaurantes.name === params.name;
   });
 
+
   // desistruturei para ficar um objeto em vez de array, obj dos restaurantes
-  const [objRestaurante] = filterRest;
+  restaurants.length === 0 && navigate("/feed")
+  
+  // requisição de produtos
   useEffect(() => {
     restaurantsPage()
-  }, [filterRest]);
+  }, [params.name]);
+  
+  const [objRestaurante] = filterRest && filterRest;
 
   const restaurantsPage = async () =>{
     const url = ` ${URL_BASE}/restaurants/${objRestaurante.id}`
@@ -52,6 +58,7 @@ const RestaurantePage = () => {
             setProducts(response.data.restaurant.products);          
     } catch (error) {
         console.log("Algo deu errado")
+        navigate('/feed')
     }
      
   }
@@ -62,6 +69,15 @@ const RestaurantePage = () => {
   };
 
   // ============ rederizando todos os productos DO RESTAURANTE 
+
+  cart && cart.map(prod=>{
+    if(products.includes(prod.name)){
+      setProducts({...products, prod})
+    }
+  })
+
+  console.log("loop")
+
   const mapProducts =
     products &&
     products.map((product) => {

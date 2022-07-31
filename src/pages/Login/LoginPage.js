@@ -15,12 +15,11 @@ import { GlobalContext } from "../../global/GlobalContext";
 const LoginPage = () => {
 
   const navigate = useNavigate();
-  const {states,setters, functions} = useContext(GlobalContext)
-  const {setToken} = setters
-  const {token} = states
+  const { states, setters, functions } = useContext(GlobalContext)
+  
 
 
-// ====================== userform
+  // ====================== userform
   const [form, onChange, clear] = useForm({
     email: "",
     password: "",
@@ -29,75 +28,76 @@ const LoginPage = () => {
 
   // =================== mostrar e esconder senha 
   const [viewPass, setViewPass] = useState(false);
-  
+
   const showPass = () => {
     setViewPass(!viewPass);
   };
 
-// ============== preventform
+  // ============== preventform
   const onSubmitForm = (ev) => {
-    ev.preventDefault();  
+    ev.preventDefault();
     handleUser();
   };
 
-  useEffect(()=>{
-  },[])
+  useEffect(() => {
+  }, [])
 
-  const handleUser =  () => {
-     axios
+  const handleUser = () => {
+    axios
       .post(`${URL_BASE}/login`, form)
-      .then((res) => {        
+      .then((res) => {
         if (res.data.user.hasAddress) {
           localStorage.setItem("token", res.data.token);
+          
+          navigate("/feed");
           toast.success("Login realizado com sucesso!", {
-                 autoClose: 1000,
-                 icon: '😍'
-                });  
-                setToken(res.data.token)           
-                navigate("/feed");              
-        }else{
-          toast.warn("Cadastre seu endereço.", {      
             autoClose: 1000,
-            icon: '📝'   
+            icon: '😍'
+          });
+        } else {
+          toast.warn("Cadastre seu endereço.", {
+            autoClose: 1000,
+            icon: '📝'
           });
           navigate('/registration/address-registration')
         }
       })
       .catch((err) => {
         toast.warn("Não registrado, faça seu cadastro.", {
-           autoClose: 1000           
-        });        
+          autoClose: 1000
+        });
+        console.log(err)
       });
   };
 
 
   return (
-    <S.Main>    
+    <S.Main>
       <S.Img src={logo} />
       <S.Pa>Entrar</S.Pa>
-      <S.Form onSubmit={onSubmitForm} >      
-          <M.TextField         
-            name="email"
-            placeholder="exemplo@email.com"
-            label="E-mail"
-            inputProps={{ pattern: "^[A-Za-z0-9.]+@[A-Za-z0-9]+\.([a-z]+)?$" }}
-            fullWidth
-            value={form.email}
-            onChange={onChange}
-            autoFocus
-            required
-          />
-          <M.TextField
-            placeholder="Mínimo 6 dígitos"
-            label="Senha"
-            inputProps={{ pattern: "[A-Za-z0-9]{6,}" }}            
-            fullWidth
-            name={"password"}
-            value={form.password}
-            onChange={onChange}
-            type={viewPass ? "text" : "password"}            
-            required
-          />       
+      <S.Form onSubmit={onSubmitForm} >
+        <M.TextField
+          name="email"
+          placeholder="exemplo@email.com"
+          label="E-mail"
+          inputProps={{ pattern: "^[A-Za-z0-9.]+@[A-Za-z0-9]+\.([a-z]+)?$" }}
+          fullWidth
+          value={form.email}
+          onChange={onChange}
+          autoFocus
+          required
+        />
+        <M.TextField
+          placeholder="Mínimo 6 dígitos"
+          label="Senha"
+          inputProps={{ pattern: "[A-Za-z0-9]{6,}" }}
+          fullWidth
+          name={"password"}
+          value={form.password}
+          onChange={onChange}
+          type={viewPass ? "text" : "password"}
+          required
+        />
         <S.Button type="submit" >Entrar</S.Button>
       </S.Form>
       <S.Pa onClick={() => navigate("/registration")}>

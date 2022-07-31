@@ -25,7 +25,7 @@ export const GlobalState = (props) => {
 
 
 // =========================== axios q busca todos os restaurantes 
-   const getRestaurants =()=>{  
+   const getRestaurants = ( ) =>{  
       axios.get(`${URL_BASE}/restaurants`, header)
       .then((res)=>{
        setRestaurants(res.data.restaurants)       

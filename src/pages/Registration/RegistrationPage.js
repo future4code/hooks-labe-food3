@@ -87,7 +87,6 @@ const CadastroPage = () => {
             onChange={handleChange}
             value={form.cpf}
             name={"cpf"}
-            type="number"
             inputProps={{ pattern: "[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$" }}
             placeholder="888.888.888-88"
             label="CPF"

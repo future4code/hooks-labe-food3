@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import useCustomProfile from "../../hooks/useProfile";
@@ -19,20 +19,25 @@ import { useProtected } from "../../hooks/useProtected";
 export default function ProfilePage() {
   const navigate = useNavigate();
   const [data] = useCustomProfile(`${URL_BASE}/profile`);
+  const [history, setHistory] = useState("")
   const { name, address, cpf, email, id } = data;
   useProtected()
 
- 
+ useEffect(()=>{
+  historyOrder()
+ }, [])
+
   const historyOrder = () => {
     axios
       .get(`${URL_BASE}/orders/history`, headers)
       .then((res) => {
-        console.log(res);
+        setHistory(res.data)
       })
       .catch((err) => {
         console.log(err.res);
       });
   };
+  console.log(history)
 
   return (
     <div>  
