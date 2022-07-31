@@ -16,9 +16,7 @@ justify-content: center;
 align-items: center;
 width: 100vw;
 height: 4rem;
-/* color: #b8b8b8; */
 background-color: #eeeeee;
-/* padding:10px; */
 `
 
 
@@ -36,15 +34,11 @@ export const CardProduct = styled.div`
     height: 7rem;
     border: 1px solid #b8b8b8;
     border-radius: 8px;
-    /* margin-bottom: 1rem; */
-    /* background-color: red; */
 ` ;
 
 export const TextSuperior = styled.div`
     margin-top: 1.125rem;
     margin-bottom: 0.25rem;
-    /* height: 1.125rem; */
-    /* width: 10.438rem; */
     font-size: 1rem;
     color: #e8222e;
     letter-spacing: -0.39px;
@@ -71,7 +65,6 @@ display: flex;
 justify-content: center;
 align-items: center;
 width: 3rem;
-/* border-right: 0.12px solid #e02020; */
 font-size: 0.75rem;
 letter-spacing: -0.29px;
 `;
@@ -107,7 +100,6 @@ export const Descri = styled.div`
     color: #b8b8b8;
     letter-spacing: -0.29px;
     margin-bottom: 0.25rem;
-    /* background-color: blue; */
 `
 
 export const Cont = styled.div`
@@ -134,8 +126,6 @@ export const Dad = styled.div`
     width: 3rem;
     border: 1px solid #e02020;
     margin-left: 9.46rem;
-    /* margin-bottom: 1rem; */
-    /* margin-top: -1.6rem; */
     border-radius: 0px 8px 0px 8px;
     height: 1.938rem;
     background-color: #F39096;
@@ -145,9 +135,7 @@ export const Dad = styled.div`
 
     export const SubCont = styled.div`
     display: flex;
-    /* flex-wrap: wrap; */
     flex-direction: column;
-    /* background-color: red; */
     margin-left: -2rem;
     margin-top: -2rem;
     padding-left: 1rem;
@@ -162,20 +150,16 @@ export const Button = styled.button`
  background-color: #e8222e;
  border: none;
  font-weight: 600;
- /* padding-bottom: 1rem; */
- margin-bottom: 1rem;
+ margin-bottom: 5rem;
  ` 
  export const Bot = styled.div`
  display: flex;
 justify-content: flex-end;
-/* background-color: red; */
 width: 20.5rem;
-/* align-items: center; */
  `
 
 
  export const Bot1 = styled.div`
- /* background-color: blue; */
  display: flex;
  justify-content: space-between;
  width: 20.5rem;
@@ -183,10 +167,8 @@ width: 20.5rem;
  padding-bottom: 1.563rem;
  `
  export const Bot2 = styled.div`
- /* background-color: green; */
  width: 20.5rem;
  flex-direction: column;
- /* height: max-content; */
  `
 
  export const Input = styled.input`
@@ -195,8 +177,6 @@ width: 20.5rem;
  ` 
  export const Label = styled.label`
  margin-left: 0.5rem;
- /* padding-top: 1rem; */
- /* background-color: blue; */
  `
  export const DivInput = styled.div`
  margin-bottom: 1rem;

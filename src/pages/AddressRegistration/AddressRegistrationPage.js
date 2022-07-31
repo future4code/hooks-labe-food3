@@ -22,13 +22,15 @@ import { TextField } from "@mui/material";
 import { Form } from "../Login/styledLoginPage";
 import styled from "styled-components";
 
+
 const AlignPa = styled.div`
 display: flex;
 justify-content: center;
 `
 
 const CadastroEnderecoPage = () => {
-
+  
+  useProtected()
   const params = useParams()
  const navigate = useNavigate()
   const [form, handleChange, clear] = useForm(

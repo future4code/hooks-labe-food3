@@ -22,6 +22,7 @@ export default function CarrinhoPage() {
   const { addToCart, removeToCart, postOrder } = functions;
   const [data ,address] = useCustomProfile(`${URL_BASE}/profile/address`)
    const {city , complement , neighbourhood , number , state , street } = address
+   useProtected()
 
 
   //============= soma o valor total dos itens no carrinho
@@ -30,32 +31,15 @@ export default function CarrinhoPage() {
     totalPrice += Math.round(i.price * i.quantity);
     console.log(totalPrice);
   }
-  // const [form, onChange, clear] = useForm({
-  //   paymentMethod: []  
-  // });
-
 
 
 const [payment, setPayment] = useState("");
 const [card, setCard] = useState(false);
 const [money, setMoney] = useState(false);
-// const [checkedMoney, setCheckedMoney] = useState(false);
-// const [checkedCard, setCheckedCard] = useState(false);
-
-
-// const PaymentMetodMoney =()=>{  
-//   setMoney(!money);
-//   setMoney(false)
-//   setPayment("Dinheiro") if(payment === "Dinheiro"){}
-// }
 
 console.log(payment)
 
-// const PaymentMetodCard=()=>{  
-//     setCard(!card);
-//     setMoney(false);
-//     setPayment("Cartao")
-// } 
+
 
 
 const PaymentMetod=(ev)=>{  
@@ -98,8 +82,8 @@ const PaymentMetod=(ev)=>{
             </S.ContCardProduct>
           );
         })}
-
-      <S.Bot>Frete R$</S.Bot>
+{/* =================================== FREEEETE */}
+      <S.Bot>Frete R$  </S.Bot>
       <S.Bot1>
         SUBTOTAL: <div>{totalPrice}</div>
       </S.Bot1>
@@ -108,24 +92,18 @@ const PaymentMetod=(ev)=>{
         <div>Forma de pagamento</div>
         <hr />
         <div>
-          <S.Input type="radio" 
-          //  name="paymentMethod"
-          //  value={checkedMoney}
+          <S.Input type="radio"         
           name="payment"
-          value="Dinheiro"
-          //  checked={money}
+          value="Dinheiro"          
            onChange={PaymentMetod}
            required
           />
           <S.Label>Dinheiro</S.Label>
         </div>
         <S.DivInput>
-          <S.Input type="radio" 
-          //  name="paymentMethod"
-          //  value={checkedCard}
+          <S.Input type="radio"     
           name="payment"
-          value="Cartao"
-          //  checked={card}
+          value="Cartao"       
            onChange={PaymentMetod}
            required
           />

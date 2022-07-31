@@ -11,6 +11,7 @@ import * as S from "./styledProfilePage";
 import MudarEndereço from "../../components/MudarEndereço";
 import { BtBack, Top } from "../Registration/styledRegistrationPage";
 import backIcon from "../../imagens/icons/back-icon.png"
+import { useProtected } from "../../hooks/useProtected";
 
 
 
@@ -19,8 +20,9 @@ export default function ProfilePage() {
   const navigate = useNavigate();
   const [data] = useCustomProfile(`${URL_BASE}/profile`);
   const { name, address, cpf, email, id } = data;
+  useProtected()
 
-  console.log(data);
+ 
   const historyOrder = () => {
     axios
       .get(`${URL_BASE}/orders/history`, headers)
@@ -31,6 +33,7 @@ export default function ProfilePage() {
         console.log(err.res);
       });
   };
+
   return (
     <div>  
  

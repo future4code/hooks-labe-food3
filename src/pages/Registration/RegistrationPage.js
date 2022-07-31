@@ -122,6 +122,7 @@ const CadastroPage = () => {
             value={userConfirmSenha}
             name={"password"}
             placeholder="Confirmar"
+            label="Confirmar senha"
             fullWidth
             required
           />

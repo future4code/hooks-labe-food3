@@ -11,6 +11,12 @@ import perfilIcon from "../imagens/icons/perfil-icon.png";
 import perfilIcon2 from "../imagens/icons/perfil-icon2.png";
 import notfound from "../imagens/notfound.gif"
 
+const Main = styled.div`
+display: flex;
+justify-content: center;
+padding-top: 12rem;
+`
+
 const Img = styled.img`
 width: 22.5rem;
 height: auto;
@@ -21,9 +27,9 @@ const NotSearched = () => {
     const navigate = useNavigate()
 
   return (
-    <div>
-    <Img src={notfound}/>
-    </div>
+    <Main>
+    Restaurante não encontrado.
+    </Main>
   );
 };
 

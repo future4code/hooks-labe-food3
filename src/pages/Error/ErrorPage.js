@@ -14,7 +14,6 @@ export default function ErrorPage() {
     return (
     <div>
       Error {teste}
-
       <button onClick={()=>navigate("/feed")}>Início</button>
     </div>
   );

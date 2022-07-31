@@ -13,23 +13,30 @@ import NotSearched from "../../components/notSearched";
 import search from "../../imagens/icons/search.png"
 import { AccountCircle } from "@mui/icons-material";
 import SearchIcon from '@mui/icons-material/Search';
+import Loading from "../../components/Loading";
 
 
 // ================================= inicio do componente
 
 const FeedPage = (props) => {
   const navigate = useNavigate()
-
-  // useProtected()
+  useProtected()
+  
   const [seletectCategory, setSeletectCategory] = useState('')
   const [filtredRestaurant, setFiltredRestaurant] = useState([])
   const [searchRestaurant, setSearchRestaurant] = useState([])
   const [query , setQuery] = useState('')
-  const {states,setters} = useContext(GlobalContext)
-  const { restaurants }  =  states
+  const {states,setters, functions} = useContext(GlobalContext)
+  const { restaurants, token }  =  states
   const  {setRestaurants} = setters
-  
+  const {getRestaurants} = functions
 
+  
+  useEffect(()=>{
+    getRestaurants()
+  },[])
+
+console.log(token)
 
   useEffect(() => {
     const array = restaurants && restaurants.map((lojas) => {
@@ -41,14 +48,13 @@ const FeedPage = (props) => {
   }, [seletectCategory])
 
     
-  const mapRestaurants = restaurants && restaurants.map((lojas) => {
-    return (
+  const mapRestaurants = restaurants && restaurants.map((lojas) => (
       <CardRestaurantFeed key={lojas.id} restaurants={lojas} categorias={lojas.category} />
     )
-  })
+  )
 
 
-// ===============================================
+// ============================ filtro pelo search
   
   useEffect(() => {
     const array = restaurants && restaurants.map((lojas) => {
@@ -68,7 +74,7 @@ const FeedPage = (props) => {
 
 
 
-// =============================================================
+// ================================ reataurantes filtrados por nome
 
   const filterRestaurantsMap = filtredRestaurant && filtredRestaurant.map((lojas) => {
     return (
@@ -76,18 +82,14 @@ const FeedPage = (props) => {
     )
   })
 
-  console.log(states)
-  // console.log(restaurants)
 
-
-  // 
 
 
   
   // ======================== filtro categoria
 
   const categoryRestaurantMap = restaurants && restaurants.map(rest => {
-    return <S.DivMenuPrincipal onClick={() => getCategory(rest.category)} seletectCategory={seletectCategory} restCategory={rest.category} >
+    return <S.DivMenuPrincipal onClick={() => getCategory(rest.category)} seletectCategory={seletectCategory} restCategory={rest.category} key={rest.id}>
       <S.Pa>{rest.category}</S.Pa>
       </S.DivMenuPrincipal>
   })
@@ -139,7 +141,7 @@ const FeedPage = (props) => {
         {categoryRestaurantMap}      
         </S.SubMenu>
         </S.Menu>
-     { query ? (mapSearch.length > 0 ?  mapSearch : <NotSearched/> ) :  (  seletectCategory ? filterRestaurantsMap :  mapRestaurants   )  }
+     { query ? (mapSearch.length > 0 ?  mapSearch : <NotSearched/> ) :  (  seletectCategory ? filterRestaurantsMap :  (mapRestaurants.length > 0 ? mapRestaurants : <Loading/> )  )   }
       <MenuBotton  />
     </S.Master>
   );

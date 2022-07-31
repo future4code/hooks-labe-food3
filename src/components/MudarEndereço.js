@@ -43,24 +43,7 @@ const MudarEndereço = ()=>{
         ev.preventDefault();
       };
     
-      const notifySucessUser = () => {
-        const customId = "custom-id-yes";
-        toast.success("Endereço Modificado com Sucesso!", {
-          toastId: customId,
-          position: toast.POSITION.TOP_RIGHT,
-          
-        });
-      }
-    
-      const notifyWarnUser = () => {
-        const customId = "custom-id-yes";
-        toast.warn("Tente novamente.", {
-          toastId: customId,
-          position: toast.POSITION.TOP_RIGHT,
-          
-        });
-      }
-    
+      
     
       const takeAdress = () => {
         const headers = {
@@ -71,16 +54,21 @@ const MudarEndereço = ()=>{
         axios
           .put(`${URL_BASE}/address`, form, headers)
           .then((res) => {
-            console.log(res)
             localStorage.setItem("tokenEndereco", res.data.token);
-            notifySucessUser()
+            toast.success("Endereço Modificado com Sucesso!", {
+              autoClose: 1000                  
+            });
             navigate('/profile')
           })
-          .catch((err) => {
-            console.log(err.response);
-            notifyWarnUser()
+          .catch((err) => {            
+            toast.warn("Tente novamente.", {          
+              autoClose:1000              
+            });
           });
       };
+
+
+      
       return (
         <div>
         <Top>
