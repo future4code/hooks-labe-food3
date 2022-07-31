@@ -155,6 +155,7 @@ export const Button = styled.button`
  export const Bot = styled.div`
  display: flex;
 justify-content: flex-end;
+margin-top: 1rem;
 width: 20.5rem;
  `
 
