@@ -4,6 +4,8 @@ import { GlobalContext } from "./GlobalContext"
 import axios from 'axios'
 import {URL_BASE, headers} from "../constants/links"
 import LoginPage from "../pages/Login/LoginPage";
+import { Icon } from "@mui/material";
+import { navigate, useNavigate } from "react-router-dom";
 
 
 
@@ -12,16 +14,26 @@ import LoginPage from "../pages/Login/LoginPage";
 export const GlobalState = (props) => {
     const [restaurants , setRestaurants] = useState([])
     const [cart , setCart] = useState([])
-    useEffect(()=>{    
-      axios.get(`${URL_BASE}/restaurants`,headers)
+
+    
+//=================================    
+    const header = {
+     headers : {
+         auth :  localStorage.getItem("token")        
+     }
+    }
+
+
+// =========================== axios q busca todos os restaurantes 
+   const getRestaurants =()=>{  
+      axios.get(`${URL_BASE}/restaurants`, header)
       .then((res)=>{
-       setRestaurants(res.data.restaurants)
-       
+       setRestaurants(res.data.restaurants)       
       }).catch((err)=>{
         console.log(err);
       })
-    } , [])
-
+  } 
+    
 
 //==================== enviar o produto
 let stateId = ('')
@@ -71,22 +83,19 @@ const postOrder = (id) => {
           }
           return item
         })
-        notifySucessProduct()    
+        toast.success("Produto adicionado.",{
+          autoClose: 1000 , 
+          icon:'😋'          
+         });   
         setCart(array)  
       }
       console.log(idRestaurant)
    }
 
-   //=================== função de alert para item adicionado ao carrinho
-   const notifySucessProduct = () => {    
-     toast.success("Produto adicionado.", { autoClose: 200 }, {     
-       position: toast.POSITION.TOP_RIGHT      
-      });
-    }
     
     //=================== função de alert para item removido do carrinho
   const notifyWarmProduct = () => {    
-    toast.warn("Produto removido.", { autoClose: 200 }, {     
+    toast.warn("Produto removido.", { autoClose: 1000 }, {     
       position: toast.POSITION.TOP_RIGHT      
     });
   }
@@ -111,16 +120,11 @@ const postOrder = (id) => {
        console.log(cart)
       }
 
-// useEffect(()=>{
-//   axios.then(()=>{},[]);
-//   .catch(()=>{},[])
-// },[])
-        
 
 //======================== retorno dos estados globais
-    const states = { restaurants , cart}
+    const states = { restaurants , cart }
     const setters ={ setRestaurants , setCart }
-    const functions = {addToCart , removeToCart, postOrder}
+    const functions = {addToCart , removeToCart, postOrder, getRestaurants}
 
     return (
         <GlobalContext.Provider

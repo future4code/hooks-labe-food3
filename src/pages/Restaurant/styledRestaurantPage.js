@@ -46,6 +46,34 @@ export const Card = styled.div`
   border-radius: 8px;
 `;
 
+export const Buttons = styled.div`
+    display: flex;
+    width: 5.625rem;
+    justify-content: center;   
+    border: 1px solid #e02020;
+    border-radius: 8px 0px 8px 0px;
+    height: 1.938rem;
+    margin-top: -2.05rem;
+    margin-left: 14.9rem;
+`
+export const Mais = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+border-left:  1px solid #e02020;
+font-size: 0.75rem;
+width: 3rem;
+`;
+
+export const Menos = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 3rem;
+font-size: 0.75rem;
+letter-spacing: -0.29px;
+`;
+
 export const Img = styled.img`
   width: 6rem;
   height: 7rem;

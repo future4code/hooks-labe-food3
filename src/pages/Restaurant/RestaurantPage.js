@@ -9,17 +9,17 @@ import { exemplo } from "./styledRestaurantPage";
 import { navigate, useNavigate } from "react-router-dom";
 import * as S from "./styledRestaurantPage";
 import MenuBotton from "../../components/MenuBotton";
+import Loading from "../../components/Loading";
 
 const RestaurantePage = () => {
   const navigate = useNavigate();
   // passei o nome do restaurante pelo path
   const params = useParams();
-
+  useProtected()
   const [products, setProducts] = useState();
   const [filterProducts, setFilterProducts] = useState([]);
   const [selectCategory, setSelectCategory] = useState("");
   const [restaurant, setRestaurant] = useState([]);
-  // const  [restaurants ,cart , setCart]= useContext(GlobalContext)
   const { states, setters, functions } = useContext(GlobalContext);
   const { restaurants } = states;
   const { setRestaurants } = setters;
@@ -35,9 +35,6 @@ const RestaurantePage = () => {
 
   // desistruturei para ficar um objeto em vez de array, obj dos restaurantes
   const [objRestaurante] = filterRest;
-  // console.log(objRestaurante);
-
-  // console.log(restaurant)
   useEffect(() => {
     restaurantsPage()
   }, [filterRest]);
@@ -64,7 +61,7 @@ const RestaurantePage = () => {
     );
   };
 
-  // ============ rederizando todos os productos NO RESTAURANTE 
+  // ============ rederizando todos os productos DO RESTAURANTE 
   const mapProducts =
     products &&
     products.map((product) => {
@@ -76,20 +73,44 @@ const RestaurantePage = () => {
               <S.Title>{product.name}</S.Title>
               <S.Description>{product.description}</S.Description>              
               <S.OrgPA>
-                <S.Price>R${product.price}</S.Price>
-                  
+                <S.Price>R${product.price}</S.Price>                  
               </S.OrgPA>
             </S.ContText>
           </S.Card>
-                <S.Add onClick={() => addToCart(product, objRestaurante.id)}>adicionar
-                </S.Add>               
+          <S.Buttons>
+                <S.Menos onClick={() => removeToCart(product, product.id)}>-
+                </S.Menos>  
+                <S.Mais onClick={() => addToCart(product, product.id)}>+
+                </S.Mais>  
+          </S.Buttons>
+                            
         </S.MainCard>
       );
     });
 
   //=============================================
 
-  // console.log(restaurant);
+  // rederizando os productos filtrados
+  const productsFilter =
+    filterProducts &&
+    filterProducts.map((product) => {
+      return (
+        <S.MainCard key={product.id}>
+          <S.Card>
+            <S.Img src={product.photoUrl} />
+
+            <S.ContText>
+              <S.Title>{product.name}</S.Title>
+              <S.Description>{product.description}</S.Description>
+              <S.OrgPA>
+                <S.Price>R${product.price}</S.Price>
+              </S.OrgPA>
+            </S.ContText>
+          </S.Card>          
+          <S.Add onClick={() => addToCart(product, objRestaurante.id)}>adicionar</S.Add>
+        </S.MainCard>
+      );
+    });
 
 
 
@@ -128,34 +149,12 @@ const RestaurantePage = () => {
     }
   };
 
-  // rederizando os productos filtrados
-  const productsFilter =
-    filterProducts &&
-    filterProducts.map((product) => {
-      return (
-        <S.MainCard key={product.id}>
-          <S.Card>
-            <S.Img src={product.photoUrl} />
 
-            <S.ContText>
-              <S.Title>{product.name}</S.Title>
-              <S.Description>{product.description}</S.Description>
-              <S.OrgPA>
-                <S.Price>R${product.price}</S.Price>
-              </S.OrgPA>
-            </S.ContText>
-          </S.Card>
-          {/* ============================verificar o adicionamento desses itens no carrinho se está funcional  ==================*/}
-                <S.Add onClick={() => notifySucessProduct()}>adicionar</S.Add>
-        </S.MainCard>
-      );
-    });
-
-  // rederiza as categorias MENU
+  // rederiza as categorias MENU scroll
   const categoriasRedered =
     categoriasProduct &&
     categoriasProduct.map((category) => {
-      return <div onClick={() => getCategory(category)}>{category}</div>;
+      return <div onClick={() => getCategory(category)} key={category}>{category}</div>;
     });
 
   return (
@@ -181,7 +180,7 @@ const RestaurantePage = () => {
       </S.SubMenu>
       </S.Menu>
       {/* renderização das comidas escolhidas atraves de filtros */}
-      <S.Main>{selectCategory ? productsFilter : mapProducts}</S.Main>  
+      <S.Main>{ products ? (selectCategory ? productsFilter : mapProducts) : <Loading/> }</S.Main>  
     <MenuBotton/>
      
     </div>

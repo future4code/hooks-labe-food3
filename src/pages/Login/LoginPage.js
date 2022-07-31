@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 import { exemplo } from "./styledLoginPage";
 import { Email, Visibility, VisibilityOff } from "@mui/icons-material";
@@ -10,12 +10,15 @@ import axios from "axios";
 import { URL_BASE } from "../../constants/links";
 import useForm from "../../hooks/useForm";
 import * as M from "@mui/material";
+import { GlobalContext } from "../../global/GlobalContext";
 
 const LoginPage = () => {
 
   const navigate = useNavigate();
-  const tokenEndereco = localStorage.getItem("tokenEndereco");
-  const token = localStorage.getItem("token");
+  const {states,setters, functions} = useContext(GlobalContext)
+  const {setToken} = setters
+  const {token} = states
+
 
 // ====================== userform
   const [form, onChange, clear] = useForm({
@@ -26,6 +29,7 @@ const LoginPage = () => {
 
   // =================== mostrar e esconder senha 
   const [viewPass, setViewPass] = useState(false);
+  
   const showPass = () => {
     setViewPass(!viewPass);
   };
@@ -33,7 +37,7 @@ const LoginPage = () => {
 // ============== preventform
   const onSubmitForm = (ev) => {
     ev.preventDefault();  
-    handleUser()
+    handleUser();
   };
 
   useEffect(()=>{
@@ -42,14 +46,15 @@ const LoginPage = () => {
   const handleUser =  () => {
      axios
       .post(`${URL_BASE}/login`, form)
-      .then((res) => {
-        localStorage.setItem("token", res.data.token);
+      .then((res) => {        
         if (res.data.user.hasAddress) {
+          localStorage.setItem("token", res.data.token);
           toast.success("Login realizado com sucesso!", {
                  autoClose: 1000,
                  icon: '😍'
-          });
-          navigate("/feed");
+                });  
+                setToken(res.data.token)           
+                navigate("/feed");              
         }else{
           toast.warn("Cadastre seu endereço.", {      
             autoClose: 1000,
@@ -60,8 +65,7 @@ const LoginPage = () => {
       })
       .catch((err) => {
         toast.warn("Não registrado, faça seu cadastro.", {
-           autoClose: 1000,
-           icon: '📝',
+           autoClose: 1000           
         });        
       });
   };

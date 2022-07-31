@@ -16,6 +16,7 @@ const ProfileEditPage= ()=> {
   const [data] = useCustomProfile(`${URL_BASE}/profile`)
   const {name , address , cpf , email , id} = data.user
   const navigate = useNavigate()
+  useProtected()
  
   
  console.log(data)
