@@ -12,6 +12,7 @@ import MudarEndereço from "../../components/MudarEndereço";
 import { BtBack, Top } from "../Registration/styledRegistrationPage";
 import backIcon from "../../imagens/icons/back-icon.png"
 import { useProtected } from "../../hooks/useProtected";
+import { Button } from "@mui/material";
 
 
 
@@ -64,7 +65,11 @@ export default function ProfilePage() {
     <div>  
  
       <S.Title>Meu perfil</S.Title>
-    
+      <S.ContLogout>
+        <S.Logout>
+      <Button variant="contained" color="primary" size="small" onClick={()=>logout()}>LOGOUT</Button>
+        </S.Logout>    
+      </S.ContLogout>
       <S.ContainerProfile>
         <S.Cont205>
         <S.NameProfile>
@@ -84,9 +89,9 @@ export default function ProfilePage() {
       <S.DivEndress>       
         <S.Cont206> 
           <S.Cont02>
-            <div>
+            <S.Endress>
             Endereço cadastrado
-            </div>
+            </S.Endress>
             <div>  {address}
               </div>
           </S.Cont02>        
@@ -97,13 +102,13 @@ export default function ProfilePage() {
           </S.Cont206>    
       </S.DivEndress>
 
+      <S.ContHistory>
       <S.History>Histórico de pedidos</S.History>
-      <S.Hr />        
+      <S.Hr />
+      </S.ContHistory>
       <S.Nothing>
         {mapHistory}
       </S.Nothing>
-      <button onClick={() => historyOrder()}>Testandoo</button>
-      <button onClick={()=>logout()}>LOGOUT</button>
       <MenuBotton />
     </div>
   );

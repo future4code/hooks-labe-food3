@@ -81,7 +81,7 @@ const PaymentMetod=(ev)=>{
           );
         })}
 {/* =================================== FREEEETE */}
-      <S.Bot>Frete R$  </S.Bot>
+      <S.Bot>Frete R$ "valor total somado" </S.Bot>
       <S.Bot1>
         SUBTOTAL: <div>{totalPrice}</div>
       </S.Bot1>

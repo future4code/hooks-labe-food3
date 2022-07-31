@@ -28,6 +28,21 @@ export const ContainerProfile = styled.div `
     /* padding: 5em; */
     /* justify-content: space-between; */
     `
+  
+  export const ContLogout = styled.div `
+  display: flex;
+  justify-content: center;
+  margin-top:-2.3rem;
+  `
+
+  export const Logout = styled.div `
+  display: flex;
+    /* flex-direction: row-reverse; */
+width: 20.5rem;
+/* justify-content: center; */
+  `
+
+
     export const Cont205 = styled.div `
     margin: 0 auto;
     width: 20.5rem;
@@ -35,6 +50,9 @@ export const ContainerProfile = styled.div `
     export const Cont02 = styled.div `
     display: flex;
     flex-direction: column;
+    `
+    export const Endress = styled.div `
+    color:#b8b8b8
     `
 
     export const Cont206 = styled.div `
@@ -51,10 +69,17 @@ export const ContainerProfile = styled.div `
     background-color: #eee;
     height: 4.75rem;
     `
+export const ContHistory = styled.div `
+display: flex;
+flex-direction: column;
+/* justify-content: center; */
+align-items: center;
+`
+
 export const History = styled.div `
     display: flex;
-    padding-left: 1rem;
     padding-top: 1rem;  
+    width: 20.5rem;
     /* width: 20.5rem; */
     /* border-bottom: 1px solid black; */
     /* justify-content: center; */
@@ -62,9 +87,7 @@ export const History = styled.div `
     export const Hr = styled.div `
     display: flex;
    margin: 0 auto;
-   margin-left: 1rem ;
-   margin-right: 1rem;
-    /* width: 20.5rem; */
+    width: 20.5rem;
     border-bottom: 1px solid black;
     `
 
@@ -75,8 +98,9 @@ align-items: center;
 /* width: 22.5rem; */
 flex-direction: column;
 margin-top: 1rem;
+padding-bottom: 3.2rem;
+/* margin-bottom: 5rem; */
 /* margin-left: 1rem; */
-margin-bottom: 1.9rem;
 `
 
 export const Cont = styled.div`
@@ -86,7 +110,7 @@ justify-content: center;
 border: 1px solid #b8b8b8;
 border-radius: 8px;
 width: 20.5rem;
-padding: 1rem 1rem 1rem 0;
+padding: 1rem 0;
 /* height: 6.375rem; */
 margin-bottom: 1rem;
 /* margin-left: 1rem; */
