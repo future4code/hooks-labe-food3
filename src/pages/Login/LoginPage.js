@@ -1,150 +1,112 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 import { exemplo } from "./styledLoginPage";
 import { Email, Visibility, VisibilityOff } from "@mui/icons-material";
 import styled from "styled-components";
 import { navigate, useNavigate } from "react-router-dom";
 import logo from "../../imagens/logo.png";
-import {
-  Main,
-  Pa,
-  Img,
-  Button,
-  Form,
-  Input,
-  FieldSize,
-} from "./styledLoginPage";
+import * as S from "./styledLoginPage";
 import axios from "axios";
 import { URL_BASE } from "../../constants/links";
 import useForm from "../../hooks/useForm";
-import {
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  TextField,
-} from "@mui/material";
+import * as M from "@mui/material";
+import { GlobalContext } from "../../global/GlobalContext";
 
 const LoginPage = () => {
+
   const navigate = useNavigate();
-  const tokenEndereco = localStorage.getItem("tokenEndereco");
-  const token = localStorage.getItem("token");
+  const { states, setters, functions } = useContext(GlobalContext)
+  
 
-  const [values, setValues] = React.useState({
-    password: "",
-    showPassword: false,
-  });
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
-  // const [inputEmail , setInputEmail] = useState("")
-  // const [inputSenha , setInputSenha] = useState("")
-  // const onChangeEmail = (event)=>{
-  //   setInputEmail(event.target.value)
-  // }
-  // const onChangeSenha = (event)=>{
-  //   setInputSenha(event.target.value)
-  // }
-
+  // ====================== userform
   const [form, onChange, clear] = useForm({
     email: "",
     password: "",
   });
 
-  const onSubmitForm = (ev) => {
-    ev.preventDefault();
-    // axios
-    //   .post(`${URL_BASE}/login`, form)
-    //   .then((res) => {
-    //     localStorage.setItem("token", res.data.token);
-    //     // console.log(res.data.user.hasAddress)
-    //     if (res.data.user.hasAddress) {
-    //       navigate("/feed");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     alert("Email ou senha incorreto.");
-    //     navigate("/cadastro");
-    //   });
-  };
 
-  const hundleUser = () => {
-    axios
-      .post(`${URL_BASE}/login`, form)
-      .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        if (res.data.user.hasAddress) {
-          navigate("/feed");
-        }
-      })
-      .catch((err) => {
-        alert("Usuário não cadastrado. Cadastre-se!");
-        navigate("/cadastro");
-      });
-  };
-
+  // =================== mostrar e esconder senha 
   const [viewPass, setViewPass] = useState(false);
 
   const showPass = () => {
     setViewPass(!viewPass);
   };
 
+  // ============== preventform
+  const onSubmitForm = (ev) => {
+    ev.preventDefault();
+    handleUser();
+  };
+
+  useEffect(() => {
+  }, [])
+
+  const handleUser = () => {
+    axios
+      .post(`${URL_BASE}/login`, form)
+      .then((res) => {
+        if (res.data.user.hasAddress) {
+          localStorage.setItem("token", res.data.token);
+          
+          navigate("/feed");
+          toast.success("Login realizado com sucesso!", {
+            autoClose: 1000,
+            icon: '😍'
+          });
+        } else {
+          toast.warn("Cadastre seu endereço.", {
+            autoClose: 1000,
+            icon: '📝'
+          });
+          navigate('/registration/address-registration')
+        }
+      })
+      .catch((err) => {
+        toast.warn("Não registrado, faça seu cadastro.", {
+          autoClose: 1000
+        });
+        console.log(err)
+      });
+  };
+
+
   return (
-    <Main>
-      <Img src={logo} />
-      <Pa>Entrar</Pa>
-      <Form onSubmit={onSubmitForm}>
-        <FieldSize>
-          <TextField
-            name="email"
-            placeholder="email@email.com"
-            label="E-mail"
-            inputProps={{ pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$" }}
-            fullWidth
-            value={form.email}
-            onChange={onChange}
-            required
-          >
-          </TextField>
-        </FieldSize>
-        {/* // ======================================  */}
-        <FieldSize>
-          <TextField
-            placeholder="Mínimo 6 caracteres"
-            label="Senha"
-            inputProps={{ pattern: "[A-Za-z'.+]{6,}" }}
-            title="Mínimo 6 caracteres"
-            fullWidth                     
-              name={"password"}
-              value={form.password}
-              onChange={onChange}              
-              type={viewPass ? "text" : "password"}
-              required            
-          >            
-            <button onClick={showPass}>BT</button>
-          </TextField>
-        </FieldSize>
-        <Button onClick={()=>hundleUser()}>Entrar</Button>
-      </Form>
-      <Pa onClick={() => navigate("/cadastro")}>
+    <S.Main>
+      <S.Img src={logo} />
+      <S.Pa>Entrar</S.Pa>
+      <S.Form onSubmit={onSubmitForm} >
+        <M.TextField
+          name="email"
+          placeholder="exemplo@email.com"
+          label="E-mail"
+          inputProps={{ pattern: "^[A-Za-z0-9.]+@[A-Za-z0-9]+\.([a-z]+)?$" }}
+          fullWidth
+          value={form.email}
+          onChange={onChange}
+          autoFocus
+          required
+        />
+        <M.TextField
+          placeholder="Mínimo 6 dígitos"
+          label="Senha"
+          inputProps={{ pattern: "[A-Za-z0-9]{6,}" }}
+          fullWidth
+          name={"password"}
+          value={form.password}
+          onChange={onChange}
+          type={viewPass ? "text" : "password"}
+          required
+        />
+        <S.Button type="submit" >Entrar</S.Button>
+      </S.Form>
+      <S.Pa onClick={() => navigate("/registration")}>
         Não possui cadastro?
         <span> Clique aqui.</span>
-      </Pa>
-    </Main>
+      </S.Pa>
+    </S.Main>
   );
 };
+
 
 export default LoginPage;

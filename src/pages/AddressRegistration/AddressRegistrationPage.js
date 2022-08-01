@@ -16,14 +16,21 @@ import {
 } from "./styledAddressRegistration";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useForm from "../../hooks/useForm"
+import { toast } from "react-toastify";
+import backIcon from "../../imagens/icons/back-icon.png"
+import { TextField } from "@mui/material";
+import { Form } from "../Login/styledLoginPage";
+import styled from "styled-components";
+
+
+const AlignPa = styled.div`
+display: flex;
+justify-content: center;
+`
 
 const CadastroEnderecoPage = () => {
-  // const [userStreet, setUserStreet] = useState("");
-  // const [userNumber, setUserNumber] = useState("");
-  // const [userBairro, setUserBairro] = useState("");
-  // const [userState, setUserState] = useState("");
-  // const [userCity, setUserCity] = useState("");
-  // const [userComplement, setUserComplement] = useState("");
+  
+  useProtected()
   const params = useParams()
  const navigate = useNavigate()
   const [form, handleChange, clear] = useForm(
@@ -37,41 +44,15 @@ const CadastroEnderecoPage = () => {
     }
   )
 
-  // const takeStreet = (event) => {
-  //   setUserStreet(event.target.value);
-  // };
-  // const takeNumber = (event) => {
-  //   setUserNumber(event.target.value);
-  // };
-  // const takeBairro = (event) => {
-  //   setUserBairro(event.target.value);
-  // };
-  // const takeState = (event) => {
-  //   setUserState(event.target.value);
-  // };
-  // const takeCity = (event) => {
-  //   setUserCity(event.target.value);
-  // };
-  // const takeComplement = (event) => {
-  //   setUserComplement(event.target.value);
-  // };
+
+  // ========= prevent default
 
   const onSubmitForm = (ev) => {
     ev.preventDefault();
   };
 
-  const takeAdress = () => {
 
-    // useProtected()
-    
-    // const body = {
-    //   street: userStreet,
-    //   number: userNumber,
-    //   neighbourhood: userBairro,
-    //   city: userCity,
-    //   state: userState,
-    //   complement: userComplement,
-    // };
+  const takeAdress = () => {
     const headers = {
       headers: {
         auth: localStorage.getItem("token"),
@@ -82,54 +63,66 @@ const CadastroEnderecoPage = () => {
       .then((res) => {
         console.log(res)
         localStorage.setItem("tokenEndereco", res.data.token);
-        alert('deu certo')
-        navigate('/login')
+        toast.success("Sucesso!", {  
+          position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1000,
+            icon: '✨'
+        });
+        navigate('/feed')
       })
-      .catch((err) => {
-        console.log(err.response);
+      .catch((err) => {       
+        toast.warn("Tente novamente.", { 
+          autoClose: 1000,               
+        });
       });
   };
+
+
   return (
     <div>
-      <Top>
-        <BtBack>{"<"}</BtBack>
-      </Top>
-      <hr />
+     <Top>
+        <BtBack onClick={()=>navigate(-1)} src={backIcon}/>
+      </Top>    
       <Main>
-        <form onSubmit={onSubmitForm}>
+        <Form onSubmit={onSubmitForm}>
+          <AlignPa>
           <Pa>Meu endereço</Pa>
-          <Input placeholder={"   Rua / Av."} 
+          </AlignPa>
+          <TextField placeholder={"   Rua / Av."} 
           onChange={handleChange}
           value={form.street}
           name={"street"}
+          label="Rua / Av."
+          required
+          autoFocus
            />
-          <Input placeholder={"   Número"} 
+          <TextField placeholder={"   Número"} 
           onChange={handleChange}
           value={form.number}
           name={"number"}
            />
-          <Input placeholder={"    Apto. / Bloco"} 
+          <TextField placeholder={"    Apto. / Bloco"} 
           onChange={handleChange}
           value={form.complement}
           name={"complement"}
           />
-          <Input placeholder={"    Bairro"} 
+          <TextField placeholder={"    Bairro"} 
           onChange={handleChange}
           value={form.neighbourhood} 
           name={"neighbourhood"}
           />
-          <Input placeholder={"    Cidade"} 
+          <TextField placeholder={"    Cidade"} 
           onChange={handleChange}          
           value={form.city}
           name={"city"}
           />
-          <Input placeholder={"    Estado"} 
+          <TextField placeholder={"    Estado"} 
           onChange={handleChange}
           value={form.state} 
           name={"state"}
           />
-          <Button onClick={() => takeAdress()}>Enviar </Button>
-        </form>
+          <Button onClick={()=>takeAdress()} >Enviar </Button>
+        </Form>
       </Main>
     </div>
   );

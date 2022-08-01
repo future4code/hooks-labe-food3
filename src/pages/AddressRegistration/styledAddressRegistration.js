@@ -3,19 +3,20 @@ import styled from "styled-components";
 
 
 
-export const BtBack = styled.button`
+export const BtBack = styled.img`
 background: none;
-height: 40px;
-margin-left: 20px;
+height: 2rem;
 border: none;
-font-weight: 600;
-font-size: 30px;
+padding-left: 1rem;
+padding-top: 0.5rem;
+cursor: pointer;
 `
 
 export const Top = styled.div`
 display: flex;
-align-items: flex-end;
-height: 60px;
+height: 2.75rem;
+/* background-color: red; */
+box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
 `
 
 
@@ -25,7 +26,7 @@ export const Main = styled.div`
   flex-direction: column;
   justify-content: center;
 padding: 20px;
-padding-top: 15px;
+
 `;
 
 export const Input = styled.input`

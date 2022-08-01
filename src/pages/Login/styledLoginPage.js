@@ -1,27 +1,30 @@
 import styled from "styled-components";
-import TextField from "@mui/material"
+
 
 export const Main = styled.div`
   display: flex;
   text-align: center;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
+  /* margin: 1rem; */
   padding-top: 15px;
+  /* background-color: red; */
 `;
 
 export const FieldSize = styled.form`
 width: 22rem;
+padding-bottom: 0.5rem;
+/* background-color: blue; */
 `
 
 
 export const Form = styled.form`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  padding-bottom: 10px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  flex-direction: column; 
+  gap: 1rem;
+  padding-bottom: 1rem;
   /* width: 22rem; */
 `;
 
@@ -45,7 +48,7 @@ export const Img = styled.img`
 `;
 
 export const Button = styled.button`
-  width: 22rem;
+  /* width: 22.5rem; */
   height: 48px;
   border-radius: 3px;
   background-color: red;
@@ -53,8 +56,15 @@ export const Button = styled.button`
   font-size: 18px;
   border: none;
   margin-top: 5px;
+  cursor: pointer;
 `;
+
+export const Title = styled.p`
+font-weight: 600;
+`
+
 
 export const Pa = styled.p`
 font-weight: 600;
+cursor: pointer;
 `

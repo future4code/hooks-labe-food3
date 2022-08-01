@@ -1,20 +1,24 @@
 import styled from "styled-components";
 
-export const BtBack = styled.button`
-background: none;
-height: 40px;
+export const BtBack = styled.img`
+/* background: none; */
+height: 1.5rem;
 margin-left: 20px;
-border: none;
-font-weight: 600;
-font-size: 30px;
+/* background-color: red; */
+/* border: none; */
+/* font-weight: 600; */
+/* font-size: 30px; */
 `
 
 
 export const Top = styled.div`
 display: flex;
-align-items: flex-end;
+align-items: center;
+/* justify-content: center; */
+/* align-items: flex-end; */
 height: 60px;
 /* border-bottom: 1px solid black; */
+box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
 `
 
 export const Main = styled.div`
@@ -50,13 +54,28 @@ export const Gap = styled.div`
   gap: 15px;
 `;
 export const Pa = styled.p`
-  display: flex;
+  text-align: center;
   margin: 0;
   font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.39px;
 `;
 export const Img = styled.img`
   width: 104px;
   height: 58px;
   margin: 0 auto;
   padding-bottom: 20px;
+  `;
+
+  export const Form = styled.form`
+  display: flex;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  flex-direction: column;
+ 
+  gap: 1rem;
+  padding-bottom: 1rem;
+  /* width: 22rem; */
 `;
+
+  
