@@ -28,6 +28,7 @@
 
 ### 📋 O que não funciona: 
 - [ ] Responsividade para formato web* (não exigido)
+- [ ] Botão mostrar e esconder senha
 - [ ] Mostrar valor do frete no carrinho de pedidos
 - [ ] Salvar o carrinho no localstorage
 - [ ] Condicional de carrinho vazio mostrar mensagem
